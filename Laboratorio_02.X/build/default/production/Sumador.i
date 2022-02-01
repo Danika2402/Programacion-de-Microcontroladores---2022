@@ -2503,10 +2503,22 @@ main:
     bcf STATUS,6 ;BANCO 01
     bsf TRISA, 0
     bsf TRISA, 1
+    bsf TRISA, 2
+    bsf TRISA, 3
+    bsf TRISA, 4
     clrf TRISB
+    clrf TRISC
+    clrf TRISD
+
+
+
+
+
 
     bcf STATUS, 5
     clrf PORTB
+    clrf PORTC
+    clrf PORTD
 
 ;-------------LOOP-------------------------------------------------------------
 
@@ -2518,17 +2530,23 @@ loop:
     btfss PORTA, 1
     call ANTIREBOTE2
 
+    btfss PORTA, 2
+    call ANTIREBOTE3
+
+    btfss PORTA, 3
+    call ANTIREBOTE4
+
     goto loop
 
 ;-----------sub rutinas--------------------------------------------------------
-# 84 "Sumador.s"
+
+
 ANTIREBOTE1:
     btfss PORTA,0
     goto $-1
     incf PORTB, F
     movlw 0b00001111
     andwf PORTB
-
     return
 
 ANTIREBOTE2:
@@ -2537,7 +2555,26 @@ ANTIREBOTE2:
     decfsz PORTB, F
     movlw 0b00001111
     andwf PORTB
-
     return
+
+
+
+ANTIREBOTE3:
+    btfss PORTA,2
+    goto $-1
+    incf PORTC, F
+    movlw 0b00001111
+    andwf PORTC
+    return
+
+ANTIREBOTE4:
+    btfss PORTA,3
+    goto $-1
+    decfsz PORTC, F
+    movlw 0b00001111
+    andwf PORTC
+    return
+
+
 
 END

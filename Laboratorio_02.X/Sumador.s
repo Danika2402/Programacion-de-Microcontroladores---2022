@@ -52,12 +52,24 @@ main:
     clrf    ANSELH
     
     bcf	    STATUS,6	;BANCO 01   
-    bsf	    TRISA, 0
-    bsf	    TRISA, 1
+    bsf	    TRISA, 0	//contador B, incrementa
+    bsf	    TRISA, 1	//contador B, decrementa
+    bsf	    TRISA, 2	//contador C, incrementa
+    bsf	    TRISA, 3	//contador C, decrementa
+    bsf	    TRISA, 4	//Sumador
     clrf    TRISB
-    
+    clrf    TRISC
+    clrf    TRISD
+    /*
+    bsf	    IRCF2   //OSCILOSCOPIO
+    bcf	    IRCF1   //100 = 1MHz
+    bcf	    IRCF0
+    bsf	    SCS	    ;reloj interno activo
+    */
     bcf	    STATUS, 5
     clrf    PORTB
+    clrf    PORTC
+    clrf    PORTD
 
 ;-------------LOOP-------------------------------------------------------------
     //btfss revisa si el bit esta encendido, 
@@ -69,25 +81,23 @@ loop:
     btfss   PORTA, 1
     call    ANTIREBOTE2
     
+    btfss   PORTA, 2
+    call    ANTIREBOTE3 
+    
+    btfss   PORTA, 3
+    call    ANTIREBOTE4
+    
     goto loop
     
 ;-----------sub rutinas--------------------------------------------------------    
-/*CHECKBOTON1:
-    btfsc   PORTA, 0 
-    goto    $-1
-    return
 
-CHECKBOTON2:
-    btfsc   PORTA, 1
-    goto    $-1
-    return*/
+//*****Contador puerto B
 ANTIREBOTE1:
     btfss   PORTA,0 //btfsc revisa si el bit esta apagado, 
     goto    $-1		    //skip la siguiente linea
     incf    PORTB, F
     movlw   0b00001111
     andwf   PORTB
-    //goto    CHECKBOTON1
     return
     
 ANTIREBOTE2:
@@ -96,7 +106,26 @@ ANTIREBOTE2:
     decfsz  PORTB, F
     movlw   0b00001111
     andwf   PORTB
-    //goto    CHECKBOTON2
+    return
+
+    
+//*******Contador puerto C
+ANTIREBOTE3:
+    btfss   PORTA,2 //btfsc revisa si el bit esta apagado, 
+    goto    $-1		    //skip la siguiente linea
+    incf    PORTC, F
+    movlw   0b00001111
+    andwf   PORTC
     return
     
+ANTIREBOTE4:
+    btfss   PORTA,3
+    goto    $-1
+    decfsz  PORTC, F
+    movlw   0b00001111
+    andwf   PORTC
+    return
+
+//ANTIREBOTE5:
+  //  btfss   PORTA, 4
 END
