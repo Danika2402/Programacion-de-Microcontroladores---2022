@@ -11,7 +11,7 @@
 ; botones en PORTA
 ;
 ;Creado: 30/01/2022
-;Ultima modificacion: 31/01/2022
+;Ultima modificacion: 02/02/2022
 
 
 PROCESSOR 16F887
