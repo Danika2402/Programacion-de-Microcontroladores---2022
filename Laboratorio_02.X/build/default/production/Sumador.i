@@ -10,7 +10,7 @@
 ;Hardware:
 ;
 ;Creado: 30/01/2022
-;Ultima modificacion: 24/01/2022
+;Ultima modificacion: 31/01/2022
 
 
 PROCESSOR 16F887
@@ -2480,8 +2480,8 @@ CONFIG BOR4V = BOR40V
 ;------------------------------------------------------------------------------
 
 PSECT udata_bank0
-    cont_small: DS 1
-    cont_big: DS 1
+    suma: DS 1
+
 
 PSECT resVect, class=CODE,abs, delta=2
 ;-----------------Vector Reset-----------------
@@ -2510,10 +2510,10 @@ main:
     clrf TRISC
     clrf TRISD
 
-
-
-
-
+    bsf ((OSCCON) and 07Fh), 6
+    bcf ((OSCCON) and 07Fh), 5
+    bcf ((OSCCON) and 07Fh), 4
+    bsf ((OSCCON) and 07Fh), 0 ;reloj interno activo
 
     bcf STATUS, 5
     clrf PORTB
@@ -2521,6 +2521,7 @@ main:
     clrf PORTD
 
 ;-------------LOOP-------------------------------------------------------------
+
 
 
 loop:
@@ -2536,6 +2537,9 @@ loop:
     btfss PORTA, 3
     call ANTIREBOTE4
 
+    btfss PORTA, 4
+    call ANTIREBOTE5
+
     goto loop
 
 ;-----------sub rutinas--------------------------------------------------------
@@ -2544,7 +2548,7 @@ loop:
 ANTIREBOTE1:
     btfss PORTA,0
     goto $-1
-    incf PORTB, F
+    incf PORTB
     movlw 0b00001111
     andwf PORTB
     return
@@ -2552,7 +2556,7 @@ ANTIREBOTE1:
 ANTIREBOTE2:
     btfss PORTA,1
     goto $-1
-    decfsz PORTB, F
+    decfsz PORTB
     movlw 0b00001111
     andwf PORTB
     return
@@ -2562,7 +2566,7 @@ ANTIREBOTE2:
 ANTIREBOTE3:
     btfss PORTA,2
     goto $-1
-    incf PORTC, F
+    incf PORTC
     movlw 0b00001111
     andwf PORTC
     return
@@ -2570,11 +2574,22 @@ ANTIREBOTE3:
 ANTIREBOTE4:
     btfss PORTA,3
     goto $-1
-    decfsz PORTC, F
+    decfsz PORTC
     movlw 0b00001111
     andwf PORTC
     return
 
+ANTIREBOTE5:
+    btfss PORTA, 4
+    goto $-1
 
+    movf PORTB, W
+    movwf suma
+    movf PORTC, W
+    addwf suma,W
+    movwf PORTD
 
+    movlw 0b00011111
+    andwf PORTD
+    return
 END
