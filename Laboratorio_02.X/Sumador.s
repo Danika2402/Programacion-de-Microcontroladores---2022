@@ -99,7 +99,7 @@ loop:
 
 //*****Contador puerto B
 ANTIREBOTE1:
-    btfss   PORTA,0	    //si esta apagado el bit skip siguiente linea
+    btfss   PORTA,0	    //si esta encendido el bit skip siguiente linea
     goto    $-1		    //se regresa 1 linea
     incf    PORTB	    //incremente puerto
     movlw   0b00001111	    //aqui hacemos que solo los primeros
