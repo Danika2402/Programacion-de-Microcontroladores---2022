@@ -71,6 +71,7 @@ main:
     clrf    PORTB
     clrf    PORTC
     clrf    PORTD
+    clrf    suma
 
 ;-------------LOOP-------------------------------------------------------------
     //btfss revisa si el bit esta encendido, 

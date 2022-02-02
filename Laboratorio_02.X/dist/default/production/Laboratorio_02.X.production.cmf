@@ -13,7 +13,7 @@
 %PSECTS
 $build/default/production/Sumador.o
 resVect CODE 0 0 0 3 2 1
-code CODE 0 0 0 A6 2 1
+code CODE 0 0 0 A7 2 1
 udata_bank0 BANK0 1 20 20 1 1 1
 config CONFIG 4 2007 2007 2 2 1
 # %UNUSED Section
@@ -30,15 +30,15 @@ BANK0 21-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST A6-1FFF 2
-ENTRY A6-1FFF 2
+CONST A7-1FFF 2
+ENTRY A7-1FFF 2
 IDLOC 2000-2003 2
-CODE A6-1FFF 2
+CODE A7-1FFF 2
 SFR3 180-18F 1
 COMMON 70-7F 1
 EEDATA 2100-21FF 2
-STRCODE A6-1FFF 2
-STRING A6-1FFF 2
+STRCODE A7-1FFF 2
+STRING A7-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -78,51 +78,52 @@ $build/default/production/Sumador.o
 76 code CODE >71:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 77 code CODE >72:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 78 code CODE >73:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-79 code CODE >80:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+79 code CODE >74:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 7A code CODE >81:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-7B code CODE >83:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+7B code CODE >82:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 7C code CODE >84:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-7D code CODE >86:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+7D code CODE >85:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 7E code CODE >87:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-7F code CODE >89:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+7F code CODE >88:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 80 code CODE >90:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-81 code CODE >92:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+81 code CODE >91:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 82 code CODE >93:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-83 code CODE >95:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-84 code CODE >101:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+83 code CODE >94:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+84 code CODE >96:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 85 code CODE >102:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 86 code CODE >103:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 87 code CODE >104:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 88 code CODE >105:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 89 code CODE >106:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-8A code CODE >109:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+8A code CODE >107:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 8B code CODE >110:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 8C code CODE >111:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 8D code CODE >112:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 8E code CODE >113:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 8F code CODE >114:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-90 code CODE >119:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+90 code CODE >115:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 91 code CODE >120:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 92 code CODE >121:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 93 code CODE >122:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 94 code CODE >123:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 95 code CODE >124:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-96 code CODE >127:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+96 code CODE >125:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 97 code CODE >128:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 98 code CODE >129:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 99 code CODE >130:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 9A code CODE >131:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 9B code CODE >132:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-9C code CODE >135:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+9C code CODE >133:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 9D code CODE >136:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-9E code CODE >138:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+9E code CODE >137:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 9F code CODE >139:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 A0 code CODE >140:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 A1 code CODE >141:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 A2 code CODE >142:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
-A3 code CODE >144:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+A3 code CODE >143:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 A4 code CODE >145:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 A5 code CODE >146:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
+A6 code CODE >147:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_02.X\Sumador.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -135,7 +136,7 @@ A5 code CODE >146:C:\Users\HP\Documents\Programacion de Microcontroladores\Labor
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 A6 0 ABS 0 - -
+__Hspace_0 A7 0 ABS 0 - -
 __Hspace_1 21 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -

@@ -2520,6 +2520,7 @@ main:
     clrf PORTB
     clrf PORTC
     clrf PORTD
+    clrf suma
 
 ;-------------LOOP-------------------------------------------------------------
 
