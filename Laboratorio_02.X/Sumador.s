@@ -3,9 +3,10 @@
 ;Autor:		Danika Andrino
 ;Compilador:	pic-as (2.30), MPLABX V6.00
 ;
-;Programa:	
-;Hardware:	
-;    
+;Programa:	2 contadores 4 bits que se suman	
+;Hardware:	contador en PORTC y PORTB, resultado de suma en PORTD
+;		botones en PORTA
+;
 ;Creado:	30/01/2022
 ;Ultima modificacion: 31/01/2022
     

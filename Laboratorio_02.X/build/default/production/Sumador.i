@@ -6,8 +6,9 @@
 ;Autor: Danika Andrino
 ;Compilador: pic-as (2.30), MPLABX V6.00
 ;
-;Programa:
-;Hardware:
+;Programa: 2 contadores 4 bits que se suman
+;Hardware: contador en PORTC y PORTB, resultado de suma en PORTD
+; botones en PORTA
 ;
 ;Creado: 30/01/2022
 ;Ultima modificacion: 31/01/2022
@@ -2460,7 +2461,7 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 7 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\xc.inc" 2 3
-# 15 "Sumador.s" 2
+# 16 "Sumador.s" 2
 
 CONFIG FOSC = INTRC_NOCLKOUT
 CONFIG WDTE = OFF
