@@ -13,7 +13,7 @@
 %PSECTS
 $build/default/production/Tmr0.o
 resVect CODE 0 0 0 3 2 1
-code CODE 0 0 0 7D 2 1
+code CODE 0 0 0 8C 2 1
 config CONFIG 4 2007 2007 2 2 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -29,16 +29,15 @@ BANK0 20-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 7D-1FFF 2
-ENTRY 7D-1FFF 2
+CONST 8C-1FFF 2
+ENTRY 8C-1FFF 2
 IDLOC 2000-2003 2
-CODE 7D-1FFF 2
-SFR2 100-10F 1
+CODE 8C-1FFF 2
 SFR3 180-18F 1
 COMMON 70-7F 1
 EEDATA 2100-21FF 2
-STRCODE 7D-1FFF 2
-STRING 7D-1FFF 2
+STRCODE 8C-1FFF 2
+STRING 8C-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -59,26 +58,38 @@ $build/default/production/Tmr0.o
 0 code CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
 64 code CODE >45:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
 65 code CODE >46:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-66 code CODE >49:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+66 code CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
 67 code CODE >50:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-68 code CODE >55:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-6A code CODE >56:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-6B code CODE >57:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-6C code CODE >58:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-6D code CODE >59:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-6E code CODE >60:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-6F code CODE >63:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-71 code CODE >64:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-72 code CODE >65:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-73 code CODE >66:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-74 code CODE >67:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-75 code CODE >69:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-76 code CODE >70:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-77 code CODE >73:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-79 code CODE >74:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-7A code CODE >75:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-7B code CODE >76:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
-7C code CODE >77:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+68 code CODE >51:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+69 code CODE >53:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+6A code CODE >54:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+6B code CODE >55:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+6C code CODE >60:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+6E code CODE >61:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+6F code CODE >62:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+70 code CODE >63:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+72 code CODE >64:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+73 code CODE >65:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+75 code CODE >66:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+76 code CODE >67:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+77 code CODE >70:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+79 code CODE >71:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+7A code CODE >72:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+7B code CODE >73:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+7C code CODE >74:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+7D code CODE >75:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+7E code CODE >78:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+80 code CODE >79:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+81 code CODE >80:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+82 code CODE >81:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+83 code CODE >82:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+84 code CODE >84:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+85 code CODE >85:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+86 code CODE >88:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+88 code CODE >89:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+89 code CODE >90:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+8A code CODE >91:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
+8B code CODE >92:C:\Users\HP\Documents\Programacion de Microcontroladores\Tmr0.X\Tmr0.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -91,7 +102,7 @@ $build/default/production/Tmr0.o
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 7D 0 ABS 0 - -
+__Hspace_0 8C 0 ABS 0 - -
 __Hspace_1 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -

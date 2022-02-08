@@ -1,7 +1,7 @@
-# 1 "Tmr0.s"
+# 1 "Boton_tmr0.s"
 # 1 "<built-in>" 1
-# 1 "Tmr0.s" 2
-;Archivo: Tmr0.s
+# 1 "Boton_tmr0.s" 2
+;Archivo: Boton y tmr0.s
 ;Dispositivo: PIC16F887
 ;Autor: Danika Andrino
 ;Compilador: pic-as (2.30), MPLABX V6.00
@@ -9,9 +9,9 @@
 ;Programa:
 ;Hardware:
 ;
-;Creado: 31/01/2022
-;Ultima modificacion: 31/01/2022
-
+;
+;Creado: 06/02/2022
+;Ultima modificacion: 06/02/2022
 
 PROCESSOR 16F887
 
@@ -2460,7 +2460,7 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 7 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\xc.inc" 2 3
-# 15 "Tmr0.s" 2
+# 15 "Boton_tmr0.s" 2
 
 CONFIG FOSC = INTRC_NOCLKOUT
 CONFIG WDTE = OFF
@@ -2479,6 +2479,9 @@ CONFIG BOR4V = BOR40V
 
 ;------------------------------------------------------------------------------
 
+PSECT udata_bank0
+    cont: DS 1
+
 PSECT resVect, class=CODE,abs, delta=2
 ;-----------------Vector Reset-----------------
 ORG 00h
@@ -2487,44 +2490,108 @@ resetVec:
     goto main
 
 PSECT code, delta=2, abs
-ORG 100
+ORG 100h
+
+ tabla:
+    clrf PCLATH
+    bsf PCLATH, 0 ;PCLATH = 01
+    andwf 0x0f ;me aseguro q solo pasen 4 bits
+    addwf PCL ;PC = PCL + PCLATH + w
+    retlw 11111100B ;0
+    retlw 01100000B ;1
+    retlw 11011010B ;2
+    retlw 11110010B ;3
+    retlw 01100110B ;4
+    retlw 10110110B ;5
+    retlw 10111110B ;6
+    retlw 11100000B ;7
+    retlw 11111110B ;8
+    retlw 11110110B ;9
+    retlw 11101110B ;A
+    retlw 00111110B ;B
+    retlw 10011100B ;C
+    retlw 01111010B ;D
+    retlw 10011110B ;E
+    retlw 10001110B ;F
 ;---------------CONFIGURACION--------------------------------------------------
 
 main:
-    CALL CONFIG_PORTS
-    call config_reloj
+    call config_ports
     call config_tmr0
+    banksel PORTC
 
+;-------------LOOP-------------------------------------------------------------
 loop:
-    btfss ((INTCON) and 07Fh), 2
-    goto $-1
+    btfsc ((INTCON) and 07Fh), 2
+    call loop_tmr0
 
-    CALL reinicio_tmr0 ; Reinicio del TMR0
-    INCF PORTD ; Incrementamos en 1 el PORTD (Extra de lo visto en clase)
-    GOTO loop
+    btfsc PORTB, 0
+    call inc_display
 
+    btfsc PORTB, 1
+    call dec_display
+
+    goto loop
 ;-----------sub rutinas--------------------------------------------------------
 
-CONFIG_PORTS:
-    BANKSEL ANSEL ; Cambio de banco
-    CLRF ANSEL ; I/O digitales
-    CLRF ANSELH ; I/O digitales
-    BANKSEL TRISD
-    CLRF TRISD ; PORTD como salida
-    BANKSEL PORTD
-    CLRF PORTD ; APAGAR PORTD
-    RETURN
+loop_tmr0:
+    call reinicio_tmr0
+    incf PORTC
+    movlw 0b00001111
+    andwf PORTC
+    return
 
-config_reloj:
-    banksel OSCCON
-    bsf ((OSCCON) and 07Fh), 0
-    bsf ((OSCCON) and 07Fh), 6
-    bsf ((OSCCON) and 07Fh), 5
-    bcf ((OSCCON) and 07Fh), 4
+inc_display:
+    btfsc PORTB, 0
+    goto $-1
+
+    incf cont
+    movlw 0b00001111
+    andwf cont
+    movf cont,W
+    call tabla
+    movwf PORTA
+    return
+
+dec_display:
+    btfsc PORTB, 1
+    goto $-1
+
+    decfsz cont
+    movlw 0b00001111
+    andwf cont
+    movf cont,W
+    call tabla
+    movwf PORTA
+    return
+
+config_ports:
+    banksel ANSEL
+    clrf ANSEL
+    clrf ANSELH
+
+    banksel TRISC
+    clrf TRISC
+    clrf TRISA
+    bsf TRISB,0
+    bsf TRISB,1
+
+    banksel PORTC
+    clrf PORTC
+    clrf PORTA
+    clrf cont
+
     return
 
 config_tmr0:
+    banksel OSCCON
+    bsf ((OSCCON) and 07Fh), 6
+    bcf ((OSCCON) and 07Fh), 5
+    bcf ((OSCCON) and 07Fh), 4
+    bsf ((OSCCON) and 07Fh), 0 ;reloj interno activo
+
     banksel OPTION_REG
+    bcf ((OPTION_REG) and 07Fh), 3
     bsf ((OPTION_REG) and 07Fh), 2
     bsf ((OPTION_REG) and 07Fh), 1
     bsf ((OPTION_REG) and 07Fh), 0
@@ -2535,7 +2602,7 @@ config_tmr0:
 
 reinicio_tmr0:
     banksel TMR0
-    movlw 61
+    movlw 158
     movwf TMR0
     bcf ((INTCON) and 07Fh), 2
     return

@@ -42,6 +42,7 @@ ORG 100
 ;---------------CONFIGURACION--------------------------------------------------
 
 main:
+    CALL    CONFIG_PORTS
     call config_reloj
     call config_tmr0
     
@@ -49,7 +50,21 @@ loop:
     btfss   T0IF
     goto    $-1
     
+    CALL    reinicio_tmr0   ; Reinicio del TMR0
+    INCF    PORTD	    ; Incrementamos en 1 el PORTD (Extra de lo visto en clase)
+    GOTO    loop
+    
 ;-----------sub rutinas--------------------------------------------------------
+    
+CONFIG_PORTS:
+    BANKSEL ANSEL	    ; Cambio de banco
+    CLRF    ANSEL	    ; I/O digitales
+    CLRF    ANSELH	    ; I/O digitales
+    BANKSEL TRISD
+    CLRF    TRISD	    ; PORTD como salida
+    BANKSEL PORTD   
+    CLRF    PORTD	    ; APAGAR PORTD 
+    RETURN
     
 config_reloj:
     banksel OSCCON
