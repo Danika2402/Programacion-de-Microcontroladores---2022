@@ -8,7 +8,7 @@
 ;		
 ;
 ;Creado:		06/02/2022
-;Ultima modificacion:	06/02/2022
+;Ultima modificacion:	12/02/2022
     
 PROCESSOR 16F887
 #include <xc.inc>
@@ -31,7 +31,9 @@ CONFIG BOR4V =   BOR40V
 ;------------------------------------------------------------------------------
     
 PSECT udata_bank0
-    cont: DS 1 
+    cont:	DS 1 
+    //cont1:	DS 1
+    cont_small: DS 1
     
 PSECT resVect, class=CODE,abs, delta=2
 ;-----------------Vector Reset-----------------
@@ -74,33 +76,51 @@ main:
 ;-------------LOOP-------------------------------------------------------------
 loop:
     btfsc   T0IF
-    call    loop_tmr0
-    
-    btfsc   PORTB, 0
+    call    loop_tmr0	    //contador TMR0 a 100ms
+
+    btfsc   PORTB, 0	    //incrementa display 7
     call    inc_display
     
-    btfsc   PORTB, 1
+    btfsc   PORTB, 1	    //decrementa display 7
     call    dec_display
+    
+    movf    cont, W	    //igualdad entre tmr0 y display 7
+    subwf   PORTC, W
+    btfsc   STATUS, 2
+    call    Resta
+    bcf	    PORTB, 3
     
     goto    loop
 ;-----------sub rutinas-------------------------------------------------------- 
 
 loop_tmr0:
-    call    reinicio_tmr0
+    call    reinicio_tmr0	//contador tmr0
     incf    PORTC
     movlw   0b00001111
     andwf   PORTC
+    /*
+    decfsz  cont1
+    subwf   cont1	//cont1 - W 
+    btfss   STATUS, 2	//bandera zero
+    incf    PORTD
+    //call    loop2*/
     return
-
+/*
+loop2:
+    incf    PORTD
+    movlw   0b00001111
+    andwf   PORTD
+    return*/
+    
 inc_display:
-    btfsc   PORTB, 0
+    btfsc   PORTB, 0	    
     goto    $-1
     
-    incf    cont
-    movlw   0b00001111	    
-    andwf   cont
-    movf    cont,W
-    call    tabla
+    incf    cont	    //se incrementa la variable, 
+    movlw   0b00001111	    //cont se multiplica con W para usar solo 4 bits
+    andwf   cont	    //luego cont se mueve a W
+    movf    cont,W	    //y llamamos a tabla
+    call    tabla	    //y eso se mueve a PORTA 
     movwf   PORTA
     return
     
@@ -116,22 +136,36 @@ dec_display:
     movwf   PORTA	    
     return
     
+Resta:
+    call    reinicio_tmr0	//se enciende PORTB3
+    bsf	    PORTB, 3		
+    movlw   800			//pequeño delay
+    movwf   cont_small
+    decfsz  cont_small, 1
+    goto    $-1
+    return
+    
 config_ports:
     banksel ANSEL
     clrf    ANSEL
     clrf    ANSELH
     
-    banksel TRISC
+    banksel TRISC	//puertos A,C,D como salida
     clrf    TRISC
     clrf    TRISA
-    bsf	    TRISB,0
+    clrf    TRISB
+    bsf	    TRISB,0	//puerto B bits 0 y 1 como entrada
     bsf	    TRISB,1
     
     banksel PORTC
     clrf    PORTC
     clrf    PORTA
-    clrf   cont
-
+    //clrf    PORTD
+    clrf    PORTB
+    clrf    cont
+    //movlw   0x0A
+    //movwf   cont1
+    
     return
     
 config_tmr0:
@@ -156,6 +190,8 @@ reinicio_tmr0:
     movlw   158
     movwf   TMR0
     bcf	    T0IF
+    btfsc   STATUS,2
+    clrf    PORTC
     return
     
     

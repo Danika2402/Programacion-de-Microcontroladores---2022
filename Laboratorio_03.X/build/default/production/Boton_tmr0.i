@@ -11,7 +11,7 @@
 ;
 ;
 ;Creado: 06/02/2022
-;Ultima modificacion: 06/02/2022
+;Ultima modificacion: 12/02/2022
 
 PROCESSOR 16F887
 
@@ -2482,6 +2482,8 @@ CONFIG BOR4V = BOR40V
 PSECT udata_bank0
     cont: DS 1
 
+    cont_small: DS 1
+
 PSECT resVect, class=CODE,abs, delta=2
 ;-----------------Vector Reset-----------------
 ORG 00h
@@ -2531,6 +2533,12 @@ loop:
     btfsc PORTB, 1
     call dec_display
 
+    movf cont, W
+    subwf PORTC, W
+    btfsc STATUS, 2
+    call Resta
+    bcf PORTB, 3
+
     goto loop
 ;-----------sub rutinas--------------------------------------------------------
 
@@ -2539,7 +2547,19 @@ loop_tmr0:
     incf PORTC
     movlw 0b00001111
     andwf PORTC
+
+
+
+
+
+
     return
+
+
+
+
+
+
 
 inc_display:
     btfsc PORTB, 0
@@ -2565,6 +2585,15 @@ dec_display:
     movwf PORTA
     return
 
+Resta:
+    call reinicio_tmr0
+    bsf PORTB, 3
+    movlw 800
+    movwf cont_small
+    decfsz cont_small, 1
+    goto $-1
+    return
+
 config_ports:
     banksel ANSEL
     clrf ANSEL
@@ -2573,13 +2602,18 @@ config_ports:
     banksel TRISC
     clrf TRISC
     clrf TRISA
+    clrf TRISB
     bsf TRISB,0
     bsf TRISB,1
 
     banksel PORTC
     clrf PORTC
     clrf PORTA
+
+    clrf PORTB
     clrf cont
+
+
 
     return
 
@@ -2605,4 +2639,6 @@ reinicio_tmr0:
     movlw 158
     movwf TMR0
     bcf ((INTCON) and 07Fh), 2
+    btfsc STATUS,2
+    clrf PORTC
     return
