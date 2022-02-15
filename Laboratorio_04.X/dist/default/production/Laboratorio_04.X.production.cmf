@@ -13,8 +13,8 @@
 %PSECTS
 $build/default/production/interrupciones.o
 resVect CODE 0 0 0 3 2 1
-code CODE 0 0 0 13A 2 1
-intVect CODE 0 0 0 20 2 1
+code CODE 0 0 0 13C 2 1
+intVect CODE 0 0 0 2A 2 1
 udata_bank0 BANK0 1 20 20 1 1 1
 udata_shr COMMON 1 70 70 2 1 1
 config CONFIG 4 2007 2007 2 2 1
@@ -32,14 +32,14 @@ BANK0 21-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 13A-1FFF 2
-ENTRY 13A-1FFF 2
+CONST 13C-1FFF 2
+ENTRY 13C-1FFF 2
 IDLOC 2000-2003 2
-CODE 13A-1FFF 2
+CODE 13C-1FFF 2
 COMMON 72-7F 1
 EEDATA 2100-21FF 2
-STRCODE 13A-1FFF 2
-STRING 13A-1FFF 2
+STRCODE 13C-1FFF 2
+STRING 13C-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -58,21 +58,22 @@ $build/default/production/interrupciones.o
 4 intVect CODE >58:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 5 intVect CODE >59:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 6 intVect CODE >60:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-7 intVect CODE >63:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-8 intVect CODE >64:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-9 intVect CODE >66:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-A intVect CODE >67:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-B intVect CODE >71:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-C intVect CODE >72:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-D intVect CODE >73:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-E intVect CODE >74:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-F intVect CODE >75:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-10 intVect CODE >80:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-12 intVect CODE >80:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-13 intVect CODE >80:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-14 intVect CODE >80:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-15 intVect CODE >81:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-16 intVect CODE >87:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+7 intVect CODE >64:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+8 intVect CODE >65:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+9 intVect CODE >67:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+A intVect CODE >68:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+B intVect CODE >74:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+C intVect CODE >75:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+D intVect CODE >76:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+E intVect CODE >77:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+F intVect CODE >78:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+10 intVect CODE >83:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+12 intVect CODE >83:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+13 intVect CODE >83:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+14 intVect CODE >83:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+15 intVect CODE >85:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+16 intVect CODE >86:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+17 intVect CODE >87:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 18 intVect CODE >88:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 19 intVect CODE >89:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 1A intVect CODE >90:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
@@ -80,60 +81,71 @@ F intVect CODE >75:C:\Users\HP\Documents\Programacion de Microcontroladores\Labo
 1C intVect CODE >92:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 1D intVect CODE >93:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 1E intVect CODE >94:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-1F intVect CODE >95:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+1F intVect CODE >97:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+20 intVect CODE >100:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+22 intVect CODE >101:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+23 intVect CODE >102:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+24 intVect CODE >103:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+25 intVect CODE >104:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+26 intVect CODE >105:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+27 intVect CODE >106:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+28 intVect CODE >107:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+29 intVect CODE >108:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 0 resVect CODE >48:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 0 resVect CODE >50:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 2 resVect CODE >51:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-0 code CODE >98:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-100 code CODE >102:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-101 code CODE >103:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-102 code CODE >104:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-103 code CODE >105:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-104 code CODE >106:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-106 code CODE >110:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-107 code CODE >113:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-109 code CODE >114:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-10A code CODE >115:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-10B code CODE >117:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-10D code CODE >118:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-10E code CODE >119:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-10F code CODE >121:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-110 code CODE >122:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-111 code CODE >124:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-112 code CODE >125:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-113 code CODE >126:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-114 code CODE >128:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-116 code CODE >129:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-117 code CODE >130:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-118 code CODE >131:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-119 code CODE >134:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-11B code CODE >135:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-11C code CODE >136:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-11D code CODE >138:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-11F code CODE >139:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-120 code CODE >140:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-121 code CODE >141:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-122 code CODE >150:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-124 code CODE >151:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-125 code CODE >152:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-126 code CODE >153:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-127 code CODE >154:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-128 code CODE >156:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-12A code CODE >157:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-12B code CODE >158:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-12C code CODE >159:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-12D code CODE >160:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-12E code CODE >162:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-130 code CODE >163:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-131 code CODE >164:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-132 code CODE >165:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-133 code CODE >166:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-134 code CODE >169:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-135 code CODE >170:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-136 code CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-137 code CODE >172:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-138 code CODE >173:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
-139 code CODE >174:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+0 code CODE >111:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+100 code CODE >115:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+101 code CODE >116:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+102 code CODE >117:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+103 code CODE >118:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+104 code CODE >119:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+106 code CODE >123:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+107 code CODE >126:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+109 code CODE >127:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+10A code CODE >128:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+10B code CODE >130:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+10D code CODE >131:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+10E code CODE >132:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+10F code CODE >134:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+110 code CODE >135:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+111 code CODE >137:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+112 code CODE >138:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+113 code CODE >139:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+114 code CODE >141:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+116 code CODE >142:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+117 code CODE >143:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+118 code CODE >144:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+119 code CODE >145:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+11A code CODE >148:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+11C code CODE >149:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+11D code CODE >150:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+11E code CODE >152:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+120 code CODE >153:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+121 code CODE >154:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+122 code CODE >155:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+123 code CODE >158:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+125 code CODE >159:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+126 code CODE >160:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+127 code CODE >161:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+128 code CODE >162:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+129 code CODE >164:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+12B code CODE >165:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+12C code CODE >166:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+12D code CODE >167:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+12E code CODE >168:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+12F code CODE >169:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+130 code CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+132 code CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+133 code CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+134 code CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+135 code CODE >172:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+136 code CODE >175:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+137 code CODE >176:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+138 code CODE >177:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+139 code CODE >178:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+13A code CODE >179:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
+13B code CODE >180:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_04.X\interrupciones.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -146,7 +158,7 @@ F intVect CODE >75:C:\Users\HP\Documents\Programacion de Microcontroladores\Labo
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 13A 0 ABS 0 - -
+__Hspace_0 13C 0 ABS 0 - -
 __Hspace_1 72 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -

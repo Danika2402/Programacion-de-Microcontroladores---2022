@@ -15,7 +15,7 @@ PROCESSOR 16F887
     
 CONFIG FOSC  =   INTRC_NOCLKOUT
 CONFIG WDTE  =   OFF
-CONFIG PWRTE =   ON
+CONFIG PWRTE =   OFF
 CONFIG MCLRE =   OFF
 CONFIG CP    =   OFF
 CONFIG CPD   =   OFF
@@ -23,14 +23,14 @@ CONFIG CPD   =   OFF
 CONFIG BOREN =   OFF
 CONFIG IESO  =   OFF
 CONFIG FCMEN =   OFF
-CONFIG LVP   =   ON
+CONFIG LVP   =   OFF
     
 CONFIG WRT   =   OFF
 CONFIG BOR4V =   BOR40V
         
-RESET_TMR0 MACRO TMR_VAL
+RESET_TMR0 MACRO 
     banksel TMR0
-    movlw   TMR_VAL
+    movlw   177
     movwf   TMR0
     bcf	    T0IF
     ENDM
@@ -60,12 +60,15 @@ PUSH:
     movwf   STATUS_TEMP
     
 ISR:
+    
     btfsc   T0IF
     call    TO_int
     
     btfsc   RBIF
     call    IO_int
     
+   // RESET_TMR0 
+    //incf    PORTC
     
 POP:
     swapf   STATUS_TEMP, W
@@ -77,12 +80,22 @@ POP:
 ;----------------Subrutinas de Interrupcion ------------------------------------
 
 TO_int:
-    RESET_TMR0 158
+    RESET_TMR0	
+    //incf    PORTC	    //btfss revisa si el bit esta encendido, 
+    incf    cont	    //skip la siquiente linea
+    movf    cont, W
+    sublw   50		    //20ms * 50 = 1000ms (1s)
+    btfss   ZERO	    //si resta + -> c=1, z=0
+    goto    return_tmr0	    //si resta 0 -> c=1, z=1
+    movf    cont, W	    //si resta - -> c=0, z=0
     incf    PORTC
- /*   
+    movlw   0b00001111
+    andwf   PORTC
+    clrf    cont
+
 return_tmr0:
     return
-    */
+    
 IO_int:
     banksel PORTB
     btfss   PORTB, 0
@@ -128,6 +141,7 @@ config_ports:
     banksel PORTA
     clrf    PORTD
     clrf    PORTC
+    clrf    cont
     return
     
 config_IO:
@@ -140,29 +154,21 @@ config_IO:
     bcf	    RBIF
     return
    
-config_tmr0:/*
+config_tmr0:
     banksel OSCCON
     bsf	    IRCF2   //= 1
     bsf	    IRCF1   //= 1   = 4MHz
     bcf	    IRCF0   //= 0
-    bsf	    SCS*/
-    
-    banksel OSCCON  //OSCILOSCOPIO
-    bsf	    IRCF2   //1
-    bcf	    IRCF1   //0 = 1MHz
-    bcf	    IRCF0   //0
-    bsf	    SCS	    ;reloj interno activo
+    bsf	    SCS
     
     banksel OPTION_REG
+    bcf	    T0CS
     bcf	    PSA
     bsf	    PS2
     bsf	    PS1
     bsf	    PS0	    //prescaler -> 111= 1:256
     
-    banksel TMR0
-    movlw   158
-    movwf   TMR0
-    bcf	    T0IF  //20ms
+    RESET_TMR0
     return
     
 config_int:

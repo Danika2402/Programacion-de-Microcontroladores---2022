@@ -2464,7 +2464,7 @@ ENDM
 
 CONFIG FOSC = INTRC_NOCLKOUT
 CONFIG WDTE = OFF
-CONFIG PWRTE = ON
+CONFIG PWRTE = OFF
 CONFIG MCLRE = OFF
 CONFIG CP = OFF
 CONFIG CPD = OFF
@@ -2472,14 +2472,14 @@ CONFIG CPD = OFF
 CONFIG BOREN = OFF
 CONFIG IESO = OFF
 CONFIG FCMEN = OFF
-CONFIG LVP = ON
+CONFIG LVP = OFF
 
 CONFIG WRT = OFF
 CONFIG BOR4V = BOR40V
 
-RESET_TMR0 MACRO TMR_VAL
+RESET_TMR0 MACRO
     banksel TMR0
-    movlw TMR_VAL
+    movlw 177
     movwf TMR0
     bcf ((INTCON) and 07Fh), 2
     ENDM
@@ -2509,11 +2509,14 @@ PUSH:
     movwf STATUS_TEMP
 
 ISR:
+
     btfsc ((INTCON) and 07Fh), 2
     call TO_int
 
     btfsc ((INTCON) and 07Fh), 0
     call IO_int
+
+
 
 
 POP:
@@ -2526,11 +2529,21 @@ POP:
 ;----------------Subrutinas de Interrupcion ------------------------------------
 
 TO_int:
-    RESET_TMR0 158
+    RESET_TMR0
+
+    incf cont
+    movf cont, W
+    sublw 50
+    btfss ((STATUS) and 07Fh), 2
+    goto return_tmr0
+    movf cont, W
     incf PORTC
+    movlw 0b00001111
+    andwf PORTC
+    clrf cont
 
-
-
+return_tmr0:
+    return
 
 IO_int:
     banksel PORTB
@@ -2577,6 +2590,7 @@ config_ports:
     banksel PORTA
     clrf PORTD
     clrf PORTC
+    clrf cont
     return
 
 config_IO:
@@ -2590,28 +2604,20 @@ config_IO:
     return
 
 config_tmr0:
-
-
-
-
-
-
     banksel OSCCON
     bsf ((OSCCON) and 07Fh), 6
-    bcf ((OSCCON) and 07Fh), 5
+    bsf ((OSCCON) and 07Fh), 5
     bcf ((OSCCON) and 07Fh), 4
-    bsf ((OSCCON) and 07Fh), 0 ;reloj interno activo
+    bsf ((OSCCON) and 07Fh), 0
 
     banksel OPTION_REG
+    bcf ((OPTION_REG) and 07Fh), 5
     bcf ((OPTION_REG) and 07Fh), 3
     bsf ((OPTION_REG) and 07Fh), 2
     bsf ((OPTION_REG) and 07Fh), 1
     bsf ((OPTION_REG) and 07Fh), 0
 
-    banksel TMR0
-    movlw 158
-    movwf TMR0
-    bcf ((INTCON) and 07Fh), 2
+    RESET_TMR0
     return
 
 config_int:
