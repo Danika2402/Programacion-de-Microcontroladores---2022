@@ -10,7 +10,7 @@
 ;Hardware:
 ;
 ;Creado: 12/02/2022
-;Ultima modificacion: 12/02/2022
+;Ultima modificacion: 16/02/2022
 
 
 PROCESSOR 16F887
@@ -2487,6 +2487,9 @@ RESET_TMR0 MACRO
 ;------------------------------------------------------------------------------
 PSECT udata_bank0
     cont: DS 1
+    decimales: DS 1
+    unidades: DS 1
+
 
 PSECT udata_shr
     W_TEMP: DS 1
@@ -2530,16 +2533,15 @@ POP:
 
 TO_int:
     RESET_TMR0
-
     incf cont
     movf cont, W
     sublw 50
     btfss ((STATUS) and 07Fh), 2
     goto return_tmr0
-    movf cont, W
-    incf PORTC
-    movlw 0b00001111
-    andwf PORTC
+
+
+
+    incf unidades
     clrf cont
 
 return_tmr0:
@@ -2558,6 +2560,28 @@ IO_int:
 
 PSECT code, delta=2, abs
  ORG 100h
+
+tabla:
+    clrf PCLATH
+    bsf PCLATH, 0 ;PCLATH = 01
+    andwf 0x0f ;me aseguro q solo pasen 4 bits
+    addwf PCL ;PC = PCL + PCLATH + w
+    retlw 11111100B ;0
+    retlw 01100000B ;1
+    retlw 11011010B ;2
+    retlw 11110010B ;3
+    retlw 01100110B ;4
+    retlw 10110110B ;5
+    retlw 10111110B ;6
+    retlw 11100000B ;7
+    retlw 11111110B ;8
+    retlw 11110110B ;9
+    retlw 11101110B ;A
+    retlw 00111110B ;B
+    retlw 10011100B ;C
+    retlw 01111010B ;D
+    retlw 10011110B ;E
+    retlw 10001110B ;F
  ;---------------CONFIGURACION--------------------------------------------------
 
 main:
@@ -2569,6 +2593,12 @@ main:
 
 ;-------------LOOP-------------------------------------------------------------
 loop:
+    call unidad
+    movf unidades,W
+    sublw 10
+    btfsc ((STATUS) and 07Fh), 2
+    call decimal
+
     goto loop
 
 config_ports:
@@ -2579,6 +2609,7 @@ config_ports:
     banksel TRISD
     clrf TRISD
     clrf TRISC
+    clrf TRISA
 
     bsf TRISB, 0
     bsf TRISB, 1
@@ -2590,7 +2621,12 @@ config_ports:
     banksel PORTA
     clrf PORTD
     clrf PORTC
+    clrf PORTA
+    movlw 11111100B
+    movwf PORTA
     clrf cont
+    clrf decimales
+    clrf unidades
     return
 
 config_IO:
@@ -2626,6 +2662,20 @@ config_int:
     bcf ((INTCON) and 07Fh), 0
     bcf ((INTCON) and 07Fh), 2
     bsf ((INTCON) and 07Fh), 5
+    return
+
+unidad:
+    movf unidades, W
+    call tabla
+    movwf PORTC
+    return
+
+decimal:
+    clrf unidades
+    incf decimales
+    movf decimales, W
+    call tabla
+    movwf PORTA
     return
 
 END
