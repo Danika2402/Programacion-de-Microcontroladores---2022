@@ -58,7 +58,6 @@ PSECT udata_bank0
     nibbles:		DS 2	; Contiene los nibbles alto y bajo de valor
     display:		DS 2	; Representación de cada nibble en el display de 7-seg
     
-    
 PSECT resVect, class=CODE, abs, delta=2
 ORG 00h			    ; posición 0000h para el reset
 ;------------ VECTOR RESET --------------
