@@ -7,7 +7,7 @@
 ;Hardware:	
 ;    
 ;Creado:		20/02/2022
-;Ultima modificacion:	20/02/2022
+;Ultima modificacion:	25/02/2022
     
         
 PROCESSOR 16F887
@@ -137,12 +137,12 @@ main:
     //btfsc revisa si el bit esta apagado, skip la siguiente linea
 loop:
     
-    movf    PORTA, W
-    movwf   valor
+    movf    PORTA, W		    //movemos PORTA  a W
+    movwf   valor		    //movemos W a "valor"
     call    NIBBLE_7
     call    DISPLAY_SET
     
-    movf    PORTA, W
+    movf    PORTA, W		    //movemos PORTA a W y a "dividir"
     movwf   dividir
     
     call    _100
@@ -168,7 +168,7 @@ config_ports:
     bsf	    TRISB, 0	    //RB0 y RB1 como entrada
     bsf	    TRISB, 1
     bcf	    TRISD, 0
-    bcf	    TRISD, 1
+    bcf	    TRISD, 1	    //bits 01234 de PORTD como entrada
     bcf	    TRISD, 2
     bcf	    TRISD, 3
     bcf	    TRISD, 4 
@@ -221,20 +221,20 @@ config_int:
     return
     
 NIBBLE_7:
-    movlw   0x0f
+    movlw   0x0f	    //guardamos los bits menos significativos en nibbles
     andwf   valor, W
     movwf   nibbles
     
     movlw   0xf0
-    andwf   valor, W
-    movwf   nibbles+1
+    andwf   valor, W	    //guardamos los bits mas significativos en nibbles
+    movwf   nibbles+1	    //pero en diferente bit
     swapf   nibbles+1, F
     return
     
 DISPLAY_SET:
     movf    nibbles, W
-    call    tabla
-    movwf   display
+    call    tabla	    //pasamos la variable a W y llamamos tabla,
+    movwf   display	    //para que se muestre en el display 7, con display
     
     movf    nibbles+1, W
     call    tabla
@@ -255,8 +255,8 @@ DISPLAY_SET:
     
 MOSTRAR_VALOR:
     clrf    PORTD
-    btfss   banderas, 1
-    goto    display_0
+    btfss   banderas, 1	    //limpiamos PORTD y dependiendo de la bandera,
+    goto    display_0	    //vamos a una subtutina
     
     btfss   banderas, 0
     goto    display_1
@@ -271,10 +271,10 @@ MOSTRAR_VALOR:
     goto    display_4
     
     display_0:
-	movf	display, W
-	movwf	PORTC
-	bsf	PORTD, 1
-	bsf	banderas, 1
+	movf	display, W	//aqui movemos lo que esta en display a W
+	movwf	PORTC		//y eso lo movemos al PORTC donde esta el display
+	bsf	PORTD, 1	//y encendemos el bit de PORTD
+	bsf	banderas, 1	//donde el display esta conectado
 	return
 
     display_1:

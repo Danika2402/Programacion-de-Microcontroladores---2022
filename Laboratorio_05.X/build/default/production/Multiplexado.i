@@ -10,7 +10,7 @@
 ;Hardware:
 ;
 ;Creado: 20/02/2022
-;Ultima modificacion: 20/02/2022
+;Ultima modificacion: 25/02/2022
 
 
 PROCESSOR 16F887
