@@ -2477,6 +2477,13 @@ CONFIG LVP = OFF
 CONFIG WRT = OFF
 CONFIG BOR4V = BOR40V
 
+RESET_TMR0 MACRO
+    banksel TMR0
+    movlw 254
+    movwf TMR0
+    bcf ((INTCON) and 07Fh), 2
+    ENDM
+
 RESET_TMR1 MACRO
     MOVLW 0x86
     MOVWF TMR1H
@@ -2487,9 +2494,14 @@ RESET_TMR1 MACRO
 
 ;------------------------------------------------------------------------------
 PSECT udata_bank0
-    cont: DS 1
+    cont1: DS 1
     cont2: DS 1
-    cont3:
+    cont3: DS 1
+
+    valor: DS 1 ; Contiene valor a mostrar en los displays
+    banderas: DS 1 ; Indica que display hay que encender
+    nibbles: DS 2 ; Contiene los nibbles alto y bajo de "valor"
+    display: DS 2 ; Representación de cada nibble en el display
 
 PSECT udata_shr
     W_TEMP: DS 1
@@ -2512,6 +2524,10 @@ PUSH:
     movwf STATUS_TEMP
 
 ISR:
+
+    btfsc ((INTCON) and 07Fh), 2
+    call TO_int
+
     btfsc ((PIR1) and 07Fh), 0
     call T1_int
 
@@ -2527,9 +2543,14 @@ POP:
 
 ;----------------Subrutinas de Interrupcion ------------------------------------
 
+TO_int:
+    RESET_TMR0
+    call MOSTRAR_VALOR
+    return
+
 T1_int:
     RESET_TMR1
-    incf cont
+    incf cont1
     return
 
 T2_int:
@@ -2541,6 +2562,7 @@ T2_int:
     goto return_tmr2
     bsf PORTA, 0
     clrf cont2
+
 
     incf cont3
     movf cont3, W
@@ -2559,7 +2581,7 @@ PSECT code, delta=2, abs
 tabla:
     clrf PCLATH
     bsf PCLATH, 0 ;PCLATH = 01
-    andwf 0x0f ;me aseguro q solo pasen 4 bits
+    andlw 0x0f ;me aseguro q solo pasen 4 bits
     addwf PCL ;PC = PCL + PCLATH + w
     retlw 11111100B ;0
     retlw 01100000B ;1
@@ -2583,6 +2605,7 @@ tabla:
 main:
     call config_ports
     call reloj
+    call config_tmr0
     call config_tmr1
     call config_tmr2
     call config_int
@@ -2593,8 +2616,10 @@ main:
 
 
 loop:
-    movf cont, W
-    movwf PORTC
+    movf cont1, W
+    movwf valor
+    call NIBBLE_7
+    call DISPLAY_SET
     goto loop
 
 
@@ -2607,10 +2632,16 @@ config_ports:
     clrf TRISC
     clrf TRISA
 
+    bcf TRISD, 0
+    bcf TRISD, 1
+
     banksel PORTA
     clrf PORTC
     clrf PORTA
-
+    clrf PORTD
+    clrf cont1
+    clrf cont2
+    clrf cont3
     return
 
 reloj:
@@ -2619,6 +2650,17 @@ reloj:
     bcf ((OSCCON) and 07Fh), 5
     bcf ((OSCCON) and 07Fh), 4
     bsf ((OSCCON) and 07Fh), 0
+    return
+
+config_tmr0:
+    banksel OPTION_REG
+    bcf ((OPTION_REG) and 07Fh), 5
+    bcf ((OPTION_REG) and 07Fh), 3
+    bsf ((OPTION_REG) and 07Fh), 2
+    bsf ((OPTION_REG) and 07Fh), 1
+    bsf ((OPTION_REG) and 07Fh), 0
+
+    RESET_TMR0
     return
 
 config_tmr1:
@@ -2642,10 +2684,8 @@ config_int:
     banksel INTCON
     bsf ((INTCON) and 07Fh), 6
     bsf ((INTCON) and 07Fh), 7
-    bsf ((INTCON) and 07Fh), 3
-    bcf ((INTCON) and 07Fh), 0
-
-
+    bcf ((INTCON) and 07Fh), 2
+    bsf ((INTCON) and 07Fh), 5
     bcf ((PIR1) and 07Fh), 0
     bcf ((PIR1) and 07Fh), 1
     return
@@ -2666,3 +2706,45 @@ config_tmr2:
 
     bsf ((T2CON) and 07Fh), 2
     return
+
+NIBBLE_7:
+    movlw 0x0f
+    andwf valor, W
+    movwf nibbles
+
+    movlw 0xf0
+    andwf valor, W
+    movwf nibbles+1
+    swapf nibbles+1, F
+    return
+
+DISPLAY_SET:
+    movf nibbles, W
+    call tabla
+    movwf display
+
+    movf nibbles+1, W
+    call tabla
+    movwf display+1
+    return
+
+MOSTRAR_VALOR:
+    clrf PORTD
+    btfsc banderas, 0
+    goto display_1
+
+    display_0:
+ movf display, W
+ movwf PORTC
+ bsf PORTD, 1
+ bsf banderas, 0
+ return
+
+    display_1:
+ movf display+1, W
+ movwf PORTC
+ bsf PORTD, 0
+ bcf banderas, 0
+ return
+
+    END
