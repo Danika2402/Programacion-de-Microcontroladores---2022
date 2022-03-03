@@ -2617,9 +2617,18 @@ main:
 
 loop:
     movf cont1, W
-    movwf valor
+    sublw 10
+    btfsc ((STATUS) and 07Fh), 2
+
+    call NIBBLE_mayor
     call NIBBLE_7
     call DISPLAY_SET
+
+    movf nibbles+1, W
+    sublw 6
+    btfsc ((STATUS) and 07Fh), 2
+    call REINICIO
+
     goto loop
 
 
@@ -2707,15 +2716,23 @@ config_tmr2:
     bsf ((T2CON) and 07Fh), 2
     return
 
-NIBBLE_7:
-    movlw 0x0f
-    andwf valor, W
-    movwf nibbles
+REINICIO:
+    clrf nibbles
+    clrf nibbles+1
+    clrf valor
+    clrf cont1
+    return
 
-    movlw 0xf0
-    andwf valor, W
+NIBBLE_7:
+    movf cont1, w
+    movwf nibbles
+    return
+
+NIBBLE_mayor:
+    clrf cont1
+    incf valor
+    movf valor, W
     movwf nibbles+1
-    swapf nibbles+1, F
     return
 
 DISPLAY_SET:

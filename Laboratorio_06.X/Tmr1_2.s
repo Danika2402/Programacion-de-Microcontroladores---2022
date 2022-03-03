@@ -7,7 +7,7 @@
 ;Hardware:	
 ;    
 ;Creado:		27/02/2022
-;Ultima modificacion:	27/02/2022
+;Ultima modificacion:	02/03/2022
     
         
 PROCESSOR 16F887
@@ -168,9 +168,17 @@ main:
     //btfsc revisa si el bit esta apagado, skip la siguiente linea
 loop:
     movf    cont1, W
-    movwf   valor
+    sublw   10
+    btfsc   ZERO
+    call    NIBBLE_mayor
     call    NIBBLE_7
     call    DISPLAY_SET
+    
+    movf    nibbles+1, W
+    sublw   6
+    btfsc   ZERO
+    call    REINICIO
+    
     goto loop
     
     
@@ -258,15 +266,23 @@ config_tmr2:
     bsf	    TMR2ON  
     return
     
-NIBBLE_7:
-    movlw   0x0f	    //guardamos los bits menos significativos en nibbles
-    andwf   valor, W
-    movwf   nibbles
+REINICIO:
+    clrf    nibbles
+    clrf    nibbles+1
+    clrf    valor
+    clrf    cont1
+    return
     
-    movlw   0xf0
-    andwf   valor, W	    //guardamos los bits mas significativos en nibbles
-    movwf   nibbles+1	    //pero en diferente bit
-    swapf   nibbles+1, F
+NIBBLE_7:
+    movf    cont1, w
+    movwf   nibbles
+    return
+    
+NIBBLE_mayor:
+    clrf    cont1
+    incf    valor
+    movf    valor, W	    
+    movwf   nibbles+1	    
     return
     
 DISPLAY_SET:
