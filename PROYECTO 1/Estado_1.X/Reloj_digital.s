@@ -157,9 +157,9 @@ main:
 loop:
     call    DISPLAY_SET
     call    NIBBLE_SET
-    call    Reloj_minutos
-    call    Reloj_horas
-    call    UN_DIA
+    call    Reloj_minutos   //si segundos = 60, minutos = 1
+    call    Reloj_horas	    //si minutos+1 = 6, horas = 1
+    call    UN_DIA	    //si horas+1=2 Y horas=4,	PASO 1 DIA, MEDIA NOCHE
     call    UNDERFLOW
     
     goto    loop
