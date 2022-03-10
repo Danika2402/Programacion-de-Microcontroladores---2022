@@ -2773,31 +2773,24 @@ MOSTRAR_VALOR:
  return
 
 Reloj_minutos:
+
     movf segundos, W
     movwf dividir
     movlw 60
     subwf dividir, F
-    btfss ((STATUS) and 07Fh), 0
+    btfss ((STATUS) and 07Fh), 2
     goto $+3
     clrf segundos
     incf minutos
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-7
-    movlw 60
-    addwf dividir, F
 
     movf minutos, W
     movwf dividir
     movlw 10
     subwf dividir, F
-    btfss ((STATUS) and 07Fh), 0
+    btfss ((STATUS) and 07Fh), 2
     goto $+3
     clrf minutos
     incf minutos+1
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-7
-    movlw 10
-    addwf dividir, F
 
     return
 
@@ -2806,27 +2799,19 @@ Reloj_horas:
     movwf dividir
     movlw 6
     subwf dividir, F
-    btfss ((STATUS) and 07Fh), 0
+    btfss ((STATUS) and 07Fh), 2
     goto $+3
     clrf minutos+1
     incf horas
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-7
-    movlw 6
-    addwf dividir, F
 
     movf horas, W
     movwf dividir
     movlw 10
     subwf dividir, F
-    btfss ((STATUS) and 07Fh), 0
+    btfss ((STATUS) and 07Fh), 2
     goto $+3
     clrf horas
     incf horas+1
-    btfsc ((STATUS) and 07Fh), 0
-    goto $-7
-    movlw 10
-    addwf dividir, F
 
     return
 
@@ -2835,10 +2820,8 @@ UN_DIA:
     movwf dividir
     movlw 2
     subwf dividir, F
-    btfsc ((STATUS) and 07Fh), 0
+    btfsc ((STATUS) and 07Fh), 2
     goto HORAS_24
-    movlw 2
-    addwf dividir, F
 
     return
 
@@ -2847,10 +2830,8 @@ HORAS_24:
     movwf dividir
     movlw 4
     subwf dividir, F
-    btfsc ((STATUS) and 07Fh), 0
+    btfsc ((STATUS) and 07Fh), 2
     call REINICIO_reloj
-    movlw 4
-    addwf dividir, F
 
     return
 
@@ -2870,7 +2851,7 @@ REINICIO_reloj:
 UNDERFLOW:
     movf minutos, W
     movwf dividir
-    movlw 255
+    movlw 61
     subwf dividir, F
     btfss ((STATUS) and 07Fh), 0
     goto $+10
@@ -2883,9 +2864,25 @@ UNDERFLOW:
     addwf minutos+1
     movlw 9
     addwf minutos
-    movlw 255
-    addwf dividir, F
-# 484 "Reloj_digital.s"
+    clrf dividir
+
+    movf horas, W
+    movwf dividir
+    movlw 5
+    subwf dividir, F
+    btfss ((STATUS) and 07Fh), 0
+    goto $+10
+    call REINICIO_reloj
+    movlw 2
+    addwf horas+1
+    movlw 3
+    addwf horas
+    movlw 5
+    addwf minutos+1
+    movlw 9
+    addwf minutos
+    clrf dividir
+
     return
 
 NIBBLE_SET:
@@ -2943,12 +2940,6 @@ MODIFICAR_HORAS:
     decf horas
     bcf ((INTCON) and 07Fh), 0
 
-
-
-
-
-
-
     return
 
 MODIFICAR_MINUTOS:
@@ -2962,11 +2953,5 @@ MODIFICAR_MINUTOS:
     btfss PORTB, 1
     decf minutos
     bcf ((INTCON) and 07Fh), 0
-
-
-
-
-
-
 
     return

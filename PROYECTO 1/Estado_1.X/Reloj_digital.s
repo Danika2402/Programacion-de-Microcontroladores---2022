@@ -324,84 +324,65 @@ MOSTRAR_VALOR:
 	return
 	
 Reloj_minutos:
-    movf    segundos, W	    //si resta + -> c = 1
+
+    movf    segundos, W	    
     movwf   dividir
-    movlw   60		    //si resta 0 -> c = 1
-    subwf   dividir, F	    //si resta - -> c = 0
-    btfss   CARRY	    
+    movlw   60		    
+    subwf   dividir, F	    
+    btfss   ZERO	    	    
     goto    $+3
     clrf    segundos
-    incf    minutos	    
-    btfsc   CARRY
-    goto    $-7
-    movlw   60
-    addwf   dividir, F
+    incf    minutos
     
     movf    minutos, W
     movwf   dividir
     movlw   10
     subwf   dividir, F
-    btfss   CARRY	    //si C=1 skip siguiente linea
-    goto    $+3		    //si C=0 ir 3 lineas antes
+    btfss   ZERO	    
+    goto    $+3		    
     clrf    minutos
     incf    minutos+1
-    btfsc   CARRY	    //si c=0 skip
-    goto    $-7
-    movlw   10
-    addwf   dividir, F
     
     return
     
 Reloj_horas:
     movf    minutos+1, W
     movwf   dividir
-    movlw   6		    //si resta 0 -> c = 1
-    subwf   dividir, F	    //si resta - -> c = 0
-    btfss   CARRY	    //si c=1 skip
+    movlw   6		    
+    subwf   dividir, F	    
+    btfss   ZERO	    
     goto    $+3
     clrf    minutos+1
-    incf    horas	    
-    btfsc   CARRY
-    goto    $-7
-    movlw   6
-    addwf   dividir, F
+    incf    horas
     
     movf    horas, W
     movwf   dividir
     movlw   10
     subwf   dividir, F
-    btfss   CARRY	    //si C=1 skip siguiente linea
-    goto    $+3		    //si C=0 ir 3 lineas antes
+    btfss   ZERO	   
+    goto    $+3		   
     clrf    horas
     incf    horas+1
-    btfsc   CARRY	    //si c=0 skip
-    goto    $-7
-    movlw   10
-    addwf   dividir, F
     
     return
     
 UN_DIA:
     movf    horas+1, W
-    movwf   dividir	    //si resta + -> c = 1
-    movlw   2	    	    //si resta 0 -> c = 1
-    subwf   dividir, F	    //si resta - -> c = 0
-    btfsc   CARRY	    // si c=0 skip
+    movwf   dividir	    //si resta + -> Z = 0
+    movlw   2	    	    //si resta 0 -> Z = 1
+    subwf   dividir, F	    //si resta - -> Z = 0
+    btfsc   ZERO	    // si Z=0 skip
     goto    HORAS_24   
-    movlw   2
-    addwf   dividir, F
     
     return
 
 HORAS_24:
     movf    horas, W
-    movwf   dividir	    //si resta + -> c = 1
-    movlw   4	    	    //si resta 0 -> c = 1
-    subwf   dividir, F	    //si resta - -> c = 0
-    btfsc   CARRY	    // si c=0 skip
+    movwf   dividir	    
+    movlw   4	    	    
+    subwf   dividir, F	    
+    btfsc   ZERO	    // si Z=0 skip
     call    REINICIO_reloj
-    movlw   4
-    addwf   dividir, F
     
     return
     
@@ -421,7 +402,7 @@ REINICIO_reloj:
 UNDERFLOW:
     movf    minutos, W	    //si resta + -> c = 1
     movwf   dividir
-    movlw   255		    //si resta 0 -> c = 1
+    movlw   61		    //si resta 0 -> c = 1
     subwf   dividir, F	    //si resta - -> c = 0
     btfss   CARRY	    
     goto    $+10
@@ -434,52 +415,24 @@ UNDERFLOW:
     addwf   minutos+1
     movlw   9
     addwf   minutos
-    movlw   255
-    addwf   dividir, F
-    /*
-    movf    minutos, W
-    sublw   255		
-    btfss   ZERO		    //si Z=1 skip
-    goto    $+9
-    movlw   2
-    movwf   horas+1
-    movlw   3
-    movwf   horas
-    movlw   5
-    movwf   minutos+1
-    movlw   9
-    movwf   minutos
+    clrf    dividir
     
     movf    horas, W	    //si resta + -> c = 1
     movwf   dividir
-    movlw   255		    //si resta 0 -> c = 1
+    movlw   5		    //si resta 0 -> c = 1
     subwf   dividir, F	    //si resta - -> c = 0
     btfss   CARRY	    
     goto    $+10
-    clrf    horas
+    call    REINICIO_reloj
     movlw   2
-    movwf   horas+1
+    addwf   horas+1
     movlw   3
-    movwf   horas
+    addwf   horas
     movlw   5
-    movwf   minutos+1
+    addwf   minutos+1
     movlw   9
-    movwf   minutos
-    movlw   255
-    addwf   dividir, F
-    
-    movf    horas, W
-    sublw   255		
-    btfss   ZERO		    //si Z=1 skip
-    goto    $+9
-    movlw   2
-    movwf   horas+1
-    movlw   3
-    movwf   horas
-    movlw   5
-    movwf   minutos+1
-    movlw   9
-    movwf   minutos*/
+    addwf   minutos
+    clrf    dividir
     
     return
     
@@ -537,13 +490,7 @@ MODIFICAR_HORAS:
     btfss   PORTB, 1
     decf    horas
     bcf	    RBIF
-    /*
-    banksel PORTB
-    btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-    incf    horas
-    btfss   PORTB, 1
-    decf    horas
-    bcf	    RBIF*/
+    
     return
     
 MODIFICAR_MINUTOS: 
@@ -557,11 +504,5 @@ MODIFICAR_MINUTOS:
     btfss   PORTB, 1
     decf    minutos
     bcf	    RBIF
-     /*
-    banksel PORTB
-    btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-    incf    minutos
-    btfss   PORTB, 1
-    decf    minutos
-    bcf	    RBIF*/
+    
     return
