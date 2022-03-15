@@ -1,4 +1,4 @@
-;Archivo:	Reloj_digital.s
+;Archivo:	Fechas.s
 ;Dispositivo:	PIC16F887
 ;Autor:		Danika Andrino
 ;Compilador:	pic-as (2.30), MPLABX V6.00
@@ -6,8 +6,8 @@
 ;Programa:	
 ;Hardware:	
 ;    
-;Creado:		05/03/2022
-;Ultima modificacion:	05/03/2022
+;Creado:		09/03/2022
+;Ultima modificacion:	09/03/2022
     
         
 PROCESSOR 16F887
@@ -35,19 +35,10 @@ RESET_TMR0 MACRO
     bcf	    T0IF
     ENDM
     
-RESET_TMR1 MACRO	    //1s , 85EE = 34286	
-    movlw   0x85	    //0XF9   
-    movwf   TMR1H	    
-    movlw   0xEE	    //0X0D    
-    movwf   TMR1L	    
-    bcf	    TMR1IF	     
-    ENDM
-
 ;------------------------------------------------------------------------------
 PSECT udata_bank0  
-    segundos:	DS 1
-    minutos:	DS 2
-    horas:	DS 2
+    meses:	DS 2
+    dias:	DS 2
     dividir:	DS 1
     
     Editar_Aceptar: DS 1
@@ -84,9 +75,9 @@ ISR:
     
     btfsc   T0IF	    //si la bandera esta apagado, skip la siguiente linea
     call    TO_int
-    
+    /*
     btfsc   TMR1IF	    //si la bandera esta apagado, skip la siguiente linea
-    call    T1_int
+    call    T1_int*/
 
 POP:
     swapf   STATUS_TEMP, W
@@ -96,24 +87,18 @@ POP:
     retfie
 
 ;----------------Subrutinas de Interrupcion ------------------------------------
-
+    
 TO_int:
     RESET_TMR0
     call    MOSTRAR_VALOR
-    return
-    
-T1_int:
-    RESET_TMR1
-    incf    segundos
-    //incf    minutos
     return
     
 IO_int:
     banksel PORTB
     btfss   PORTB, 2
     incf    Editar_Aceptar
+    call    EDITAR_FECHA
     bcf	    RBIF
-    call    EDITAR_RELOJ
     return
     
 PSECT code, delta=2, abs
@@ -147,25 +132,20 @@ main:
     call    config_ports
     call    reloj
     call    config_tmr0
-    call    config_tmr1
+    //call    config_tmr1
     call    config_int
     banksel PORTD
+    
 ;-------------LOOP-------------------------------------------------------------
     //btfss revisa si el bit esta encendido, 
     //skip la siquiente linea, los botones estan conectados de forma pull-up
     //btfsc revisa si el bit esta apagado, skip la siguiente linea
 loop:
     call    DISPLAY_SET
-    call    NIBBLE_RELOJ
-    call    Reloj_minutos   //si segundos = 60, minutos = 1
-    call    Reloj_horas	    //si minutos+1 = 6, horas = 1
-    call    UN_DIA	    //si horas+1=2 Y horas=4,	PASO 1 DIA, MEDIA NOCHE
-    call    UNDERFLOW_DECIMALES
-    call    UNDERFLOW_DIA
-    
+    call    NIBBLE_FECHA
+    call    Fecha_digitos
     goto    loop
     
-
 config_ports:
     banksel ANSEL
     clrf    ANSEL
@@ -200,9 +180,14 @@ config_ports:
     clrf    PORTD
     clrf    PORTE
     clrf    Editar_Aceptar
-    clrf    segundos
-    clrf    minutos
-    clrf    horas
+    clrf    dias+1
+    clrf    dias+1
+    clrf    dias
+    clrf    meses
+    movlw   0x01
+    addwf   dias
+    movlw   0x01
+    addwf   meses
     return
     
 reloj:
@@ -223,23 +208,10 @@ config_tmr0:
     
     RESET_TMR0
     return
-    
-config_tmr1:
-    banksel T1CON
-    bcf	    TMR1GE	//tmr1 siempre cuenta
-    bsf	    T1CKPS1	//prescaler
-    bsf	    T1CKPS0	//1:8
-    
-    bcf	    T1OSCEN	//LP deshabilitado
-    bcf	    TMR1CS	//reloj interno 
-    bsf	    TMR1ON
-    
-    RESET_TMR1
-    return
-    
+
 config_int:
-    banksel PIE1
-    bsf	    TMR1IE	    //interrupcion TMR1
+    //banksel PIE1
+    //bsf	    TMR1IE	    //interrupcion TMR1
     //bsf	    TMR2IE	    //interrupcion TMR2
     
     banksel TRISB	    //configuracion para interrupcion en B
@@ -253,13 +225,13 @@ config_int:
     movf    PORTB, W
     
     banksel INTCON
-    bsf	    PEIE
+    //bsf	    PEIE
     bsf	    GIE		    //Habilitar interrupciones
     bsf	    RBIE	    //habilitar interrupcion en PORTB
     bcf	    RBIF	    //limpiar bandera
     bcf	    T0IF	    //limpiar bandera tmr0
     bsf	    T0IE	    //habilitar interrupcion en TMR0
-    bcf	    TMR1IF	    //bandera en TMR1
+    //bcf	    TMR1IF	    //bandera en TMR1
     //bcf	    TMR2IF
     return
     
@@ -324,166 +296,31 @@ MOSTRAR_VALOR:
 	bsf	PORTD, 3
 	return
 	
-Reloj_minutos:
-
-    movf    segundos, W	    
-    movwf   dividir
-    movlw   60		    
-    subwf   dividir, F	    
-    btfss   ZERO	    	    
-    goto    $+3
-    clrf    segundos
-    incf    minutos
-    
-    movf    minutos, W
-    movwf   dividir
-    movlw   10
-    subwf   dividir, F
-    btfss   ZERO	    
-    goto    $+3		    
-    clrf    minutos
-    incf    minutos+1
-    
-    return
-    
-Reloj_horas:
-    movf    minutos+1, W
-    movwf   dividir
-    movlw   6		    
-    subwf   dividir, F	    
-    btfss   ZERO	    
-    goto    $+3
-    clrf    minutos+1
-    incf    horas
-    
-    movf    horas, W
-    movwf   dividir
-    movlw   10
-    subwf   dividir, F
-    btfss   ZERO	   
-    goto    $+3		   
-    clrf    horas
-    incf    horas+1
-    
-    return
-    
-UN_DIA:
-    movf    horas+1, W
-    movwf   dividir	    //si resta + -> Z = 0
-    movlw   2	    	    //si resta 0 -> Z = 1
-    subwf   dividir, F	    //si resta - -> Z = 0
-    btfsc   ZERO	    // si Z=0 skip
-    goto    HORAS_24   
-    
-    return
-
-HORAS_24:
-    movf    horas, W
-    movwf   dividir	    
-    movlw   4	    	    
-    subwf   dividir, F	    
-    btfsc   ZERO	    // si Z=0 skip
-    call    REINICIO_reloj
-    
-    return
-    
-REINICIO_reloj:
-    clrf    segundos
-    clrf    minutos
-    clrf    horas
-    clrf    segundos+1
-    clrf    minutos+1
-    clrf    horas+1
-    clrf    nibbles
-    clrf    nibbles+1
-    clrf    nibbles+2
-    clrf    nibbles+3
-    return
-    
-UNDERFLOW_DECIMALES:
-				
-    movf    minutos, W	    //si resta +,0 -> c = 1
-    movwf   dividir
-    movlw   255		    //si resta - -> c = 0
-    subwf   dividir, F
-    btfss   CARRY	    
-    goto    $+5
-    clrf    minutos
-    decf    minutos+1
-    movlw   9
-    addwf   minutos
-    clrf    dividir
-				
-    movf    horas, W	    //si resta +,0 -> c = 1
-    movwf   dividir
-    movlw   255		    //si resta - -> c = 0
-    subwf   dividir, F
-    btfss   CARRY	    
-    goto    $+5
-    clrf    horas
-    decf    horas+1
-    movlw   9
-    addwf   horas
-    clrf    dividir
-    return
-    
-UNDERFLOW_DIA:
-    
-    movf    horas+1, W
-    movwf   dividir
-    movlw   255	    
-    subwf   dividir,F
-    btfss   CARRY	    
-    goto    $+7
-    clrf    horas+1
-    clrf    horas
-    movlw   2
-    addwf   horas+1
-    movlw   3
-    addwf   horas
-    clrf    dividir
-    
-    movf    minutos+1, W
-    movwf   dividir
-    movlw   255	    
-    subwf   dividir,F
-    btfss   CARRY
-    goto    $+4
-    clrf    minutos+1
-    movlw   5
-    addwf   minutos+1
-    clrf    dividir
-
-    return
-    
-NIBBLE_RELOJ:
-    movf    minutos, W
+NIBBLE_FECHA:
+    movf    dias, W
     movwf   nibbles
     
-    movf    minutos+1, W
+    movf    dias+1, W
     movwf   nibbles+1
     
-    movf    horas, W
+    movf    meses, W
     movwf   nibbles+2
     
-    movf    horas+1, W
+    movf    meses+1, W
     movwf   nibbles+3
     return
     
-EDITAR_RELOJ:
-    //si resta + -> c=1, z=0
-    //si resta 0 -> c=1, z=1	    
-    //si resta - -> c=0, z=0
+EDITAR_FECHA:
     
     movf    Editar_Aceptar, W
     sublw   1		
     btfsc   ZERO		    //si Z=0 skip
-    goto    MODIFICAR_MINUTOS	    //si Z=1 ir a MODIFICAR_MINUTOS
+    goto    MODIFICAR_MESES	    //si Z=1 ir a MODIFICAR_MINUTOS
     
     movf    Editar_Aceptar, W
     sublw   2		
     btfsc   ZERO		    //si Z=0 skip
-    goto    MODIFICAR_HORAS	    //si Z=1 ir a MODIFICAR_HORAS
+    goto    MODIFICAR_DIAS	    //si Z=1 ir a MODIFICAR_HORAS
     
     movf    Editar_Aceptar, W
     sublw   3		
@@ -496,32 +333,75 @@ EDITAR_RELOJ:
     
     return
     
-MODIFICAR_HORAS:
+MODIFICAR_MESES:
     banksel PORTB
     bcf	    PORTE,0
     bsf	    PORTE,1
     bcf	    PORTE,2
-    clrf    segundos
     
     btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-    incf    horas
+    incf    meses
     btfss   PORTB, 1
-    decf    horas
+    decf    meses
     bcf	    RBIF
     
     return
     
-MODIFICAR_MINUTOS: 
+MODIFICAR_DIAS: 
     banksel PORTB
     bsf	    PORTE,0
     bcf	    PORTE,1
     bcf	    PORTE,2
-    clrf    segundos
     
     btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-    incf    minutos
+    incf    dias
     btfss   PORTB, 1
-    decf    minutos
+    decf    dias
     bcf	    RBIF
+    return
+    
+Fecha_digitos:
+    
+    movf    meses,W
+    movwf   dividir
+    movlw   10
+    subwf   dividir, F
+    btfss   ZERO	//si z=0 skip
+    goto    $+3
+    clrf    meses
+    incf    meses+1
+    
+    movf    dias, W
+    movwf   dividir
+    movlw   10
+    subwf   dividir, F
+    btfss   ZERO
+    goto    $+3
+    clrf    dias
+    incf    dias+1
+    
+    return    
+    
+Fecha_dias:
     
     return
+    
+ORG 200h
+MESES:
+    clrf    PCLATH		; Limpiamos registro PCLATH
+    bsf	    PCLATH, 1		; Posicionamos el PC en dirección 02xxh
+    andlw   0x0F		; no saltar más del tamaño de la tabla
+    addwf   PCL
+    goto    ENERO
+    goto    FEBRERO
+    goto    MARZO
+    goto    ABRIL
+    goto    MAYO
+    goto    JUNIO
+    goto    JULIO
+    goto    AGOSTO
+    goto    SEPTIEMBRE
+    goto    OCTUBRE
+    goto    NOVIEMBRE
+    goto    DICIEMBRE
+    clrf    meses

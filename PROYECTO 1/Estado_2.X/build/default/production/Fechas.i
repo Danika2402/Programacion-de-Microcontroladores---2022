@@ -1,7 +1,7 @@
-# 1 "Reloj_digital.s"
+# 1 "Fechas.s"
 # 1 "<built-in>" 1
-# 1 "Reloj_digital.s" 2
-;Archivo: Reloj_digital.s
+# 1 "Fechas.s" 2
+;Archivo: Fechas.s
 ;Dispositivo: PIC16F887
 ;Autor: Danika Andrino
 ;Compilador: pic-as (2.30), MPLABX V6.00
@@ -9,8 +9,8 @@
 ;Programa:
 ;Hardware:
 ;
-;Creado: 05/03/2022
-;Ultima modificacion: 05/03/2022
+;Creado: 09/03/2022
+;Ultima modificacion: 09/03/2022
 
 
 PROCESSOR 16F887
@@ -2460,7 +2460,7 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 7 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\xc.inc" 2 3
-# 15 "Reloj_digital.s" 2
+# 15 "Fechas.s" 2
 
 CONFIG FOSC = INTRC_NOCLKOUT
 CONFIG WDTE = OFF
@@ -2484,19 +2484,10 @@ RESET_TMR0 MACRO
     bcf ((INTCON) and 07Fh), 2
     ENDM
 
-RESET_TMR1 MACRO
-    movlw 0x85
-    movwf TMR1H
-    movlw 0xEE
-    movwf TMR1L
-    bcf ((PIR1) and 07Fh), 0
-    ENDM
-
 ;------------------------------------------------------------------------------
 PSECT udata_bank0
-    segundos: DS 1
-    minutos: DS 2
-    horas: DS 2
+    meses: DS 2
+    dias: DS 2
     dividir: DS 1
 
     Editar_Aceptar: DS 1
@@ -2534,8 +2525,8 @@ ISR:
     btfsc ((INTCON) and 07Fh), 2
     call TO_int
 
-    btfsc ((PIR1) and 07Fh), 0
-    call T1_int
+
+
 
 POP:
     swapf STATUS_TEMP, W
@@ -2551,18 +2542,12 @@ TO_int:
     call MOSTRAR_VALOR
     return
 
-T1_int:
-    RESET_TMR1
-    incf segundos
-
-    return
-
 IO_int:
     banksel PORTB
     btfss PORTB, 2
     incf Editar_Aceptar
+    call EDITAR_FECHA
     bcf ((INTCON) and 07Fh), 0
-    call EDITAR_RELOJ
     return
 
 PSECT code, delta=2, abs
@@ -2596,24 +2581,19 @@ main:
     call config_ports
     call reloj
     call config_tmr0
-    call config_tmr1
+
     call config_int
     banksel PORTD
+
 ;-------------LOOP-------------------------------------------------------------
 
 
 
 loop:
     call DISPLAY_SET
-    call NIBBLE_RELOJ
-    call Reloj_minutos
-    call Reloj_horas
-    call UN_DIA
-    call UNDERFLOW_DECIMALES
-    call UNDERFLOW_DIA
-
+    call NIBBLE_FECHA
+    call Fecha_digitos
     goto loop
-
 
 config_ports:
     banksel ANSEL
@@ -2649,9 +2629,14 @@ config_ports:
     clrf PORTD
     clrf PORTE
     clrf Editar_Aceptar
-    clrf segundos
-    clrf minutos
-    clrf horas
+    clrf dias+1
+    clrf dias+1
+    clrf dias
+    clrf meses
+    movlw 0x01
+    addwf dias
+    movlw 0x01
+    addwf meses
     return
 
 reloj:
@@ -2673,22 +2658,9 @@ config_tmr0:
     RESET_TMR0
     return
 
-config_tmr1:
-    banksel T1CON
-    bcf ((T1CON) and 07Fh), 6
-    bsf ((T1CON) and 07Fh), 5
-    bsf ((T1CON) and 07Fh), 4
-
-    bcf ((T1CON) and 07Fh), 3
-    bcf ((T1CON) and 07Fh), 1
-    bsf ((T1CON) and 07Fh), 0
-
-    RESET_TMR1
-    return
-
 config_int:
-    banksel PIE1
-    bsf ((PIE1) and 07Fh), 0
+
+
 
 
     banksel TRISB
@@ -2702,13 +2674,13 @@ config_int:
     movf PORTB, W
 
     banksel INTCON
-    bsf ((INTCON) and 07Fh), 6
+
     bsf ((INTCON) and 07Fh), 7
     bsf ((INTCON) and 07Fh), 3
     bcf ((INTCON) and 07Fh), 0
     bcf ((INTCON) and 07Fh), 2
     bsf ((INTCON) and 07Fh), 5
-    bcf ((PIR1) and 07Fh), 0
+
 
     return
 
@@ -2773,166 +2745,31 @@ MOSTRAR_VALOR:
  bsf PORTD, 3
  return
 
-Reloj_minutos:
-
-    movf segundos, W
-    movwf dividir
-    movlw 60
-    subwf dividir, F
-    btfss ((STATUS) and 07Fh), 2
-    goto $+3
-    clrf segundos
-    incf minutos
-
-    movf minutos, W
-    movwf dividir
-    movlw 10
-    subwf dividir, F
-    btfss ((STATUS) and 07Fh), 2
-    goto $+3
-    clrf minutos
-    incf minutos+1
-
-    return
-
-Reloj_horas:
-    movf minutos+1, W
-    movwf dividir
-    movlw 6
-    subwf dividir, F
-    btfss ((STATUS) and 07Fh), 2
-    goto $+3
-    clrf minutos+1
-    incf horas
-
-    movf horas, W
-    movwf dividir
-    movlw 10
-    subwf dividir, F
-    btfss ((STATUS) and 07Fh), 2
-    goto $+3
-    clrf horas
-    incf horas+1
-
-    return
-
-UN_DIA:
-    movf horas+1, W
-    movwf dividir
-    movlw 2
-    subwf dividir, F
-    btfsc ((STATUS) and 07Fh), 2
-    goto HORAS_24
-
-    return
-
-HORAS_24:
-    movf horas, W
-    movwf dividir
-    movlw 4
-    subwf dividir, F
-    btfsc ((STATUS) and 07Fh), 2
-    call REINICIO_reloj
-
-    return
-
-REINICIO_reloj:
-    clrf segundos
-    clrf minutos
-    clrf horas
-    clrf segundos+1
-    clrf minutos+1
-    clrf horas+1
-    clrf nibbles
-    clrf nibbles+1
-    clrf nibbles+2
-    clrf nibbles+3
-    return
-
-UNDERFLOW_DECIMALES:
-
-    movf minutos, W
-    movwf dividir
-    movlw 255
-    subwf dividir, F
-    btfss ((STATUS) and 07Fh), 0
-    goto $+5
-    clrf minutos
-    decf minutos+1
-    movlw 9
-    addwf minutos
-    clrf dividir
-
-    movf horas, W
-    movwf dividir
-    movlw 255
-    subwf dividir, F
-    btfss ((STATUS) and 07Fh), 0
-    goto $+5
-    clrf horas
-    decf horas+1
-    movlw 9
-    addwf horas
-    clrf dividir
-    return
-
-UNDERFLOW_DIA:
-
-    movf horas+1, W
-    movwf dividir
-    movlw 255
-    subwf dividir,F
-    btfss ((STATUS) and 07Fh), 0
-    goto $+7
-    clrf horas+1
-    clrf horas
-    movlw 2
-    addwf horas+1
-    movlw 3
-    addwf horas
-    clrf dividir
-
-    movf minutos+1, W
-    movwf dividir
-    movlw 255
-    subwf dividir,F
-    btfss ((STATUS) and 07Fh), 0
-    goto $+4
-    clrf minutos+1
-    movlw 5
-    addwf minutos+1
-    clrf dividir
-
-    return
-
-NIBBLE_RELOJ:
-    movf minutos, W
+NIBBLE_FECHA:
+    movf dias, W
     movwf nibbles
 
-    movf minutos+1, W
+    movf dias+1, W
     movwf nibbles+1
 
-    movf horas, W
+    movf meses, W
     movwf nibbles+2
 
-    movf horas+1, W
+    movf meses+1, W
     movwf nibbles+3
     return
 
-EDITAR_RELOJ:
-
-
-
+EDITAR_FECHA:
 
     movf Editar_Aceptar, W
     sublw 1
     btfsc ((STATUS) and 07Fh), 2
-    goto MODIFICAR_MINUTOS
+    goto MODIFICAR_MESES
 
     movf Editar_Aceptar, W
     sublw 2
     btfsc ((STATUS) and 07Fh), 2
-    goto MODIFICAR_HORAS
+    goto MODIFICAR_DIAS
 
     movf Editar_Aceptar, W
     sublw 3
@@ -2945,32 +2782,58 @@ EDITAR_RELOJ:
 
     return
 
-MODIFICAR_HORAS:
+MODIFICAR_MESES:
     banksel PORTB
     bcf PORTE,0
     bsf PORTE,1
     bcf PORTE,2
-    clrf segundos
 
     btfss PORTB, 0
-    incf horas
+    incf meses
     btfss PORTB, 1
-    decf horas
+    decf meses
     bcf ((INTCON) and 07Fh), 0
 
     return
 
-MODIFICAR_MINUTOS:
+MODIFICAR_DIAS:
     banksel PORTB
     bsf PORTE,0
     bcf PORTE,1
     bcf PORTE,2
-    clrf segundos
 
     btfss PORTB, 0
-    incf minutos
+    incf dias
     btfss PORTB, 1
-    decf minutos
+    decf dias
     bcf ((INTCON) and 07Fh), 0
+    return
+
+Fecha_digitos:
+
+    movf meses,W
+    movwf dividir
+    movlw 10
+    subwf dividir, F
+    btfss ((STATUS) and 07Fh), 2
+    goto $+3
+    clrf meses
+    incf meses+1
+
+
+    movf dias, W
+    movwf dividir
+    movlw 10
+    subwf dividir, F
+    btfss ((STATUS) and 07Fh), 2
+    goto $+3
+    clrf dias
+    incf dias+1
+
+    return
+
+Fecha_dias:
+
+
 
     return
