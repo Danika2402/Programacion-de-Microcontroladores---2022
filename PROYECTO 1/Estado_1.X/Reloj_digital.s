@@ -160,8 +160,8 @@ loop:
     call    Reloj_minutos   //si segundos = 60, minutos = 1
     call    Reloj_horas	    //si minutos+1 = 6, horas = 1
     call    UN_DIA	    //si horas+1=2 Y horas=4,	PASO 1 DIA, MEDIA NOCHE
-    call    UNDERFLOW_DECIMALES
-    call    UNDERFLOW_DIA
+    call    UNDERFLOW_DECIMALES_RELOJ
+    call    UNDERFLOW_DIA_RELOJ
     
     goto    loop
     
@@ -400,7 +400,7 @@ REINICIO_reloj:
     clrf    nibbles+3
     return
     
-UNDERFLOW_DECIMALES:
+UNDERFLOW_DECIMALES_RELOJ:
 				
     movf    minutos, W	    //si resta +,0 -> c = 1
     movwf   dividir
@@ -427,7 +427,7 @@ UNDERFLOW_DECIMALES:
     clrf    dividir
     return
     
-UNDERFLOW_DIA:
+UNDERFLOW_DIA_RELOJ:
     
     movf    horas+1, W
     movwf   dividir

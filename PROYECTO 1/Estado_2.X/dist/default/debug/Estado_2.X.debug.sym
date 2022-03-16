@@ -37,7 +37,7 @@ __Ludata_bank3 0 0 ABS 0
 udata_shr 70 71 COMMON 70 1
 udata_bank0 20 2F BANK0 20 1
 %locals
-build/default/production/Fechas.o
+build/default/debug/Fechas.o
 Fechas.s
 106 0 0 CODE 0
 109 100 0 CODE 0
@@ -298,7 +298,7 @@ Fechas.s
 482 203 0 CODE 0
 483 204 0 CODE 0
 484 205 0 CODE 0
-485 206 0 CODE 0
+486 206 0 CODE 0
 59 0 0 CODE 0
 61 0 0 CODE 0
 62 2 0 CODE 0

@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$build/default/production/Fechas.o
+$build/default/debug/Fechas.o
 resVect CODE 0 0 0 3 2 1
 code CODE 0 0 0 207 2 1
 intVect CODE 0 0 0 1E 2 1
@@ -53,7 +53,7 @@ STRING 207-1FFF 2
 # are in ascending order of addresses.
 # All other numeric values are in decimal.
 %LINETAB
-$build/default/production/Fechas.o
+$build/default/debug/Fechas.o
 0 intVect CODE >65:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
 4 intVect CODE >69:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
 5 intVect CODE >70:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
@@ -340,7 +340,7 @@ F intVect CODE >88:C:\Users\HP\Documents\Programacion de Microcontroladores\PROY
 205 code CODE >474:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
 205 code CODE >484:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
 206 code CODE >475:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
-206 code CODE >485:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
+206 code CODE >486:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
 207 code CODE >477:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 1\Estado_2.X\Fechas.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.

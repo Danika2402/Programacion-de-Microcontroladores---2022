@@ -37,9 +37,10 @@ RESET_TMR0 MACRO
     
 ;------------------------------------------------------------------------------
 PSECT udata_bank0  
-    meses:	DS 2
-    dias:	DS 2
-    dividir:	DS 1
+    mes:	    DS 1
+    dias:	    DS 2
+    dividir_mes:    DS 2
+    dividir:	    DS 1
     
     Editar_Aceptar: DS 1
     //Display_Up:	    DS 1
@@ -141,9 +142,14 @@ main:
     //skip la siquiente linea, los botones estan conectados de forma pull-up
     //btfsc revisa si el bit esta apagado, skip la siguiente linea
 loop:
+    movf    mes, W
+    call    MESES
+    
     call    DISPLAY_SET
     call    NIBBLE_FECHA
     call    Fecha_digitos
+
+    
     goto    loop
     
 config_ports:
@@ -180,14 +186,12 @@ config_ports:
     clrf    PORTD
     clrf    PORTE
     clrf    Editar_Aceptar
-    clrf    dias+1
-    clrf    dias+1
     clrf    dias
-    clrf    meses
-    movlw   0x01
-    addwf   dias
-    movlw   0x01
-    addwf   meses
+    clrf    dividir_mes
+    clrf    mes
+    
+    movlw   1
+    movwf   dias
     return
     
 reloj:
@@ -303,10 +307,10 @@ NIBBLE_FECHA:
     movf    dias+1, W
     movwf   nibbles+1
     
-    movf    meses, W
+    movf    dividir_mes, W
     movwf   nibbles+2
     
-    movf    meses+1, W
+    movf    dividir_mes+1, W
     movwf   nibbles+3
     return
     
@@ -333,43 +337,44 @@ EDITAR_FECHA:
     
     return
     
-MODIFICAR_MESES:
-    banksel PORTB
-    bcf	    PORTE,0
-    bsf	    PORTE,1
-    bcf	    PORTE,2
-    
-    btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-    incf    meses
-    btfss   PORTB, 1
-    decf    meses
-    bcf	    RBIF
-    
-    return
-    
-MODIFICAR_DIAS: 
-    banksel PORTB
-    bsf	    PORTE,0
-    bcf	    PORTE,1
-    bcf	    PORTE,2
-    
-    btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-    incf    dias
-    btfss   PORTB, 1
-    decf    dias
-    bcf	    RBIF
-    return
+    MODIFICAR_MESES:
+	banksel PORTB
+	bcf	PORTE,0
+	bsf	PORTE,1
+	bcf	PORTE,2
+
+	btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
+	incf	mes
+	btfss   PORTB, 1
+	decf	mes
+	bcf	RBIF
+
+	return
+
+    MODIFICAR_DIAS: 
+	banksel PORTB
+	bsf	PORTE,0
+	bcf	PORTE,1
+	bcf	PORTE,2
+
+	btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
+	incf    dias
+	btfss   PORTB, 1
+	decf    dias
+	bcf	RBIF
+	return
     
 Fecha_digitos:
     
-    movf    meses,W
+    movf    dividir_mes,W
     movwf   dividir
     movlw   10
     subwf   dividir, F
     btfss   ZERO	//si z=0 skip
     goto    $+3
-    clrf    meses
-    incf    meses+1
+    clrf    dividir_mes
+    incf    dividir_mes+1
+    clrf    dividir
     
     movf    dias, W
     movwf   dividir
@@ -379,11 +384,94 @@ Fecha_digitos:
     goto    $+3
     clrf    dias
     incf    dias+1
-    
+    clrf    dividir
     return    
+  /*
+UNDERFLOW_DECIMALES_FECHA:
+    movf    
+    return*/
+  
+ENERO:
+    movlw   1
+    movwf   dividir_mes
     
-Fecha_dias:
+    movf    dias+1, W
+    movwf   dividir
+    movlw   3
+    subwf   dividir, F
+    btfss   ZERO	//z=1 skip
+    goto    $+12
+    clrf    dividir
     
+    movf    dias, W
+    movwf   dividir
+    movlw   2
+    subwf   dividir, F
+    btfss   ZERO    
+    goto    $+5
+    clrf    dias
+    clrf    dias+1
+    movlw   1
+    addwf   dias
+    clrf    dividir
+    return
+
+FEBRERO:
+    movlw   2
+    movwf   dividir_mes
+    
+    movf    dias+1, W
+    movwf   dividir
+    movlw   2
+    subwf   dividir, F
+    btfss   ZERO	//z=1 skip
+    goto    $+12
+    clrf    dividir
+    
+    movf    dias, W
+    movwf   dividir
+    movlw   9
+    subwf   dividir, F
+    btfss   ZERO    
+    goto    $+5
+    clrf    dias
+    clrf    dias+1
+    movlw   1
+    addwf   dias
+    clrf    dividir
+    return
+
+MARZO:
+    return
+ABRIL:
+    return
+    
+MAYO:
+    return
+    
+JUNIO:
+    return
+    
+JULIO:
+    return
+    
+AGOSTO:
+    return
+    
+SEPTIEMBRE:
+    return
+    
+OCTUBRE:
+    return
+    
+NOVIEMBRE:
+    return
+
+DICIEMBRE:
+    return
+    
+RESET_MES:
+    clrf    mes
     return
     
 ORG 200h
@@ -394,7 +482,9 @@ MESES:
     addwf   PCL
     goto    ENERO
     goto    FEBRERO
-    goto    MARZO
+    //goto    RESET_MES
+    clrf    mes
+	/* goto    MARZO
     goto    ABRIL
     goto    MAYO
     goto    JUNIO
@@ -403,5 +493,5 @@ MESES:
     goto    SEPTIEMBRE
     goto    OCTUBRE
     goto    NOVIEMBRE
-    goto    DICIEMBRE
-    clrf    meses
+    goto    DICIEMBRE*/
+    
