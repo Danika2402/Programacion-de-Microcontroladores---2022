@@ -334,6 +334,7 @@ Reloj_minutos:
     goto    $+3
     clrf    segundos
     incf    minutos
+    clrf    dividir
     
     movf    minutos, W
     movwf   dividir
@@ -343,7 +344,7 @@ Reloj_minutos:
     goto    $+3		    
     clrf    minutos
     incf    minutos+1
-    
+    clrf    dividir
     return
     
 Reloj_horas:

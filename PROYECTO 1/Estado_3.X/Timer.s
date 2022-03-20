@@ -1,4 +1,4 @@
-;Archivo:	Fechas.s
+;Archivo:	Timer.s
 ;Dispositivo:	PIC16F887
 ;Autor:		Danika Andrino
 ;Compilador:	pic-as (2.30), MPLABX V6.00
@@ -6,7 +6,7 @@
 ;Programa:	
 ;Hardware:	
 ;    
-;Creado:		09/03/2022
+;Creado:		16/03/2022
 ;Ultima modificacion:	16/03/2022
     
         
@@ -33,14 +33,25 @@ RESET_TMR0 MACRO
     movlw   254
     movwf   TMR0
     bcf	    T0IF
-    ENDM
+ENDM
     
+RESET_TMR1 MACRO	    //1s , 85EE = 34286	
+    movlw   0x85	    //0XF9   
+    movwf   TMR1H	    
+    movlw   0xEE	    //0X0D    
+    movwf   TMR1L	    
+    bcf	    TMR1IF	     
+ENDM
+
 ;------------------------------------------------------------------------------
 PSECT udata_bank0  
-    mes:	    DS 1
-    dias:	    DS 2
-    dividir_mes:    DS 2
-    dividir:	    DS 1
+    segundos_timer:	DS 2
+    minutos_timer:	DS 2
+    dividir:		DS 1
+    alarma:		DS 1
+    
+    parar_timer:	DS 1
+    apagar_led:		DS 1
     
     Editar_Aceptar: DS 1
     //Display_Up:	    DS 1
@@ -76,9 +87,9 @@ ISR:
     
     btfsc   T0IF	    //si la bandera esta apagado, skip la siguiente linea
     call    TO_int
-    /*
+    
     btfsc   TMR1IF	    //si la bandera esta apagado, skip la siguiente linea
-    call    T1_int*/
+    call    T1_int
 
 POP:
     swapf   STATUS_TEMP, W
@@ -88,18 +99,43 @@ POP:
     retfie
 
 ;----------------Subrutinas de Interrupcion ------------------------------------
-    
+
 TO_int:
     RESET_TMR0
     call    MOSTRAR_VALOR
+    return
+    
+T1_int:
+    RESET_TMR1
+    //incf    segundos_timer
+    //incf    minutos
+    /*movf    alarma, W
+    subwf   1
+    btfss   ZERO
+    decf    segundos_timer*/
+    
+    movf    alarma, W
+    sublw   1
+    btfsc   ZERO	    //si Z=0 skip
+    decf    segundos_timer
+    
+    movf    parar_timer, W
+    sublw   1
+    btfsc   ZERO
+    call    LED_1MINUTO
     return
     
 IO_int:
     banksel PORTB
     btfss   PORTB, 2
     incf    Editar_Aceptar
-    call    EDITAR_FECHA
+    
+    btfss   PORTB, 3
+    incf    alarma
+    
     bcf	    RBIF
+    call    EDITAR_TIMER
+    
     return
     
 PSECT code, delta=2, abs
@@ -133,23 +169,20 @@ main:
     call    config_ports
     call    reloj
     call    config_tmr0
-    //call    config_tmr1
+    call    config_tmr1
     call    config_int
     banksel PORTD
-    
 ;-------------LOOP-------------------------------------------------------------
     //btfss revisa si el bit esta encendido, 
     //skip la siquiente linea, los botones estan conectados de forma pull-up
     //btfsc revisa si el bit esta apagado, skip la siguiente linea
 loop:
-    call    UNDERFLOW_FECHA
-    movf    mes, W
-    call    MESES
-    
     call    DISPLAY_SET
-    call    NIBBLE_FECHA
-    call    Fecha_digitos
-
+    call    NIBBLE_TIMER
+    call    TIMER_DIGITOS
+    call    UNDERFLOW_TIMER
+    call    INICIAR_ALARMA
+    
     goto    loop
     
 config_ports:
@@ -170,14 +203,14 @@ config_ports:
     bsf	    TRISB, 0	    //DISPLAY_UP
     bsf	    TRISB, 1	    //DISPLAY_DOWN
     bsf	    TRISB, 2	    //EDITAR/ACEPTAR
-    //bsf	    TRISB, 3	    //INICIAR/ACEPTAR
+    bsf	    TRISB, 3	    //INICIAR/ACEPTAR
     //bsf	    TRISB, 4	    //MODO
     
     bcf	    OPTION_REG, 7   //RBPU
     bsf	    WPUB, 0	    //abilitamos pull up en RB0 y RB1
     bsf	    WPUB, 1
     bsf	    WPUB, 2
-    //bsf	    WPUB, 3
+    bsf	    WPUB, 3
     //bsf	    WPUB, 4
     
     banksel PORTA
@@ -185,13 +218,9 @@ config_ports:
     clrf    PORTC
     clrf    PORTD
     clrf    PORTE
-    clrf    Editar_Aceptar
-    clrf    dias
-    clrf    dividir_mes
-    clrf    mes
-    
-    movlw   1
-    movwf   dias
+    clrf    segundos_timer
+    clrf    minutos_timer
+    clrf    alarma
     return
     
 reloj:
@@ -212,30 +241,43 @@ config_tmr0:
     
     RESET_TMR0
     return
-
+    
+config_tmr1:
+    banksel T1CON
+    bcf	    TMR1GE	//tmr1 siempre cuenta
+    bsf	    T1CKPS1	//prescaler
+    bsf	    T1CKPS0	//1:8
+    
+    bcf	    T1OSCEN	//LP deshabilitado
+    bcf	    TMR1CS	//reloj interno 
+    bsf	    TMR1ON
+    
+    RESET_TMR1
+    return
+    
 config_int:
-    //banksel PIE1
-    //bsf	    TMR1IE	    //interrupcion TMR1
+    banksel PIE1
+    bsf	    TMR1IE	    //interrupcion TMR1
     //bsf	    TMR2IE	    //interrupcion TMR2
     
     banksel TRISB	    //configuracion para interrupcion en B
     bsf	    IOCB, 0	    //DISPLAY UP/INCREMENTAR
     bsf	    IOCB, 1	    //DISPLAY DOWN/DECREMENTAR
     bsf	    IOCB, 2	    //EDITAR/ACEPTAR
-    //bsf	    IOCB, 3	    //INICIAR/PARAR
+    bsf	    IOCB, 3	    //INICIAR/PARAR
     //bsf	    IOCB, 4	    //MODO
     
     banksel PORTB	    //mismatch
     movf    PORTB, W
     
     banksel INTCON
-    //bsf	    PEIE
+    bsf	    PEIE
     bsf	    GIE		    //Habilitar interrupciones
     bsf	    RBIE	    //habilitar interrupcion en PORTB
     bcf	    RBIF	    //limpiar bandera
     bcf	    T0IF	    //limpiar bandera tmr0
     bsf	    T0IE	    //habilitar interrupcion en TMR0
-    //bcf	    TMR1IF	    //bandera en TMR1
+    bcf	    TMR1IF	    //bandera en TMR1
     //bcf	    TMR2IF
     return
     
@@ -257,7 +299,21 @@ DISPLAY_SET:
     call    tabla
     movwf   display+3
     return
+
+NIBBLE_TIMER:
+    movf    segundos_timer, W
+    movwf   nibbles
     
+    movf    segundos_timer+1, W
+    movwf   nibbles+1
+    
+    movf    minutos_timer, W
+    movwf   nibbles+2
+    
+    movf    minutos_timer+1, W
+    movwf   nibbles+3
+    return
+
 MOSTRAR_VALOR:
     clrf    PORTD
     btfss   banderas, 1	    //limpiamos PORTD y dependiendo de la bandera,
@@ -299,382 +355,230 @@ MOSTRAR_VALOR:
 	movwf	PORTC
 	bsf	PORTD, 3
 	return
-	
-NIBBLE_FECHA:
-    movf    dias, W
-    movwf   nibbles
     
-    movf    dias+1, W
-    movwf   nibbles+1
-    
-    movf    dividir_mes, W
-    movwf   nibbles+2
-    
-    movf    dividir_mes+1, W
-    movwf   nibbles+3
-    return
-    
-EDITAR_FECHA:
+EDITAR_TIMER:
     
     movf    Editar_Aceptar, W
     sublw   1		
-    btfsc   ZERO		    //si Z=0 skip
-    goto    MODIFICAR_MESES	    //si Z=1 ir a MODIFICAR_MINUTOS
+    btfsc   ZERO			    //si Z=0 skip
+    goto    MODIFICAR_MINUTOS_TIMER	    //si Z=1 ir a MODIFICAR_MINUTOS
     
     movf    Editar_Aceptar, W
     sublw   2		
-    btfsc   ZERO		    //si Z=0 skip
-    goto    MODIFICAR_DIAS	    //si Z=1 ir a MODIFICAR_HORAS
+    btfsc   ZERO			    //si Z=0 skip
+    goto    MODIFICAR_SEGUNDOS_TIMER	    //si Z=1 ir a MODIFICAR_HORAS
     
     movf    Editar_Aceptar, W
     sublw   3		
-    btfsc   ZERO		    //si Z=0 skip
-    clrf    Editar_Aceptar	    
+    btfsc   ZERO			     //si Z=0 skip
+    clrf    Editar_Aceptar
     
     bcf	    PORTE,0
     bcf	    PORTE,1
-    bcf	    PORTE,2
     
     return
     
-    MODIFICAR_MESES:
+    MODIFICAR_MINUTOS_TIMER:
 	banksel PORTB
 	bcf	PORTE,0
 	bsf	PORTE,1
-	bcf	PORTE,2
 
 	btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-	incf	mes
+	incf	minutos_timer
 	btfss   PORTB, 1
-	decf	mes
+	decf	minutos_timer
 	bcf	RBIF
 
 	return
 
-    MODIFICAR_DIAS: 
+    MODIFICAR_SEGUNDOS_TIMER: 
 	banksel PORTB
 	bsf	PORTE,0
 	bcf	PORTE,1
-	bcf	PORTE,2
-
+	
 	btfss   PORTB, 0	    //incrementamos B con RB0, decrementamos con RB1
-	incf    dias
+	incf    segundos_timer
 	btfss   PORTB, 1
-	decf    dias
+	decf    segundos_timer
 	bcf	RBIF
 	return
-    
-Fecha_digitos:
-    
-    movf    dividir_mes,W
-    movwf   dividir
-    movlw   10
-    subwf   dividir, F
-    btfss   ZERO	//si z=0 skip
-    goto    $+3
-    clrf    dividir_mes
-    incf    dividir_mes+1
-    clrf    dividir
-    
-    movf    dias, W
-    movwf   dividir
-    movlw   10
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+3
-    clrf    dias
-    incf    dias+1
-    clrf    dividir
-    return    
-  
-UNDERFLOW_FECHA:
-    movf    dias, W
-    movwf   dividir
-    movlw   255
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+5
-    clrf    dias
-    decf    dias+1
-    movlw   9
-    addwf   dias
-    clrf    dividir
-    
-    movf    mes,W
-    movwf   dividir
-    movlw   255
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+4
-    clrf    mes
-    movlw   11
-    addwf   mes
-    clrf    dividir
-    return
 
-DIAS_30:
-    movf    dias+1, W
-    movwf   dividir
-    movlw   3
-    subwf   dividir, F
-    btfss   CARRY
-    goto    $+12
-    clrf    dividir
-    
-    movf    dias, W
-    movwf   dividir
-    movlw   1
-    subwf   dividir, F
-    btfss   CARRY    
-    goto    $+5
-    clrf    dias
-    clrf    dias+1
-    movlw   1
-    addwf   dias
-    clrf    dividir
-    
-    movf    dias+1, W
-    movwf   dividir
-    movlw   0
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+12
-    clrf    dividir
-    
-    movf    dias, W
-    movwf   dividir
-    movlw   0
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+5
-    clrf    dias+1
-    clrf    dias
-    movlw   3
-    addwf   dias+1
-    clrf    dividir
-    
+LED_1MINUTO:
+    bsf	PORTE,2
+    incf    apagar_led
     return
-    
-DIAS_31:
-    movf    dias+1, W
+	
+TIMER_DIGITOS:
+    movf    segundos_timer+1, W 
     movwf   dividir
-    movlw   3
-    subwf   dividir, F
-    btfss   CARRY	
-    goto    $+12
-    clrf    dividir
-    
-    movf    dias, W
-    movwf   dividir
-    movlw   2
-    subwf   dividir, F
-    btfss   CARRY    
-    goto    $+5
-    clrf    dias
-    clrf    dias+1
-    movlw   1
-    addwf   dias
-    clrf    dividir
-    
-    movf    dias+1, W
-    movwf   dividir
-    movlw   0
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+14
-    clrf    dividir
-    
-    movf    dias, W
-    movwf   dividir
-    movlw   0
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+7
-    clrf    dias+1
-    clrf    dias
-    movlw   3
-    addwf   dias+1
-    movlw   1
-    addwf   dias
-    clrf    dividir
-    return
-
-    
-ENERO:
-    clrf    dividir_mes+1
-    movlw   1
-    movwf   dividir_mes
-    
-    call    DIAS_31
-    return
-
-FEBRERO:
-    clrf    dividir_mes+1
-    movlw   2
-    movwf   dividir_mes
-    
-    movf    dias+1, W
-    movwf   dividir
-    movlw   2
-    subwf   dividir, F
-    btfss   CARRY
-    goto    $+12
-    clrf    dividir
-    
-    movf    dias, W
-    movwf   dividir
-    movlw   9
-    subwf   dividir, F
-    btfss   CARRY   
-    goto    $+5
-    clrf    dias
-    clrf    dias+1
-    movlw   1
-    addwf   dias
-    clrf    dividir
-    
-    movf    dias+1, W
-    movwf   dividir
-    movlw   0
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+14
-    clrf    dividir
-    
-    movf    dias, W
-    movwf   dividir
-    movlw   0
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+7
-    clrf    dias+1
-    clrf    dias
-    movlw   2
-    addwf   dias+1
-    movlw   8
-    addwf   dias
-    clrf    dividir
-    
-    movf    dias+1, W
-    movwf   dividir
-    movlw   3
-    subwf   dividir, F
-    btfss   ZERO
-    goto    $+7
-    clrf    dias+1
-    clrf    dias
-    movlw   2
-    addwf   dias+1
-    movlw   8
-    addwf   dias
-    clrf    dividir
-    return
-
-MARZO:
-    clrf    dividir_mes+1
-    movlw   3
-    movwf   dividir_mes
-    
-    call    DIAS_31
-    return
-ABRIL:
-    clrf    dividir_mes+1
-    movlw   4
-    movwf   dividir_mes
-    
-    call    DIAS_30
-    return
-    
-MAYO:
-    clrf    dividir_mes+1
-    movlw   5
-    movwf   dividir_mes
-    
-    call    DIAS_31
-    return
-    
-JUNIO:
-    clrf    dividir_mes+1
     movlw   6
-    movwf   dividir_mes
+    subwf   dividir, F
+    btfss   ZERO
+    goto    $+3
+    clrf    segundos_timer+1
+    incf    minutos_timer
+    clrf    dividir
     
-    call    DIAS_30
+    movf    segundos_timer, W
+    movwf   dividir
+    movlw   10
+    subwf   dividir, F
+    btfss   ZERO	   
+    goto    $+3		   
+    clrf    segundos_timer
+    incf    segundos_timer+1
+    clrf    dividir
+    
+    movf    minutos_timer, W
+    movwf   dividir
+    movlw   10
+    subwf   dividir, F
+    btfss   ZERO	    
+    goto    $+3		    
+    clrf    minutos_timer
+    incf    minutos_timer+1
+    clrf    dividir
+    
+    movf    minutos_timer+1,W
+    movwf   dividir
+    movlw   10
+    subwf   dividir, F
+    btfsc   ZERO
+    goto    REINICIO_TIMER
+    clrf    dividir
     return
     
-JULIO:
-    clrf    dividir_mes+1
-    movlw   7
-    movwf   dividir_mes
     
-    call    DIAS_31
-    return
-    
-AGOSTO:
-    clrf    dividir_mes+1
-    movlw   8
-    movwf   dividir_mes
-    
-    call    DIAS_31
-    return
-    
-SEPTIEMBRE:
-    clrf    dividir_mes+1
+UNDERFLOW_TIMER:			
+    movf    segundos_timer, W	    //si resta +,0 -> c = 1
+    movwf   dividir
+    movlw   255		    //si resta - -> c = 0
+    subwf   dividir, F
+    btfss   CARRY	    
+    goto    $+5
+    clrf    segundos_timer
+    decf    segundos_timer+1
     movlw   9
-    movwf   dividir_mes
+    addwf   segundos_timer
+    clrf    dividir
     
-    call    DIAS_30
-    return
+    movf    segundos_timer+1, W	    //si resta +,0 -> c = 1
+    movwf   dividir
+    movlw   255		    //si resta - -> c = 0
+    subwf   dividir, F
+    btfss   CARRY	    
+    goto    $+5
+    decf    minutos_timer
+    clrf    segundos_timer+1
+    movlw   5
+    addwf   segundos_timer+1
+    clrf    dividir
     
-OCTUBRE:
-    clrf    dividir_mes
-    movlw   1
-    movwf   dividir_mes+1
+    movf    minutos_timer, W	    //si resta +,0 -> c = 1
+    movwf   dividir
+    movlw   255		    //si resta - -> c = 0
+    subwf   dividir, F
+    btfss   CARRY	    
+    goto    $+5
+    clrf    minutos_timer
+    decf    minutos_timer+1
+    movlw   9
+    addwf   minutos_timer
+    clrf    dividir
     
-    call    DIAS_31
-    return
+    movf    minutos_timer+1, W	    //si resta +,0 -> c = 1
+    movwf   dividir
+    movlw   255		    //si resta - -> c = 0
+    subwf   dividir, F
+    btfss   CARRY	    
+    goto    $+4
+    clrf    minutos_timer+1
+    movlw   9
+    addwf   minutos_timer+1
+    clrf    dividir
+				
     
-NOVIEMBRE:
-    movlw   1
-    movwf   dividir_mes
-    movlw   1
-    movwf   dividir_mes+1
-    
-    call    DIAS_30
     return
 
-DICIEMBRE:
-    movlw   2
-    movwf   dividir_mes
-    movlw   1
-    movwf   dividir_mes+1
-    
-    call    DIAS_31
+REINICIO_TIMER:
+    clrf    segundos_timer
+    clrf    minutos_timer
+    clrf    segundos_timer+1
+    clrf    minutos_timer+1
+    clrf    nibbles
+    clrf    nibbles+1
+    clrf    nibbles+2
+    clrf    nibbles+3
     return
+
     
-RESET_MES:  
-    clrf    mes
-    clrf    Editar_Aceptar
-    
+INICIAR_ALARMA:
+    movf    alarma, W
+    movwf   dividir
     movlw   1
-    movwf   Editar_Aceptar
-    return
+    subwf   dividir, F
+    btfss   ZERO
+    goto    $+32
+    clrf    dividir
     
-ORG 400h
-MESES:
-    clrf    PCLATH		; Limpiamos registro PCLATH
-    bsf	    PCLATH, 2		; Posicionamos el PC en dirección 02xxh
-    andlw   0x0F		; no saltar más del tamaño de la tabla
-    addwf   PCL
-    goto    ENERO
-    goto    FEBRERO
-    goto    MARZO
-    goto    ABRIL
-    goto    MAYO
-    goto    JUNIO
-    goto    JULIO
-    goto    AGOSTO
-    goto    SEPTIEMBRE
-    goto    OCTUBRE
-    goto    NOVIEMBRE
-    goto    DICIEMBRE
-    goto    RESET_MES
+	movf	minutos_timer+1, W
+	movwf	dividir
+	movlw	0
+	subwf	dividir, F
+	btfss	ZERO
+	goto	$+25
+	clrf	dividir
+	
+	    movf	minutos_timer, W
+	    movwf	dividir
+	    movlw	0
+	    subwf	dividir, F
+	    btfss	ZERO
+	    goto	$+18
+	    clrf	dividir
+
+		movf	segundos_timer+1, W
+		movwf	dividir
+		movlw	0
+		subwf	dividir, F
+		btfss	ZERO
+		goto	$+11
+		clrf	dividir
+
+		    movf	segundos_timer, W
+		    movwf	dividir
+		    movlw	0
+		    subwf	dividir, F
+		    btfss	ZERO
+		    goto	$+4
+		    call	REINICIO_TIMER
+		    incf    	alarma
+		    incf	parar_timer
+		    clrf	dividir
+    
+		    
+		    
+    movf    alarma, W
+    movwf   dividir
+    movlw   3
+    subwf   dividir, F
+    btfss   ZERO	    
+    goto    $+5
+    bcf	    PORTE, 2
+    clrf    apagar_led
+    clrf    parar_timer
+    clrf    alarma
+    clrf    dividir
+    
+    movf    apagar_led, W
+    movwf   dividir
+    movlw   60
+    subwf   dividir, F
+    btfss   ZERO
+    goto    $+5
+    bcf	    PORTE, 2
+    clrf    apagar_led
+    clrf    parar_timer
+    clrf    alarma
+    clrf    dividir
+    return
