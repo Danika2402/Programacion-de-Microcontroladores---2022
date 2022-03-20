@@ -7,7 +7,7 @@
 ;Hardware:	
 ;    
 ;Creado:		16/03/2022
-;Ultima modificacion:	16/03/2022
+;Ultima modificacion:	19/03/2022
     
         
 PROCESSOR 16F887
@@ -140,28 +140,28 @@ IO_int:
     
 PSECT code, delta=2, abs
  ORG 100h
- 
-tabla:
-    clrf    PCLATH	;ANODO COMUN
+ tabla:
+    clrf    PCLATH
     bsf	    PCLATH, 0	;PCLATH = 01
     andlw   0x0f	;me aseguro q solo pasen 4 bits
     addwf   PCL		;PC = PCL + PCLATH + w
-    retlw   00000011B	;0
-    retlw   10011111B	;1
-    retlw   00100101B	;2
-    retlw   00001101B	;3
-    retlw   10011001B	;4
-    retlw   01001001B	;5
-    retlw   01000001B	;6
-    retlw   00011111B	;7
-    retlw   00000001B	;8
-    retlw   00001001B	;9
-    retlw   00010001B	;A
-    retlw   11000001B	;B
-    retlw   01100011B	;C
-    retlw   10000101B	;D
-    retlw   01100001B	;E
-    retlw   01110001B	;F
+    retlw   11111100B	;0  
+    retlw   01100000B	;1  
+    retlw   11011010B	;2  
+    retlw   11110010B	;3  
+    retlw   01100110B	;4  
+    retlw   10110110B	;5  
+    retlw   10111110B	;6  
+    retlw   11100000B	;7  
+    retlw   11111110B	;8  
+    retlw   11110110B	;9  
+    retlw   11101110B	;A  
+    retlw   00111110B	;B  
+    retlw   10011100B	;C  
+    retlw   01111010B	;D  
+    retlw   10011110B	;E  
+    retlw   10001110B	;F  
+
 
 ;---------------CONFIGURACION--------------------------------------------------
 
