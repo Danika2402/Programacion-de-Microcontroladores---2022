@@ -2447,24 +2447,6 @@ auto_size SET 0
 ENDM
 # 7 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\xc.inc" 2 3
 # 2 "Timer.s" 2
-# 1 "./Macros.inc" 1
-
-
-RESET_TMR0 MACRO
-    banksel TMR0
-    movlw 254
-    movwf TMR0
-    bcf ((INTCON) and 07Fh), 2
-    ENDM
-
-RESET_TMR1 MACRO
-    movlw 0x85
-    movwf TMR1H
-    movlw 0xEE
-    movwf TMR1L
-    bcf ((PIR1) and 07Fh), 0
-    ENDM
-# 3 "Timer.s" 2
 
 GLOBAL segundos_timer, minutos_timer,alarma,parar_timer,apagar_led
 GLOBAL Editar_Aceptar, dividir

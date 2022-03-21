@@ -2581,8 +2581,8 @@ config_tmr2:
 
 config_int:
     banksel PIE1
-    bsf ((PIE1) and 07Fh), 0
-    bsf ((PIE1) and 07Fh), 1
+
+
 
     banksel TRISB
     bsf IOCB, 0
@@ -2601,6 +2601,6 @@ config_int:
     bcf ((INTCON) and 07Fh), 0
     bcf ((INTCON) and 07Fh), 2
     bsf ((INTCON) and 07Fh), 5
-    bcf ((PIR1) and 07Fh), 0
-    bcf ((PIR1) and 07Fh), 1
+
+
     return

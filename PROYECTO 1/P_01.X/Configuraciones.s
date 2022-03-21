@@ -116,8 +116,8 @@ config_tmr2:
     
 config_int:
     banksel PIE1
-    bsf	    TMR1IE	    //interrupcion TMR1
-    bsf	    TMR2IE	    //interrupcion TMR2
+   // bsf	    TMR1IE	    //interrupcion TMR1
+   // bsf	    TMR2IE	    //interrupcion TMR2
     
     banksel TRISB	    //configuracion para interrupcion en B
     bsf	    IOCB, 0	    //DISPLAY UP/INCREMENTAR
@@ -136,8 +136,8 @@ config_int:
     bcf	    RBIF	    //limpiar bandera
     bcf	    T0IF	    //limpiar bandera tmr0
     bsf	    T0IE	    //habilitar interrupcion en TMR0
-    bcf	    TMR1IF	    //bandera en TMR1
-    bcf	    TMR2IF
+    //bcf	    TMR1IF	    //bandera en TMR1
+    //bcf	    TMR2IF
     return
 
 

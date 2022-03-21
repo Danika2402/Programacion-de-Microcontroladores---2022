@@ -2498,7 +2498,7 @@ CONFIG BOR4V = BOR40V
 
 GLOBAL tabla
 GLOBAL modo,dividir
-GLOBAL config_ports,reloj,config_tmr0,config_tmr1,config_tmr2,config_int
+GLOBAL config_ports,reloj,config_tmr0, config_int
 GLOBAL W_TEMP,STATUS_TEMP
 
 GLOBAL MOSTRAR_VALOR, DISPLAY_SET
@@ -2567,8 +2567,8 @@ main:
     call config_ports
     call reloj
     call config_tmr0
-    call config_tmr1
-    call config_tmr2
+
+
     call config_int
     banksel PORTD
 ;-------------LOOP-------------------------------------------------------------
@@ -2580,30 +2580,34 @@ loop:
 
     movf modo, W
     movwf dividir
-    sublw 0
-    btfss ((STATUS) and 07Fh), 2
-    goto ESTADO_1
+    movlw 1
+    subwf dividir, F
+    btfsc ((STATUS) and 07Fh), 2
+    call ESTADO_1
     clrf dividir
 
     movf modo, W
     movwf dividir
-    sublw 1
-    btfss ((STATUS) and 07Fh), 2
-    goto ESTADO_2
+    movlw 2
+    subwf dividir, F
+    btfsc ((STATUS) and 07Fh), 2
+    call ESTADO_2
     clrf dividir
 
     movf modo, W
     movwf dividir
-    sublw 2
-    btfss ((STATUS) and 07Fh), 2
-    goto ESTADO_3
+    movlw 3
+    subwf dividir, F
+    btfsc ((STATUS) and 07Fh), 2
+    call ESTADO_3
     clrf dividir
 
     movf modo, W
     movwf dividir
-    sublw 3
-    btfss ((STATUS) and 07Fh), 2
-    goto ESTADO_4
+    movlw 4
+    subwf dividir, F
+    btfsc ((STATUS) and 07Fh), 2
+    call ESTADO_4
     clrf dividir
 
     goto loop

@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.35\pic\dat\en_msgs.txt -cs \
   -h+dist/default/production\P_01.X.production.sym \
   --cmf=dist/default/production\P_01.X.production.cmf -z -Q16F887 \
-  -oC:\Users\HP\AppData\Local\Temp\xcAsjdo.4 -ver=XC8 PIC(R) Assembler \
+  -oC:\Users\HP\AppData\Local\Temp\xcAsa6c.4 -ver=XC8 PIC(R) Assembler \
   -Mdist/default/production/P_01.X.production.map -E1 --acfsm=1493 \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
   -ACONST=00h-0FFhx32 -AENTRY=00h-0FFhx32 -ACOMMON=070h-07Fh \
@@ -34,9 +34,9 @@ build/default/production/PRINCIPAL.o
                 config                             2007     2007        2        0       4
                 intVect                               0        0       15        0       0
                 resVect                               0        0        3        0       0
-                code                                  0        0      147        0       0
+                code                                  0        0      149        0       0
 build/default/production/Configuraciones.o
-                code                                  0        0       78        0       0
+                code                                  0        0       74        0       0
 build/default/production/Interrupciones.o
                 code                                  0        0       B1        0       0
 build/default/production/Variables.o
@@ -55,8 +55,8 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   CODE           
                 intVect                               0        0       15         0
                 resVect                               0        0        3         0
-                code                                  0        0      147         0
-                code                                  0        0       78         0
+                code                                  0        0      149         0
+                code                                  0        0       74         0
                 code                                  0        0       B1         0
                 code                                  0        0       45         0
                 code                                  0        0       6C         0
@@ -173,4 +173,4 @@ mes             udata_bank0 0028  minutos         udata_bank0 0024
 minutos_timer   udata_bank0 002F  modo            udata_bank0 0022
 nibbles         udata_bank0 0037  parar_timer     udata_bank0 0032
 reloj           code        002F  segundos        udata_bank0 0023
-segundos_timer  udata_bank0 002D  tabla           code        0133
+segundos_timer  udata_bank0 002D  tabla           code        0135

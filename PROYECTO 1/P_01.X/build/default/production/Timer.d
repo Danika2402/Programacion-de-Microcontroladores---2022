@@ -1,1 +1,1 @@
-build/default/production\Timer.i: Timer.s Macros.inc
+build/default/production\Timer.i: Timer.s
