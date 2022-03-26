@@ -2620,17 +2620,17 @@ LED_1MINUTO:
 EDITAR:
 
     movf modo, W
-    sublw 1
+    sublw 0
     btfsc ((STATUS) and 07Fh), 2
     goto EDITAR_RELOJ
 
     movf modo, W
-    sublw 2
+    sublw 1
     btfsc ((STATUS) and 07Fh), 2
     goto EDITAR_FECHA
 
     movf modo, W
-    sublw 3
+    sublw 2
     btfsc ((STATUS) and 07Fh), 2
     goto EDITAR_TIMER
 
@@ -2834,7 +2834,7 @@ loop:
 
     movf modo, W
     movwf dividir
-    movlw 1
+    movlw 0
     subwf dividir, F
     btfsc ((STATUS) and 07Fh), 2
     call ESTADO_1
@@ -2842,7 +2842,7 @@ loop:
 
     movf modo, W
     movwf dividir
-    movlw 2
+    movlw 1
     subwf dividir, F
     btfsc ((STATUS) and 07Fh), 2
     call ESTADO_2
@@ -2850,7 +2850,7 @@ loop:
 
     movf modo, W
     movwf dividir
-    movlw 3
+    movlw 2
     subwf dividir, F
     btfsc ((STATUS) and 07Fh), 2
     call ESTADO_3
@@ -2858,7 +2858,7 @@ loop:
 
     movf modo, W
     movwf dividir
-    movlw 4
+    movlw 3
     subwf dividir, F
     btfsc ((STATUS) and 07Fh), 2
     call ESTADO_4
@@ -3017,10 +3017,10 @@ TMR2_LED:
 
 MOSTRAR_VALOR:
     clrf PORTD
-    btfss banderas, 1
+    btfss banderas, 0
     goto display_0
 
-    btfss banderas, 0
+    btfss banderas, 1
     goto display_1
 
     btfss banderas, 2
@@ -3033,14 +3033,14 @@ MOSTRAR_VALOR:
  movf display, W
  movwf PORTC
  bsf PORTD, 0
- bsf banderas, 1
+ bsf banderas, 0
  return
 
     display_1:
  movf display+1, W
  movwf PORTC
  bsf PORTD, 1
- bsf banderas, 0
+ bsf banderas, 1
  return
 
     display_2:
@@ -3239,6 +3239,7 @@ UN_DIA:
     return
 
 REINICIO_reloj:
+    incf dias
     clrf segundos
     clrf minutos
     clrf horas
@@ -3363,7 +3364,7 @@ DIAS_30:
     movlw 3
     subwf dividir, F
     btfss ((STATUS) and 07Fh), 0
-    goto $+12
+    goto $+13
     clrf dividir
 
     movf dias, W
@@ -3371,7 +3372,8 @@ DIAS_30:
     movlw 1
     subwf dividir, F
     btfss ((STATUS) and 07Fh), 0
-    goto $+5
+    goto $+6
+    incf mes
     clrf dias
     clrf dias+1
     movlw 1
@@ -3406,7 +3408,7 @@ DIAS_31:
     movlw 3
     subwf dividir, F
     btfss ((STATUS) and 07Fh), 0
-    goto $+12
+    goto $+13
     clrf dividir
 
     movf dias, W
@@ -3414,7 +3416,8 @@ DIAS_31:
     movlw 2
     subwf dividir, F
     btfss ((STATUS) and 07Fh), 0
-    goto $+5
+    goto $+6
+    incf mes
     clrf dias
     clrf dias+1
     movlw 1
@@ -3463,7 +3466,7 @@ FEBRERO:
     movlw 2
     subwf dividir, F
     btfss ((STATUS) and 07Fh), 0
-    goto $+12
+    goto $+13
     clrf dividir
 
     movf dias, W
@@ -3471,7 +3474,8 @@ FEBRERO:
     movlw 9
     subwf dividir, F
     btfss ((STATUS) and 07Fh), 0
-    goto $+5
+    goto $+6
+    incf mes
     clrf dias
     clrf dias+1
     movlw 1

@@ -30,7 +30,7 @@ CONFIG WRT   =   OFF
 CONFIG BOR4V =   BOR40V
 
 RESET_TMR0 MACRO 
-    banksel TMR0	//2ms
+    banksel TMR0	//1ms
     movlw   254
     movwf   TMR0
     bcf	    T0IF
@@ -171,17 +171,17 @@ LED_1MINUTO:
 EDITAR:
     
     movf    modo, W
-    sublw   1
+    sublw   0
     btfsc   ZERO
     goto    EDITAR_RELOJ
     
     movf    modo, W
-    sublw   2
+    sublw   1
     btfsc   ZERO
     goto    EDITAR_FECHA
     
     movf    modo, W
-    sublw   3
+    sublw   2
     btfsc   ZERO
     goto    EDITAR_TIMER
     
@@ -385,7 +385,7 @@ loop:
     
     movf    modo, W
     movwf   dividir
-    movlw   1
+    movlw   0
     subwf   dividir, F
     btfsc   ZERO
     call    ESTADO_1
@@ -393,7 +393,7 @@ loop:
     
     movf    modo, W
     movwf   dividir
-    movlw   2
+    movlw   1
     subwf   dividir, F
     btfsc   ZERO
     call    ESTADO_2
@@ -401,7 +401,7 @@ loop:
     
     movf    modo, W
     movwf   dividir
-    movlw   3
+    movlw   2
     subwf   dividir, F
     btfsc   ZERO
     call    ESTADO_3
@@ -409,7 +409,7 @@ loop:
     
     movf    modo, W
     movwf   dividir
-    movlw   4
+    movlw   3
     subwf   dividir, F
     btfsc   ZERO
     call    ESTADO_4
@@ -568,10 +568,10 @@ TMR2_LED:
     
 MOSTRAR_VALOR:
     clrf    PORTD
-    btfss   banderas, 1	    //limpiamos PORTD y dependiendo de la bandera,
+    btfss   banderas, 0	    //limpiamos PORTD y dependiendo de la bandera,
     goto    display_0	    //vamos a una subtutina
     
-    btfss   banderas, 0
+    btfss   banderas, 1
     goto    display_1
     
     btfss   banderas, 2
@@ -584,14 +584,14 @@ MOSTRAR_VALOR:
 	movf	display, W	//aqui movemos lo que esta en display a W
 	movwf	PORTC		//y eso lo movemos al PORTC donde esta el display
 	bsf	PORTD, 0	//y encendemos el bit de PORTD
-	bsf	banderas, 1	//donde el display esta conectado
+	bsf	banderas, 0	//donde el display esta conectado
 	return
 
     display_1:
 	movf	display+1, W
 	movwf	PORTC
 	bsf	PORTD, 1 
-	bsf	banderas, 0
+	bsf	banderas, 1
 	return
 
     display_2:
@@ -790,6 +790,7 @@ UN_DIA:
     return
 
 REINICIO_reloj:
+    incf    dias
     clrf    segundos
     clrf    minutos
     clrf    horas
@@ -914,7 +915,7 @@ DIAS_30:
     movlw   3
     subwf   dividir, F
     btfss   CARRY
-    goto    $+12
+    goto    $+13
     clrf    dividir
     
     movf    dias, W
@@ -922,7 +923,8 @@ DIAS_30:
     movlw   1
     subwf   dividir, F
     btfss   CARRY    
-    goto    $+5
+    goto    $+6
+    incf    mes
     clrf    dias
     clrf    dias+1
     movlw   1
@@ -957,7 +959,7 @@ DIAS_31:
     movlw   3
     subwf   dividir, F
     btfss   CARRY	
-    goto    $+12
+    goto    $+13
     clrf    dividir
     
     movf    dias, W
@@ -965,7 +967,8 @@ DIAS_31:
     movlw   2
     subwf   dividir, F
     btfss   CARRY    
-    goto    $+5
+    goto    $+6
+    incf    mes
     clrf    dias
     clrf    dias+1
     movlw   1
@@ -1014,7 +1017,7 @@ FEBRERO:
     movlw   2
     subwf   dividir, F
     btfss   CARRY
-    goto    $+12
+    goto    $+13
     clrf    dividir
     
     movf    dias, W
@@ -1022,7 +1025,8 @@ FEBRERO:
     movlw   9
     subwf   dividir, F
     btfss   CARRY   
-    goto    $+5
+    goto    $+6
+    incf    mes
     clrf    dias
     clrf    dias+1
     movlw   1
