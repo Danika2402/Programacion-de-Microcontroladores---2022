@@ -1,7 +1,7 @@
 # 1 "MAIN.s"
 # 1 "<built-in>" 1
 # 1 "MAIN.s" 2
-;Archivo: Reloj_digital.s
+;Archivo: MAIN.s
 ;Dispositivo: PIC16F887
 ;Autor: Danika Andrino
 ;Compilador: pic-as (2.30), MPLABX V6.00
@@ -10,8 +10,7 @@
 ;Hardware:
 ;
 ;Creado: 05/03/2022
-;Ultima modificacion: 05/03/2022
-
+;Ultima modificacion: 21/03/2022
 
 PROCESSOR 16F887
 
@@ -2460,8 +2459,7 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 7 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\xc.inc" 2 3
-# 15 "MAIN.s" 2
-
+# 14 "MAIN.s" 2
 
 CONFIG FOSC = INTRC_NOCLKOUT
 CONFIG WDTE = OFF
@@ -2523,9 +2521,10 @@ PSECT udata_bank0
     cont1: DS 1
     modo: DS 1
 
-    banderas: DS 1 ; Indica que display hay que encender
-    nibbles: DS 4 ; Contiene los nibbles alto y bajo de "valor"
-    display: DS 4 ; Representación de cada nibble en el display
+
+    banderas: DS 1
+    nibbles: DS 4
+    display: DS 4
 
 PSECT resVect, class=CODE,abs, delta=2
 ;-----------------Vector Reset--------------------------------------------------
@@ -2575,7 +2574,6 @@ T1_int:
     RESET_TMR1
     incf segundos
 
-
     movf alarma, W
     sublw 1
     btfsc ((STATUS) and 07Fh), 2
@@ -2585,13 +2583,13 @@ T1_int:
     sublw 1
     btfsc ((STATUS) and 07Fh), 2
     call LED_1MINUTO
-
     return
 
 IO_int:
     banksel PORTB
     btfss PORTB, 2
     incf Editar_Aceptar
+
 
     btfss PORTB, 3
     incf alarma
@@ -2633,10 +2631,6 @@ EDITAR:
     sublw 2
     btfsc ((STATUS) and 07Fh), 2
     goto EDITAR_TIMER
-
-    bcf PORTE,0
-    bcf PORTE,1
-
     return
 
 
@@ -2830,6 +2824,7 @@ main:
 
 loop:
     call TMR2_LED
+
     call DISPLAY_SET
 
     movf modo, W
@@ -3077,6 +3072,9 @@ DISPLAY_SET:
 
 
 
+
+
+
 NIBBLE_RELOJ:
     movf minutos, W
     movwf nibbles
@@ -3311,16 +3309,6 @@ UNDERFLOW_RELOJ:
 ;*******************************************************************************
 
 Fecha_digitos:
-
-    movf dividir_mes,W
-    movwf dividir
-    movlw 10
-    subwf dividir, F
-    btfss ((STATUS) and 07Fh), 2
-    goto $+3
-    clrf dividir_mes
-    incf dividir_mes+1
-    clrf dividir
 
     movf dias, W
     movwf dividir
