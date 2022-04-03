@@ -2669,6 +2669,11 @@ void __attribute__((picinterrupt(("")))) isr (void){
         INTCONbits.RBIF = 0;
     }
 
+    if(INTCONbits.T0IF)
+        ++PORTD;
+    INTCONbits.T0IF = 0;
+    TMR0 = 159;
+
     return;
 }
 
@@ -2704,13 +2709,16 @@ void setup(void){
     WPUBbits.WPUB = 0x03;
     IOCBbits.IOCB = 0x03;
 
-
-
-
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 159;
 
     INTCONbits.GIE = 1;
     INTCONbits.RBIE = 1;
     INTCONbits.RBIF = 0;
-
-
+    INTCONbits.T0IF = 0;
+    INTCONbits.T0IE = 1;
 }

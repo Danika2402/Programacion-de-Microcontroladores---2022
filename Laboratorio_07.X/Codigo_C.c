@@ -23,7 +23,7 @@
 
 #include <xc.h>
 #include <stdint.h>
-//#define _tmr0_value 61
+#define _tmr0_value 159
                      //0     1    2    3    4   5    6    7     8   9   
 const char tabla[] = {0xFC,0x60,0xDA,0xF2,0x66,0xB6,0xBE,0xE0,0xFE,0xF6,
                     0xEE,0x3E,0x9C,0x7A,0x9E,0x8E};
@@ -38,6 +38,11 @@ void __interrupt() isr (void){
             --PORTA;
         INTCONbits.RBIF = 0;    // Limpiamos bandera de interrupción
     }
+    
+    if(INTCONbits.T0IF)
+        ++PORTD;
+    INTCONbits.T0IF = 0;
+    TMR0 = _tmr0_value;
     
     return;
 }
@@ -73,14 +78,17 @@ void setup(void){
     OPTION_REGbits.nRBPU = 0;
     WPUBbits.WPUB = 0x03;   //0011 RB0 y RB1
     IOCBbits.IOCB = 0x03;   //RB0 y 
-    /*
-    OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.PS = 0b0111; //PSA =0 , PS2,PS1,PS0 = 111; 1:256
-    TMR0 = _tmr0_value;*/
+    
+    OPTION_REGbits.T0CS = 0; 
+    OPTION_REGbits.PSA = 0; 
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1; //PS = 1:256
+    TMR0 = _tmr0_value;
     
     INTCONbits.GIE  = 1;         
     INTCONbits.RBIE = 1;         
     INTCONbits.RBIF = 0;
-    /*INTCONbits.T0IF = 0;
-    INTCONbits.T0IE = 1;*/
+    INTCONbits.T0IF = 0;
+    INTCONbits.T0IE = 1;
 }

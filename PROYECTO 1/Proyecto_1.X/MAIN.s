@@ -578,14 +578,14 @@ MOSTRAR_VALOR:
     display_0:
 	movf	display, W	//aqui movemos lo que esta en display a W
 	movwf	PORTC		//y eso lo movemos al PORTC donde esta el display
-	bsf	PORTD, 0	//y encendemos el bit de PORTD
+	bcf	PORTD, 0	//y encendemos el bit de PORTD
 	bsf	banderas, 0	//donde queremos que se muestre el valor
 	return
 
     display_1:
 	movf	display+1, W
 	movwf	PORTC
-	bsf	PORTD, 1 
+	bcf	PORTD, 1 
 	bsf	banderas, 1
 	return
 
@@ -593,14 +593,14 @@ MOSTRAR_VALOR:
 	bsf	banderas, 2
 	movf	display+2, W
 	movwf	PORTC
-	bsf	PORTD, 2
+	bcf	PORTD, 2
 	return
     
     display_3:
 	clrf	banderas
 	movf	display+3, W
 	movwf	PORTC
-	bsf	PORTD, 3
+	bcf	PORTD, 3
 	return
 
 DISPLAY_SET:		    

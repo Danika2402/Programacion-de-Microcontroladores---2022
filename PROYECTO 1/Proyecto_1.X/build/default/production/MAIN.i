@@ -3027,14 +3027,14 @@ MOSTRAR_VALOR:
     display_0:
  movf display, W
  movwf PORTC
- bsf PORTD, 0
+ bcf PORTD, 0
  bsf banderas, 0
  return
 
     display_1:
  movf display+1, W
  movwf PORTC
- bsf PORTD, 1
+ bcf PORTD, 1
  bsf banderas, 1
  return
 
@@ -3042,14 +3042,14 @@ MOSTRAR_VALOR:
  bsf banderas, 2
  movf display+2, W
  movwf PORTC
- bsf PORTD, 2
+ bcf PORTD, 2
  return
 
     display_3:
  clrf banderas
  movf display+3, W
  movwf PORTC
- bsf PORTD, 3
+ bcf PORTD, 3
  return
 
 DISPLAY_SET:
