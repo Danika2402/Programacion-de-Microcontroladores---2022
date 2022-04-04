@@ -2654,6 +2654,8 @@ extern __bank0 __bit __timeout;
 # 25 "Codigo_C.c" 2
 
 
+char unidad, decena, centena;
+char display,dividir;
 
 const char tabla[] = {0xFC,0x60,0xDA,0xF2,0x66,0xB6,0xBE,0xE0,0xFE,0xF6,
                     0xEE,0x3E,0x9C,0x7A,0x9E,0x8E};
@@ -2663,17 +2665,31 @@ void setup(void);
 void __attribute__((picinterrupt(("")))) isr (void){
     if(INTCONbits.RBIF){
         if (!PORTBbits.RB0)
-            ++PORTA;
+            ++dividir;
         if(!PORTBbits.RB1)
-            --PORTA;
+            --dividir;
         INTCONbits.RBIF = 0;
     }
 
-    if(INTCONbits.T0IF)
-        ++PORTD;
-    INTCONbits.T0IF = 0;
-    TMR0 = 159;
+    else if(INTCONbits.T0IF){
+        PORTD = 0;
 
+        if(display==1){
+            RD2 = 1;
+            PORTC = (tabla[unidad]);
+        }else if(display==2){
+            RD1 = 1;
+            PORTC = (tabla[decena]);
+        }else if(display ==3){
+            RD0 = 1;
+            PORTC = (tabla[centena]);
+        }else if(display == 4){
+            display = 0;
+        }
+        ++display;
+        INTCONbits.T0IF = 0;
+        TMR0 = 159;
+    }
     return;
 }
 
@@ -2681,6 +2697,9 @@ void main(void) {
     setup();
 
     while(1){
+        PORTA = dividir;
+        centena = dividir;
+
 
     }
     return;
@@ -2703,6 +2722,11 @@ void setup(void){
     PORTC = 0x00;
     PORTD = 0x00;
 
+    unidad = 0x00;
+    decena = 0x00;
+    centena = 0x00;
+    display = 0x00;
+
     TRISBbits.TRISB0 = 1;
     TRISBbits.TRISB1 = 1;
     OPTION_REGbits.nRBPU = 0;
@@ -2710,10 +2734,11 @@ void setup(void){
     IOCBbits.IOCB = 0x03;
 
     OPTION_REGbits.T0CS = 0;
-    OPTION_REGbits.PSA = 0;
-    OPTION_REGbits.PS2 = 1;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1;
+    OPTION_REGbits.PS = 0b0111;
+
+
+
+
     TMR0 = 159;
 
     INTCONbits.GIE = 1;

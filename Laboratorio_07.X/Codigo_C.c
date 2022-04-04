@@ -24,26 +24,42 @@
 #include <xc.h>
 #include <stdint.h>
 #define _tmr0_value 159
-                     //0     1    2    3    4   5    6    7     8   9   
+char unidad, decena, centena;
+char display,dividir;
+
 const char tabla[] = {0xFC,0x60,0xDA,0xF2,0x66,0xB6,0xBE,0xE0,0xFE,0xF6,
                     0xEE,0x3E,0x9C,0x7A,0x9E,0x8E};
-                    //A    B   C   D    E    F
+
 void setup(void);
 
 void __interrupt() isr (void){
     if(INTCONbits.RBIF){        // Fue interrupción del PORTB
         if (!PORTBbits.RB0)             // Verificamos si fue RB0 quien generó la interrupción
-            ++PORTA;            // Incremento del PORTC
+            ++dividir;            // Incremento del PORTC
         if(!PORTBbits.RB1)
-            --PORTA;
+            --dividir;
         INTCONbits.RBIF = 0;    // Limpiamos bandera de interrupción
     }
     
-    if(INTCONbits.T0IF)
-        ++PORTD;
-    INTCONbits.T0IF = 0;
-    TMR0 = _tmr0_value;
-    
+    else if(INTCONbits.T0IF){
+        PORTD = 0;
+        //++PORTD;
+        if(display==1){
+            RD2 = 1;
+            PORTC = (tabla[unidad]);
+        }else if(display==2){
+            RD1 = 1;
+            PORTC = (tabla[decena]);
+        }else if(display ==3){
+            RD0 = 1;
+            PORTC = (tabla[centena]);
+        }else if(display == 4){
+            display = 0;
+        }
+        ++display;
+        INTCONbits.T0IF = 0;
+        TMR0 = _tmr0_value;
+    }
     return;
 }
 
@@ -51,7 +67,10 @@ void main(void) {
     setup();
     
     while(1){
-        
+        PORTA = dividir;
+        //centena = dividir/100;
+        //decena = (dividir - (100 * centena))/10;
+        //unidad = dividir - (100 * centena)-(10 * decena);
     }
     return;
 }
@@ -73,6 +92,11 @@ void setup(void){
     PORTC = 0x00;
     PORTD = 0x00;
     
+    unidad = 0x00;
+    decena = 0x00;
+    centena = 0x00;
+    display = 0x00;
+    
     TRISBbits.TRISB0 = 1;
     TRISBbits.TRISB1 = 1;
     OPTION_REGbits.nRBPU = 0;
@@ -80,10 +104,11 @@ void setup(void){
     IOCBbits.IOCB = 0x03;   //RB0 y 
     
     OPTION_REGbits.T0CS = 0; 
-    OPTION_REGbits.PSA = 0; 
+    OPTION_REGbits.PS = 0b0111; //PSA =0, PS2,PS1,PS0 = 1, 1:256
+    /*OPTION_REGbits.PSA = 0; 
     OPTION_REGbits.PS2 = 1;
     OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1; //PS = 1:256
+    OPTION_REGbits.PS0 = 1; //PS = 1:256*/
     TMR0 = _tmr0_value;
     
     INTCONbits.GIE  = 1;         
