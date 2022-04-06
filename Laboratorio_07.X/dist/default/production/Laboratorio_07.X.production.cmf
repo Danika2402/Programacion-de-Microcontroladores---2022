@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\HP\AppData\Local\Temp\xcAsnes.o
+$C:\Users\HP\AppData\Local\Temp\xcAsinc.o
 idloc IDLOC 5 2000 2000 4 2 1
 reset_vec CODE 0 0 0 3 2 1
 end_init CODE 0 10 10 3 2 1
@@ -76,12 +76,12 @@ STRING 1D5-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Laboratorio_07.X.production.o
-13 cinit CODE >529:C:\Users\HP\AppData\Local\Temp\xcAsnes.s
-13 cinit CODE >532:C:\Users\HP\AppData\Local\Temp\xcAsnes.s
-13 cinit CODE >543:C:\Users\HP\AppData\Local\Temp\xcAsnes.s
-14 cinit CODE >549:C:\Users\HP\AppData\Local\Temp\xcAsnes.s
-14 cinit CODE >551:C:\Users\HP\AppData\Local\Temp\xcAsnes.s
-15 cinit CODE >552:C:\Users\HP\AppData\Local\Temp\xcAsnes.s
+13 cinit CODE >529:C:\Users\HP\AppData\Local\Temp\xcAsinc.s
+13 cinit CODE >532:C:\Users\HP\AppData\Local\Temp\xcAsinc.s
+13 cinit CODE >543:C:\Users\HP\AppData\Local\Temp\xcAsinc.s
+14 cinit CODE >549:C:\Users\HP\AppData\Local\Temp\xcAsinc.s
+14 cinit CODE >551:C:\Users\HP\AppData\Local\Temp\xcAsinc.s
+15 cinit CODE >552:C:\Users\HP\AppData\Local\Temp\xcAsinc.s
 4 intentry CODE >35:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_07.X\Codigo_C.c
 81 text5 CODE >35:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_07.X\Codigo_C.c
 81 text5 CODE >36:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_07.X\Codigo_C.c
@@ -231,21 +231,21 @@ __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _TMR0 1 0 ABS 0 - dist/default/production\Laboratorio_07.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsnes.o
+___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsinc.o
 _main 1D4 0 CODE 0 maintext dist/default/production\Laboratorio_07.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Laboratorio_07.X.production.o
-start 20 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAsnes.o
+start 20 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAsinc.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 ?___wmul 20 0 BANK0 1 cstackBANK0 dist/default/production\Laboratorio_07.X.production.o
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\Laboratorio_07.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 __LnvCOMMON 0 0 ABS 0 nvCOMMON -
-intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsnes.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsnes.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsnes.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsnes.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsnes.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsnes.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsinc.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsinc.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsinc.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsinc.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsinc.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsinc.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 ___bmul@multiplicand 20 0 BANK0 1 cstackBANK0 dist/default/production\Laboratorio_07.X.production.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Laboratorio_07.X.production.o
@@ -263,14 +263,14 @@ __Lmaintext 0 0 ABS 0 maintext -
 ___bmul@multiplier 23 0 BANK0 1 cstackBANK0 dist/default/production\Laboratorio_07.X.production.o
 ___awdiv@divisor 26 0 BANK0 1 cstackBANK0 dist/default/production\Laboratorio_07.X.production.o
 __end_of___awdiv 102 0 CODE 0 text4 dist/default/production\Laboratorio_07.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsnes.o
-___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsnes.o
+___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsinc.o
+___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsinc.o
 __HnvCOMMON 0 0 ABS 0 nvCOMMON -
 _WPUBbits 95 0 ABS 0 - dist/default/production\Laboratorio_07.X.production.o
 start_initialization 26 0 CODE 0 cinit dist/default/production\Laboratorio_07.X.production.o
 _TRISBbits 86 0 ABS 0 - dist/default/production\Laboratorio_07.X.production.o
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\Laboratorio_07.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsnes.o
+___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsinc.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -324,7 +324,7 @@ _decena 76 0 COMMON 1 nvCOMMON dist/default/production\Laboratorio_07.X.producti
 __end_of_isr 1D4 0 CODE 0 text5 dist/default/production\Laboratorio_07.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 __stringtab 37E 0 STRING 0 strings dist/default/production\Laboratorio_07.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAsnes.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAsinc.o
 ___awdiv 30 0 CODE 0 text4 dist/default/production\Laboratorio_07.X.production.o
 __pmaintext 1D4 0 CODE 0 maintext dist/default/production\Laboratorio_07.X.production.o
 __Lcommon 0 0 ABS 0 common -
