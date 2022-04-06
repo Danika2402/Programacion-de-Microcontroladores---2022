@@ -23,9 +23,9 @@
 
 #include <xc.h>
 #include <stdint.h>
-#define _tmr0_value 159
-char unidad, decena, centena;
-char display,dividir;
+#define _tmr0_value 252//159    4ms
+uint8_t unidad, decena, centena;
+uint8_t display;
 
 const char tabla[] = {0xFC,0x60,0xDA,0xF2,0x66,0xB6,0xBE,0xE0,0xFE,0xF6,
                     0xEE,0x3E,0x9C,0x7A,0x9E,0x8E};
@@ -33,23 +33,23 @@ const char tabla[] = {0xFC,0x60,0xDA,0xF2,0x66,0xB6,0xBE,0xE0,0xFE,0xF6,
 void setup(void);
 
 void __interrupt() isr (void){
-    if(INTCONbits.RBIF){        // Fue interrupción del PORTB
-        if (!PORTBbits.RB0)             // Verificamos si fue RB0 quien generó la interrupción
-            ++dividir;            // Incremento del PORTC
-        if(!PORTBbits.RB1)
-            --dividir;
-        INTCONbits.RBIF = 0;    // Limpiamos bandera de interrupción
+    if(INTCONbits.RBIF){        //Chequear si se prendio la bandera
+        if (!PORTBbits.RB0)     //Si RB0 = 0, incrementar PORTA             
+            ++PORTA;            
+        if(!PORTBbits.RB1)      //Si RB1 = 0, decrementar PORTA
+            --PORTA;
+        INTCONbits.RBIF = 0;    // Limpiamos bandera 
     }
     
-    else if(INTCONbits.T0IF){
-        PORTD = 0;
+    else if(INTCONbits.T0IF){   //Chequear si se prendio la bandera
+        PORTD = 0x00;           //limpiar PORTD
         //++PORTD;
-        if(display==1){
-            RD2 = 1;
-            PORTC = (tabla[unidad]);
-        }else if(display==2){
-            RD1 = 1;
-            PORTC = (tabla[decena]);
+        if(display==1){                 //Incrementamos display cada 4ms
+            RD2 = 1;                    //y dependiendo de su valor
+            PORTC = (tabla[unidad]);    //encendemos el bit de PORTD
+        }else if(display==2){           //donde se encuentra el digito
+            RD1 = 1;                    //del displayd de 7 segmentos
+            PORTC = (tabla[decena]);    //y movemos a PORTC el valor
         }else if(display ==3){
             RD0 = 1;
             PORTC = (tabla[centena]);
@@ -58,7 +58,7 @@ void __interrupt() isr (void){
         }
         ++display;
         INTCONbits.T0IF = 0;
-        TMR0 = _tmr0_value;
+        TMR0 = _tmr0_value;     //4ms
     }
     return;
 }
@@ -66,11 +66,10 @@ void __interrupt() isr (void){
 void main(void) {
     setup();
     
-    while(1){
-        PORTA = dividir;
-        //centena = dividir/100;
-        //decena = (dividir - (100 * centena))/10;
-        //unidad = dividir - (100 * centena)-(10 * decena);
+    while(1){                                           //aqui calculamos cada
+        centena = PORTA/100;                            //valor, ignora los decimales
+        decena = (PORTA - (100 * centena))/10;          //y mantiene los enteros
+        unidad = PORTA - (100 * centena)-(10 * decena);
     }
     return;
 }
@@ -83,7 +82,7 @@ void setup(void){
     OSCCONbits.IRCF = 0b0100;   //1MHz
     OSCCONbits.SCS = 1;
     
-    TRISA = 0x00;
+    TRISA = 0x00;               //PORTA,C,D como salida
     TRISC = 0x00;
     TRISD = 0x00;
     
@@ -97,23 +96,22 @@ void setup(void){
     centena = 0x00;
     display = 0x00;
     
-    TRISBbits.TRISB0 = 1;
+    TRISBbits.TRISB0 = 1;       //RB0 y RB1 como entrada
     TRISBbits.TRISB1 = 1;
     OPTION_REGbits.nRBPU = 0;
-    WPUBbits.WPUB = 0x03;   //0011 RB0 y RB1
-    IOCBbits.IOCB = 0x03;   //RB0 y 
+    WPUBbits.WPUB = 0x03;       //0011 RB0 y RB1
+    IOCBbits.IOCB = 0x03;       //RB0 y RB1 pull ups eh interrupciones
     
-    OPTION_REGbits.T0CS = 0; 
-    OPTION_REGbits.PS = 0b0111; //PSA =0, PS2,PS1,PS0 = 1, 1:256
-    /*OPTION_REGbits.PSA = 0; 
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.PSA = 0; 
     OPTION_REGbits.PS2 = 1;
     OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 1; //PS = 1:256*/
-    TMR0 = _tmr0_value;
-    
-    INTCONbits.GIE  = 1;         
-    INTCONbits.RBIE = 1;         
-    INTCONbits.RBIF = 0;
+    OPTION_REGbits.PS0 = 1;     //Prescaler = 1:256
+    TMR0 = _tmr0_value;         //4ms
+        
+    INTCONbits.GIE  = 1;        //Habilitar interrupciones         
+    INTCONbits.RBIE = 1;        //interrupciones en PORTB y TMR0
+    INTCONbits.RBIF = 0;        //Apagamos banderas
     INTCONbits.T0IF = 0;
     INTCONbits.T0IE = 1;
 }

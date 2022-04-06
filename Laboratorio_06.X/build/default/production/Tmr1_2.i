@@ -10,7 +10,7 @@
 ;Hardware:
 ;
 ;Creado: 27/02/2022
-;Ultima modificacion: 27/02/2022
+;Ultima modificacion: 02/03/2022
 
 
 PROCESSOR 16F887
@@ -2619,7 +2619,6 @@ loop:
     movf cont1, W
     sublw 10
     btfsc ((STATUS) and 07Fh), 2
-
     call NIBBLE_mayor
     call NIBBLE_7
     call DISPLAY_SET
