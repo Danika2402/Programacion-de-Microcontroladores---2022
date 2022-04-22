@@ -34,13 +34,14 @@ uint8_t display;
 
 void __interrupt() isr (void){
     if(PIR1bits.ADIF){
-        if(ADCON0bits.CHS == 0)
-            PORTB = ADRESH;
-        else if(ADCON0bits.CHS == 1)
-            pot2 = ADRESH;
-        
-        PIR1bits.ADIF = 0;
-    }else if(INTCONbits.T0IF){   //Chequear si se prendio la bandera
+        if(ADCON0bits.CHS == 0)     //utilizamos 2 canales donde cada uno tiene 
+            PORTB = ADRESH;         //un potenciometro de 1k, dependiendo de cual canal
+        else if(ADCON0bits.CHS == 1)//se utiliza guardamos ADRESH del pot1 en el PORTB 
+            pot2 = ADRESH;          //y del pot2 en una variable
+        PIR1bits.ADIF = 0;    
+    }
+    
+    else if(INTCONbits.T0IF){   //Chequear si se prendio la bandera
         PORTD = 0x00;           //limpiar PORTD
         if(display==1){                 //Incrementamos display cada 4ms
             RD2 = 1;                    //y dependiendo de su valor
@@ -68,18 +69,25 @@ void main(void) {
     
     while(1){
         if(ADCON0bits.GO == 0){
-            if(ADCON0bits.CHS == 0b0000)
-                ADCON0bits.CHS = 0b0001;
+            if(ADCON0bits.CHS == 0b0000)        //cambianos de un canal al otro
+                ADCON0bits.CHS = 0b0001;        //siempre con un delay 
             else if(ADCON0bits.CHS == 0b0001)
                 ADCON0bits.CHS = 0b0000;
             __delay_us(40);
             ADCON0bits.GO = 1;
         }
     
-        centena = pot2/100;                            //valor, ignora los decimales
-        decena = (pot2 - (100 * centena))/10;          //y mantiene los enteros
-        unidad = pot2 - (100 * centena)-(10 * decena);
-                
+        centena = (uint8_t)((pot2*1.9607)/100);                            
+        decena = (uint8_t)(((pot2*1.9607) - (100 * centena))/10);         
+        unidad = (uint8_t)((pot2*1.9607) - (100 * centena)-(10 * decena));
+        
+        if(centena > 15)    //como ADC es de 8 bits, utilizamos centenas, decenas
+            centena=0;      //y unidades, para comvertir de 255->500
+        if(decena > 15)     //lo multiplicamos por 1.9607
+            decena=0;       //tambien chequeamos si es mayor de 15 la variable
+        if(unidad > 15)     //para que no quiebre el programa
+            unidad=0;
+        
     }
     
     return;
@@ -92,7 +100,7 @@ void setup(void){
     OSCCONbits.IRCF = 0b0100;   //1MHz
     OSCCONbits.SCS = 1;
     
-    TRISA = 0b00000011;
+    TRISA = 0b00000011;     //RA1 y RA0
     TRISB = 0x00;
     TRISC = 0x00;
     TRISD = 0x00;
@@ -112,7 +120,7 @@ void setup(void){
     //Configuraciones de ADC
     ADCON0bits.ADCS = 0b00;     // Fosc/2
     
-    ADCON1bits.VCFG0 = 0;       // VDD *Referencias internas
+    ADCON1bits.VCFG0 = 0;       //VDD *Referencias internas
     ADCON1bits.VCFG1 = 1;       //VSS
     
     ADCON0bits.CHS = 0b0000;    //canal AN0
@@ -125,8 +133,8 @@ void setup(void){
     PIE1bits.ADIE = 1;          //habilitar int. ADC
     INTCONbits.PEIE = 1;        //habilitar int. perifericos
     INTCONbits.GIE = 1;         //habilitar int. globales
-    INTCONbits.T0IF = 0;
-    INTCONbits.T0IE = 1;
+    INTCONbits.T0IF = 0;        //bandera int. TMR0
+    INTCONbits.T0IE = 1;        //habilitar int. TMR0
     
     return;
 }

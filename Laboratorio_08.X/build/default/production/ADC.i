@@ -2668,10 +2668,8 @@ void __attribute__((picinterrupt(("")))) isr (void){
             PORTB = ADRESH;
         else if(ADCON0bits.CHS == 1)
             pot2 = ADRESH;
-
         PIR1bits.ADIF = 0;
     }
-
 
     else if(INTCONbits.T0IF){
         PORTD = 0x00;
@@ -2709,9 +2707,16 @@ void main(void) {
             ADCON0bits.GO = 1;
         }
 
-        centena = pot2/100;
-        decena = (pot2 - (100 * centena))/10;
-        unidad = pot2 - (100 * centena)-(10 * decena);
+        centena = (uint8_t)((pot2*1.9607)/100);
+        decena = (uint8_t)(((pot2*1.9607) - (100 * centena))/10);
+        unidad = (uint8_t)((pot2*1.9607) - (100 * centena)-(10 * decena));
+
+        if(centena > 15)
+            centena=0;
+        if(decena > 15)
+            decena=0;
+        if(unidad > 15)
+            unidad=0;
 
     }
 
