@@ -2711,11 +2711,11 @@ void main(void) {
         decena = (uint8_t)(((pot2*1.9607) - (100 * centena))/10);
         unidad = (uint8_t)((pot2*1.9607) - (100 * centena)-(10 * decena));
 
-        if(centena > 15)
+        if(centena > 9)
             centena=0;
-        if(decena > 15)
+        if(decena > 9)
             decena=0;
-        if(unidad > 15)
+        if(unidad > 9)
             unidad=0;
 
     }

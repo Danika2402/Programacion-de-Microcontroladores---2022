@@ -621,22 +621,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;ADC.c: 82:         unidad = (uint8_t)((pot2*1.9607) - (100 * centena)-(10 * decena));
 [e = _unidad -> - - * -> -> _pot2 `i `d .1.9607 -> * -> 100 `i -> _centena `i `d -> * -> 10 `i -> _decena `i `d `uc ]
 "84
-[; ;ADC.c: 84:         if(centena > 15)
-[e $ ! > -> _centena `i -> 15 `i 160  ]
+[; ;ADC.c: 84:         if(centena > 9)
+[e $ ! > -> _centena `i -> 9 `i 160  ]
 "85
 [; ;ADC.c: 85:             centena=0;
 [e = _centena -> -> 0 `i `uc ]
 [e :U 160 ]
 "86
-[; ;ADC.c: 86:         if(decena > 15)
-[e $ ! > -> _decena `i -> 15 `i 161  ]
+[; ;ADC.c: 86:         if(decena > 9)
+[e $ ! > -> _decena `i -> 9 `i 161  ]
 "87
 [; ;ADC.c: 87:             decena=0;
 [e = _decena -> -> 0 `i `uc ]
 [e :U 161 ]
 "88
-[; ;ADC.c: 88:         if(unidad > 15)
-[e $ ! > -> _unidad `i -> 15 `i 162  ]
+[; ;ADC.c: 88:         if(unidad > 9)
+[e $ ! > -> _unidad `i -> 9 `i 162  ]
 "89
 [; ;ADC.c: 89:             unidad=0;
 [e = _unidad -> -> 0 `i `uc ]

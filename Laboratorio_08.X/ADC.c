@@ -81,11 +81,11 @@ void main(void) {
         decena = (uint8_t)(((pot2*1.9607) - (100 * centena))/10);         
         unidad = (uint8_t)((pot2*1.9607) - (100 * centena)-(10 * decena));
         
-        if(centena > 15)    //como ADC es de 8 bits, utilizamos centenas, decenas
+        if(centena > 9)    //como ADC es de 8 bits, utilizamos centenas, decenas
             centena=0;      //y unidades, para comvertir de 255->500
-        if(decena > 15)     //lo multiplicamos por 1.9607
+        if(decena > 9)     //lo multiplicamos por 1.9607
             decena=0;       //tambien chequeamos si es mayor de 15 la variable
-        if(unidad > 15)     //para que no quiebre el programa
+        if(unidad > 9)     //para que no quiebre el programa
             unidad=0;
         
     }

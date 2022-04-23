@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.35 build 20211206165544 
-                                                                                               Fri Apr 22 00:00:56 2022
+                                                                                               Fri Apr 22 22:33:17 2022
 
 Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1 
      1                           	processor	16F887
@@ -1174,8 +1174,8 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
   1160  0FE6  00B7               	movwf	_unidad^(0+128)
   1161  0FE7                     l2590:
   1162                           
-  1163                           ;ADC.c: 84:         if(centena > 15)
-  1164  0FE7  3010               	movlw	16
+  1163                           ;ADC.c: 84:         if(centena > 9)
+  1164  0FE7  300A               	movlw	10
   1165  0FE8  0235               	subwf	_centena^(0+128),w
   1166  0FE9  1C03               	skipc
   1167  0FEA  2FEC               	goto	u4181
@@ -1189,8 +1189,8 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
   1175  0FED  01B5               	clrf	_centena^(0+128)
   1176  0FEE                     l2594:
   1177                           
-  1178                           ;ADC.c: 86:         if(decena > 15)
-  1179  0FEE  3010               	movlw	16
+  1178                           ;ADC.c: 86:         if(decena > 9)
+  1179  0FEE  300A               	movlw	10
   1180  0FEF  0236               	subwf	_decena^(0+128),w
   1181  0FF0  1C03               	skipc
   1182  0FF1  2FF3               	goto	u4191
@@ -1204,8 +1204,8 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
   1190  0FF4  01B6               	clrf	_decena^(0+128)
   1191  0FF5                     l2598:
   1192                           
-  1193                           ;ADC.c: 88:         if(unidad > 15)
-  1194  0FF5  3010               	movlw	16
+  1193                           ;ADC.c: 88:         if(unidad > 9)
+  1194  0FF5  300A               	movlw	10
   1195  0FF6  0237               	subwf	_unidad^(0+128),w
   1196  0FF7  1C03               	skipc
   1197  0FF8  2FFA               	goto	u4201
@@ -5281,7 +5281,7 @@ DATA                 0      0      70      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.35 build 20211206165544 
-Symbol Table                                                                                   Fri Apr 22 00:00:56 2022
+Symbol Table                                                                                   Fri Apr 22 22:33:17 2022
 
            ___fldiv@aexp 006D             ___fldiv@bexp 006C                        pc 0002  
            ___fldiv@sign 0065                       l98 0BB3                       fsr 0004  
