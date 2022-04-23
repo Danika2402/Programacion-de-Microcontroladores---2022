@@ -1,6 +1,6 @@
 
 Memory Summary:
-    Program space        used   CFAh (  3322) of  2000h words   ( 40.6%)
+    Program space        used   D03h (  3331) of  2000h words   ( 40.7%)
     Data space           used    72h (   114) of   170h bytes   ( 31.0%)
     EEPROM space         used     0h (     0) of   100h bytes   (  0.0%)
     Configuration bits   used     2h (     2) of     2h words   (100.0%)

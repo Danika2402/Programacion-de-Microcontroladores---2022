@@ -2673,6 +2673,14 @@ void __attribute__((picinterrupt(("")))) isr (void){
 
     else if(INTCONbits.T0IF){
         PORTD = 0x00;
+
+        if(centena > 15)
+            centena=0;
+        if(decena > 15)
+            decena=0;
+        if(unidad > 15)
+            unidad=0;
+
         if(display==1){
             RD2 = 1;
             PORTC = (tabla[unidad]);
@@ -2710,13 +2718,6 @@ void main(void) {
         centena = (uint8_t)((pot2*1.9607)/100);
         decena = (uint8_t)(((pot2*1.9607) - (100 * centena))/10);
         unidad = (uint8_t)((pot2*1.9607) - (100 * centena)-(10 * decena));
-
-        if(centena > 9)
-            centena=0;
-        if(decena > 9)
-            decena=0;
-        if(unidad > 9)
-            unidad=0;
 
     }
 
