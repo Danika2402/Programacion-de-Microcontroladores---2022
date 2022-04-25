@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\HP\AppData\Local\Temp\xcAse24.o
+$C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
 idloc IDLOC 5 2000 2000 4 2 1
 reset_vec CODE 0 0 0 3 2 1
 end_init CODE 0 C C 3 2 1
@@ -19,9 +19,9 @@ config CONFIG 4 2007 2007 2 2 1
 $dist/default/production\Laboratorio_09.X.production.o
 cinit CODE 0 F F 6 2 1
 idloc IDLOC 5 2000 2000 4 2 1
-text1 CODE 0 15 15 4C 2 1
-text2 CODE 0 61 61 2A 2 1
-maintext CODE 0 8B 8B 10 2 1
+text1 CODE 0 15 15 4E 2 1
+text2 CODE 0 63 63 2A 2 1
+maintext CODE 0 8D 8D 10 2 1
 cstackCOMMON COMMON 1 70 70 4 1 1
 intentry CODE 0 4 4 8 2 1
 bssCOMMON COMMON 1 74 74 2 1 1
@@ -41,11 +41,11 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 9B-1FFF 2
+CONST 9D-1FFF 2
 ENTRY 3-3 2
-ENTRY 9B-1FFF 2
+ENTRY 9D-1FFF 2
 CODE 3-3 2
-CODE 9B-1FFF 2
+CODE 9D-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -53,9 +53,9 @@ SFR3 180-18F 1
 COMMON 76-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 9B-1FFF 2
+STRCODE 9D-1FFF 2
 STRING 3-3 2
-STRING 9B-1FFF 2
+STRING 9D-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -70,24 +70,24 @@ STRING 9B-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Laboratorio_09.X.production.o
-F cinit CODE >462:C:\Users\HP\AppData\Local\Temp\xcAse24.s
-F cinit CODE >465:C:\Users\HP\AppData\Local\Temp\xcAse24.s
-F cinit CODE >476:C:\Users\HP\AppData\Local\Temp\xcAse24.s
-10 cinit CODE >477:C:\Users\HP\AppData\Local\Temp\xcAse24.s
-11 cinit CODE >483:C:\Users\HP\AppData\Local\Temp\xcAse24.s
-11 cinit CODE >485:C:\Users\HP\AppData\Local\Temp\xcAse24.s
-12 cinit CODE >486:C:\Users\HP\AppData\Local\Temp\xcAse24.s
+F cinit CODE >462:C:\Users\HP\AppData\Local\Temp\xcAsjv8.s
+F cinit CODE >465:C:\Users\HP\AppData\Local\Temp\xcAsjv8.s
+F cinit CODE >476:C:\Users\HP\AppData\Local\Temp\xcAsjv8.s
+10 cinit CODE >477:C:\Users\HP\AppData\Local\Temp\xcAsjv8.s
+11 cinit CODE >483:C:\Users\HP\AppData\Local\Temp\xcAsjv8.s
+11 cinit CODE >485:C:\Users\HP\AppData\Local\Temp\xcAsjv8.s
+12 cinit CODE >486:C:\Users\HP\AppData\Local\Temp\xcAsjv8.s
 4 intentry CODE >37:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-61 text2 CODE >37:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-61 text2 CODE >38:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-67 text2 CODE >39:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-6C text2 CODE >39:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-70 text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-73 text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-76 text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-7A text2 CODE >42:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-83 text2 CODE >44:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-84 text2 CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+63 text2 CODE >37:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+63 text2 CODE >38:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+69 text2 CODE >39:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+6E text2 CODE >39:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+72 text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+75 text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+78 text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+7C text2 CODE >42:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+85 text2 CODE >44:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+86 text2 CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
 15 text1 CODE >59:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
 15 text1 CODE >60:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
 19 text1 CODE >61:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
@@ -109,21 +109,21 @@ F cinit CODE >476:C:\Users\HP\AppData\Local\Temp\xcAse24.s
 44 text1 CODE >87:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
 48 text1 CODE >89:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
 4A text1 CODE >90:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-4C text1 CODE >92:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-4D text1 CODE >93:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-4F text1 CODE >94:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-50 text1 CODE >95:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-54 text1 CODE >96:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-55 text1 CODE >98:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-58 text1 CODE >101:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-5B text1 CODE >102:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-5E text1 CODE >103:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-5F text1 CODE >104:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-60 text1 CODE >107:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-8B maintext CODE >49:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-8B maintext CODE >50:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-90 maintext CODE >52:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
-96 maintext CODE >53:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+4E text1 CODE >92:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+4F text1 CODE >93:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+51 text1 CODE >94:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+52 text1 CODE >95:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+56 text1 CODE >96:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+57 text1 CODE >98:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+5A text1 CODE >101:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+5D text1 CODE >102:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+60 text1 CODE >103:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+61 text1 CODE >104:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+62 text1 CODE >107:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+8D maintext CODE >49:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+8D maintext CODE >50:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+92 maintext CODE >52:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
+98 maintext CODE >53:C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_09.X\PWM.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -137,25 +137,25 @@ F cinit CODE >476:C:\Users\HP\AppData\Local\Temp\xcAse24.s
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
-__Hspace_0 9B 0 ABS 0 - -
+__Hspace_0 9D 0 ABS 0 - -
 __Hspace_1 76 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAse24.o
-_main 116 0 CODE 0 maintext dist/default/production\Laboratorio_09.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
+_main 11A 0 CODE 0 maintext dist/default/production\Laboratorio_09.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
-start 18 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAse24.o
+start 18 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAse24.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAse24.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAse24.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAse24.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAse24.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAse24.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
@@ -165,11 +165,11 @@ _ADRESH 1E 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
 _CCPR1L 15 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAse24.o
-___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAse24.o
+___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
+___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Laboratorio_09.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAse24.o
+___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -206,16 +206,16 @@ __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 92 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
-__S0 9B 0 ABS 0 - -
+__S0 9D 0 ABS 0 - -
 __S1 76 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_isr C2 0 CODE 0 text2 dist/default/production\Laboratorio_09.X.production.o
+_isr C6 0 CODE 0 text2 dist/default/production\Laboratorio_09.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
-__end_of_isr 116 0 CODE 0 text2 dist/default/production\Laboratorio_09.X.production.o
+__end_of_isr 11A 0 CODE 0 text2 dist/default/production\Laboratorio_09.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAse24.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAsjv8.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
-__pmaintext 116 0 CODE 0 maintext dist/default/production\Laboratorio_09.X.production.o
+__pmaintext 11A 0 CODE 0 maintext dist/default/production\Laboratorio_09.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
@@ -234,7 +234,7 @@ __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 6 0 CODE 0 reset_vec -
 __ptext1 2A 0 CODE 0 text1 dist/default/production\Laboratorio_09.X.production.o
-__ptext2 C2 0 CODE 0 text2 dist/default/production\Laboratorio_09.X.production.o
+__ptext2 C6 0 CODE 0 text2 dist/default/production\Laboratorio_09.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -243,11 +243,11 @@ __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\Laboratorio_09.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main 136 0 CODE 0 maintext dist/default/production\Laboratorio_09.X.production.o
+__end_of_main 13A 0 CODE 0 maintext dist/default/production\Laboratorio_09.X.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
 _TRISA 85 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
-__end_of_setup C2 0 CODE 0 text1 dist/default/production\Laboratorio_09.X.production.o
+__end_of_setup C6 0 CODE 0 text1 dist/default/production\Laboratorio_09.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 interrupt_function 8 0 CODE 0 intentry dist/default/production\Laboratorio_09.X.production.o
@@ -283,7 +283,7 @@ _CCP1CONbits 17 0 ABS 0 - dist/default/production\Laboratorio_09.X.production.o
 # All other numeric quantities are in decimal.
 %SEGMENTS
 cstackCOMMON 1 70 70 6 1
-intentry 0 4 8 97 2
+intentry 0 4 8 99 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section

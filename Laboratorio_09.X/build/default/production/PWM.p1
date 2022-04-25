@@ -554,8 +554,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;PWM.c: 81:     TRISCbits.TRISC2 = 1;
 [e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
 "82
-[; ;PWM.c: 82:     PR2 = 30;
-[e = _PR2 -> -> 30 `i `uc ]
+[; ;PWM.c: 82:     PR2 = 155;
+[e = _PR2 -> -> 155 `i `uc ]
 "85
 [; ;PWM.c: 85:     CCP1CON = 0;
 [e = _CCP1CON -> -> 0 `i `uc ]
@@ -566,11 +566,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;PWM.c: 87:     CCP1CONbits.CCP1M = 0b1100;
 [e = . . _CCP1CONbits 0 0 -> -> 12 `i `uc ]
 "89
-[; ;PWM.c: 89:     CCPR1L = 31>>2;
-[e = _CCPR1L -> >> -> 31 `i -> 2 `i `uc ]
+[; ;PWM.c: 89:     CCPR1L = 125>>2;
+[e = _CCPR1L -> >> -> 125 `i -> 2 `i `uc ]
 "90
-[; ;PWM.c: 90:     CCP1CONbits.DC1B = 31 & 0b11;
-[e = . . _CCP1CONbits 0 1 -> & -> 31 `i -> 3 `i `uc ]
+[; ;PWM.c: 90:     CCP1CONbits.DC1B = 125 & 0b11;
+[e = . . _CCP1CONbits 0 1 -> & -> 125 `i -> 3 `i `uc ]
 "92
 [; ;PWM.c: 92:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]

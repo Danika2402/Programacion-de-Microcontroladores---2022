@@ -79,15 +79,15 @@ void setup(void){
     
     //Configuracion PWM
     TRISCbits.TRISC2 = 1;       //Deshabilitar salida CCP1
-    PR2 = 30;                  //periodo 2ms
+    PR2 = 155;                  //periodo 10ms
     
     //Configuracion CCP
     CCP1CON = 0;                //Apagamos CCP1
     CCP1CONbits.P1M = 0;        //modo single output
     CCP1CONbits.CCP1M = 0b1100; //PWM
     
-    CCPR1L = 31>>2;
-    CCP1CONbits.DC1B = 31 & 0b11; //2ms ancho de pulso, 20% duty cycle
+    CCPR1L = 125>>2;
+    CCP1CONbits.DC1B = 125 & 0b11; //2ms ancho de pulso, 20% duty cycle
     
     PIR1bits.TMR2IF = 0;        //bandera TMR2
     T2CONbits.T2CKPS = 0b11;    //prescaler 1:16

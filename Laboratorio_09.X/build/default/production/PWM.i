@@ -2709,15 +2709,15 @@ void setup(void){
 
 
     TRISCbits.TRISC2 = 1;
-    PR2 = 30;
+    PR2 = 155;
 
 
     CCP1CON = 0;
     CCP1CONbits.P1M = 0;
     CCP1CONbits.CCP1M = 0b1100;
 
-    CCPR1L = 31>>2;
-    CCP1CONbits.DC1B = 31 & 0b11;
+    CCPR1L = 125>>2;
+    CCP1CONbits.DC1B = 125 & 0b11;
 
     PIR1bits.TMR2IF = 0;
     T2CONbits.T2CKPS = 0b11;
