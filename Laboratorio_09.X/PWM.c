@@ -29,17 +29,22 @@ unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
 
 #define IN_MIN 0                // Valor minimo de entrada del potenciometro
 #define IN_MAX 255              // Valor maximo de entrada del potenciometro
-#define OUT_MIN 0               // Valor minimo de ancho de pulso de señal PWM
-#define OUT_MAX 600             // Valor maximo de ancho de pulso de señal PWM
+#define OUT_MIN 62              // Valor minimo de ancho de pulso de señal PWM
+#define OUT_MAX 125             // Valor maximo de ancho de pulso de señal PWM
 
-unsigned short CCPR=0;        // Variable para almacenar ancho de pulso al hacer la interpolaci lineal
+unsigned short CCP1,CCP2;            // Variable para almacenar ancho de pulso al hacer la interpolaci lineal
 
 void __interrupt() isr (void){
     if(PIR1bits.ADIF){                      
         if(ADCON0bits.CHS == 0){            
-            //CCPR = map(ADRESH, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); 
-            CCPR1L = (uint8_t)(ADRESH>>2);    
-            CCP1CONbits.DC1B = ADRESH & 0b11; 
+            CCP1 = map(ADRESH, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); 
+            CCPR1L = (uint8_t)(CCP1>>2);    
+            CCP1CONbits.DC1B = CCP1 & 0b11; 
+        }else if(ADCON0bits.CHS == 1){
+            CCP2 = map(ADRESH, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); 
+            CCPR2L = (uint8_t)(CCP2>>2);    
+            CCP2CONbits.DC2B0 = CCP2 & 0b01;
+            CCP2CONbits.DC2B1 = CCP2 & 0b10;
         }
         PIR1bits.ADIF = 0;                 
     }
@@ -49,21 +54,27 @@ void __interrupt() isr (void){
 void main(void) {
     setup();
     while(1){
-        if(ADCON0bits.GO == 0){             // No hay proceso de conversion
-            ADCON0bits.GO = 1;              // Iniciamos proceso de conversion
+        if(ADCON0bits.GO == 0){
+            if(ADCON0bits.CHS == 0b0000)        //cambianos de un canal al otro
+                ADCON0bits.CHS = 0b0001;        //siempre con un delay 
+            else if(ADCON0bits.CHS == 0b0001)
+                ADCON0bits.CHS = 0b0000;
+            
+            __delay_us(40);
+            ADCON0bits.GO = 1;
         }
     }
     return;
 }
 
 void setup(void){
-    ANSEL =0b00000001;      //AN0 y AN1
+    ANSEL =0b00000011;      //AN0 y AN1
     ANSELH = 0x00;
     
     OSCCONbits.IRCF = 0b0100;   //1MHz
     OSCCONbits.SCS = 1;
     
-    TRISA = 0b00000001;     //RA1 y RA0
+    TRISA = 0b00000011;     //RA1 y RA0
     PORTA = 0x00;
     
     //Configuraciones de ADC
@@ -79,15 +90,22 @@ void setup(void){
     
     //Configuracion PWM
     TRISCbits.TRISC2 = 1;       //Deshabilitar salida CCP1
+    TRISCbits.TRISC1 = 1;       //Deshabilitar salida CCP2
     PR2 = 155;                  //periodo 10ms
     
     //Configuracion CCP
     CCP1CON = 0;                //Apagamos CCP1
+    CCP2CON = 0;                //Apagamos CCP2
     CCP1CONbits.P1M = 0;        //modo single output
-    CCP1CONbits.CCP1M = 0b1100; //PWM
+    CCP1CONbits.CCP1M = 0b1100; //PWM CCP2
+    CCP2CONbits.CCP2M = 0b1100; //PWM CCP2
     
     CCPR1L = 125>>2;
     CCP1CONbits.DC1B = 125 & 0b11; //2ms ancho de pulso, 20% duty cycle
+    
+    CCPR2L = 125>>2;
+    CCP2CONbits.DC2B0 = 125 & 0b1; //2ms ancho de pulso, 20% duty cycle
+    CCP2CONbits.DC2B1 = 125 & 0b1;
     
     PIR1bits.TMR2IF = 0;        //bandera TMR2
     T2CONbits.T2CKPS = 0b11;    //prescaler 1:16
@@ -96,6 +114,7 @@ void setup(void){
     PIR1bits.TMR2IF = 0;        //Esperar ciclo TMR2
     
     TRISCbits.TRISC2 = 0;       //Habilitar salida CCP1
+    TRISCbits.TRISC1 = 0;       //Habilitar salida CCP2
     
     //Configuraciones de interrupcioens
     PIR1bits.ADIF = 0;          //bandera int. ADC

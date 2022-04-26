@@ -2662,14 +2662,19 @@ unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
 
 
 
-unsigned short CCPR=0;
+unsigned short CCP1,CCP2;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if(PIR1bits.ADIF){
         if(ADCON0bits.CHS == 0){
-
-            CCPR1L = (uint8_t)(ADRESH>>2);
-            CCP1CONbits.DC1B = ADRESH & 0b11;
+            CCP1 = map(ADRESH, 0, 255, 62, 125);
+            CCPR1L = (uint8_t)(CCP1>>2);
+            CCP1CONbits.DC1B = CCP1 & 0b11;
+        }else if(ADCON0bits.CHS == 1){
+            CCP2 = map(ADRESH, 0, 255, 62, 125);
+            CCPR2L = (uint8_t)(CCP2>>2);
+            CCP2CONbits.DC2B0 = CCP2 & 0b01;
+            CCP2CONbits.DC2B1 = CCP2 & 0b10;
         }
         PIR1bits.ADIF = 0;
     }
@@ -2680,6 +2685,12 @@ void main(void) {
     setup();
     while(1){
         if(ADCON0bits.GO == 0){
+            if(ADCON0bits.CHS == 0b0000)
+                ADCON0bits.CHS = 0b0001;
+            else if(ADCON0bits.CHS == 0b0001)
+                ADCON0bits.CHS = 0b0000;
+
+            _delay((unsigned long)((40)*(1000000/4000000.0)));
             ADCON0bits.GO = 1;
         }
     }
@@ -2687,13 +2698,13 @@ void main(void) {
 }
 
 void setup(void){
-    ANSEL =0b00000001;
+    ANSEL =0b00000011;
     ANSELH = 0x00;
 
     OSCCONbits.IRCF = 0b0100;
     OSCCONbits.SCS = 1;
 
-    TRISA = 0b00000001;
+    TRISA = 0b00000011;
     PORTA = 0x00;
 
 
@@ -2709,15 +2720,22 @@ void setup(void){
 
 
     TRISCbits.TRISC2 = 1;
+    TRISCbits.TRISC1 = 1;
     PR2 = 155;
 
 
     CCP1CON = 0;
+    CCP2CON = 0;
     CCP1CONbits.P1M = 0;
     CCP1CONbits.CCP1M = 0b1100;
+    CCP2CONbits.CCP2M = 0b1100;
 
     CCPR1L = 125>>2;
     CCP1CONbits.DC1B = 125 & 0b11;
+
+    CCPR2L = 125>>2;
+    CCP2CONbits.DC2B0 = 125 & 0b1;
+    CCP2CONbits.DC2B1 = 125 & 0b1;
 
     PIR1bits.TMR2IF = 0;
     T2CONbits.T2CKPS = 0b11;
@@ -2726,6 +2744,7 @@ void setup(void){
     PIR1bits.TMR2IF = 0;
 
     TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC1 = 0;
 
 
     PIR1bits.ADIF = 0;
