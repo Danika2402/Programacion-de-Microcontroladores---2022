@@ -31,6 +31,7 @@
 
 
 
+
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2648,16 +2649,16 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 24 "PWM.c" 2
+# 25 "PWM.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c90\\stdint.h" 1 3
-# 25 "PWM.c" 2
+# 26 "PWM.c" 2
 
 void setup(void);
 unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
             unsigned short out_min, unsigned short out_max);
-# 37 "PWM.c"
-unsigned short CCP1,CCP2;
+# 38 "PWM.c"
+unsigned short CCP1,CCP2, pot3;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if(PIR1bits.ADIF){
@@ -2671,10 +2672,26 @@ void __attribute__((picinterrupt(("")))) isr (void){
             CCP2CONbits.DC2B0 = CCP2 & 0b01;
             CCP2CONbits.DC2B1 = CCP2 & 0b10;
         }else if(ADCON0bits.CHS == 2){
-            PORTD = ADRESH;
+            pot3 = map(ADRESH, 0, 255, 62, 5);
+
+            if(pot3==0)
+                PORTCbits.RC2 = 1;
+            else
+                PORTCbits.RC2 = 0;
+
         }
         PIR1bits.ADIF = 0;
     }
+    else if(INTCONbits.T0IF){
+        ++pot3;
+
+        if(pot3 > 5)
+            pot3=0;
+
+        INTCONbits.T0IF = 0;
+        TMR0 = 254;
+    }
+
     return;
 }
 
@@ -2704,15 +2721,24 @@ void setup(void){
     OSCCONbits.SCS = 1;
 
     TRISA = 0b00000111;
-    TRISD = 0x00;
+
     PORTA = 0x00;
-    PORTD = 0x00;
+
+
+
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1;
+    TMR0 = 254;
+
 
 
     ADCON0bits.ADCS = 0b00;
 
     ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 1;
+    ADCON1bits.VCFG1 = 0;
 
     ADCON0bits.CHS = 0b0000;
     ADCON1bits.ADFM = 0;
@@ -2752,7 +2778,8 @@ void setup(void){
     PIE1bits.ADIE = 1;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
-
+    INTCONbits.T0IF = 0;
+    INTCONbits.T0IE = 1;
     return;
 }
 

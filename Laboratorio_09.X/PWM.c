@@ -19,6 +19,7 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
+#define _tmr0_value 254 //2ms
 #define _XTAL_FREQ 1000000
 
 #include <xc.h>
@@ -32,9 +33,9 @@ unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
 #define OUT_MIN 62              // Valor minimo de ancho de pulso de señal PWM
 #define OUT_MAX 125             // Valor maximo de ancho de pulso de señal PWM
 
-#define OUT_TMR0_MAX 246
+#define OUT_TMR0_MAX 5
 
-unsigned short CCP1,CCP2;            // Variable para almacenar ancho de pulso al hacer la interpolaci lineal
+unsigned short CCP1,CCP2, pot3;            // Variable para almacenar ancho de pulso al hacer la interpolaci lineal
 
 void __interrupt() isr (void){
     if(PIR1bits.ADIF){                      
@@ -48,10 +49,26 @@ void __interrupt() isr (void){
             CCP2CONbits.DC2B0 = CCP2 & 0b01;
             CCP2CONbits.DC2B1 = CCP2 & 0b10;
         }else if(ADCON0bits.CHS == 2){
-            PORTD = ADRESH;
+            pot3 = map(ADRESH, IN_MIN, IN_MAX, OUT_MIN, OUT_TMR0_MAX);
+            
+            if(pot3==0)
+                PORTCbits.RC2 = 1;
+            else
+                PORTCbits.RC2 = 0;
+        
         }
         PIR1bits.ADIF = 0;                 
     }
+    else if(INTCONbits.T0IF){
+        ++pot3;
+        
+        if(pot3 > 5)
+            pot3=0;
+        
+        INTCONbits.T0IF = 0;
+        TMR0 = _tmr0_value; 
+    }
+    
     return;
 }
 
@@ -81,15 +98,24 @@ void setup(void){
     OSCCONbits.SCS = 1;
     
     TRISA = 0b00000111;     //RA1 y RA0 RA2
-    TRISD = 0x00;
+    //TRISD = 0x00;
     PORTA = 0x00;
-    PORTD = 0x00;
+    //PORTD = 0x00;
+    
+    //configuracion TMR0
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.PSA = 0; 
+    OPTION_REGbits.PS2 = 1;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS0 = 1;     //Prescaler = 1:256
+    TMR0 = _tmr0_value;         //2ms
+            
     
     //Configuraciones de ADC
     ADCON0bits.ADCS = 0b00;     // Fosc/2
     
     ADCON1bits.VCFG0 = 0;       //VDD *Referencias internas
-    ADCON1bits.VCFG1 = 1;       //VSS
+    ADCON1bits.VCFG1 = 0;       //VSS
     
     ADCON0bits.CHS = 0b0000;    //canal AN0
     ADCON1bits.ADFM = 0;        //justificacion Izquierda
@@ -129,7 +155,8 @@ void setup(void){
     PIE1bits.ADIE = 1;          //habilitar int. ADC
     INTCONbits.PEIE = 1;        //habilitar int. perifericos
     INTCONbits.GIE = 1;         //habilitar int. globales
-    
+    INTCONbits.T0IF = 0;        //bandera int. TMR0
+    INTCONbits.T0IE = 1;        //habilitar int. TMR0
     return;
 }
 
