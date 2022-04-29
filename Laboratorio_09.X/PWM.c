@@ -32,6 +32,8 @@ unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
 #define OUT_MIN 62              // Valor minimo de ancho de pulso de señal PWM
 #define OUT_MAX 125             // Valor maximo de ancho de pulso de señal PWM
 
+#define OUT_TMR0_MAX 246
+
 unsigned short CCP1,CCP2;            // Variable para almacenar ancho de pulso al hacer la interpolaci lineal
 
 void __interrupt() isr (void){
@@ -45,6 +47,8 @@ void __interrupt() isr (void){
             CCPR2L = (uint8_t)(CCP2>>2);    
             CCP2CONbits.DC2B0 = CCP2 & 0b01;
             CCP2CONbits.DC2B1 = CCP2 & 0b10;
+        }else if(ADCON0bits.CHS == 2){
+            PORTD = ADRESH;
         }
         PIR1bits.ADIF = 0;                 
     }
@@ -58,6 +62,8 @@ void main(void) {
             if(ADCON0bits.CHS == 0b0000)        //cambianos de un canal al otro
                 ADCON0bits.CHS = 0b0001;        //siempre con un delay 
             else if(ADCON0bits.CHS == 0b0001)
+                ADCON0bits.CHS = 0b0010;
+            else if(ADCON0bits.CHS == 0b0010)
                 ADCON0bits.CHS = 0b0000;
             
             __delay_us(40);
@@ -68,14 +74,16 @@ void main(void) {
 }
 
 void setup(void){
-    ANSEL =0b00000011;      //AN0 y AN1
+    ANSEL =0b00000111;      //AN0 AN1 AN2
     ANSELH = 0x00;
     
     OSCCONbits.IRCF = 0b0100;   //1MHz
     OSCCONbits.SCS = 1;
     
-    TRISA = 0b00000011;     //RA1 y RA0
+    TRISA = 0b00000111;     //RA1 y RA0 RA2
+    TRISD = 0x00;
     PORTA = 0x00;
+    PORTD = 0x00;
     
     //Configuraciones de ADC
     ADCON0bits.ADCS = 0b00;     // Fosc/2

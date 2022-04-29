@@ -2656,12 +2656,7 @@ extern __bank0 __bit __timeout;
 void setup(void);
 unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
             unsigned short out_min, unsigned short out_max);
-
-
-
-
-
-
+# 37 "PWM.c"
 unsigned short CCP1,CCP2;
 
 void __attribute__((picinterrupt(("")))) isr (void){
@@ -2675,6 +2670,8 @@ void __attribute__((picinterrupt(("")))) isr (void){
             CCPR2L = (uint8_t)(CCP2>>2);
             CCP2CONbits.DC2B0 = CCP2 & 0b01;
             CCP2CONbits.DC2B1 = CCP2 & 0b10;
+        }else if(ADCON0bits.CHS == 2){
+            PORTD = ADRESH;
         }
         PIR1bits.ADIF = 0;
     }
@@ -2688,6 +2685,8 @@ void main(void) {
             if(ADCON0bits.CHS == 0b0000)
                 ADCON0bits.CHS = 0b0001;
             else if(ADCON0bits.CHS == 0b0001)
+                ADCON0bits.CHS = 0b0010;
+            else if(ADCON0bits.CHS == 0b0010)
                 ADCON0bits.CHS = 0b0000;
 
             _delay((unsigned long)((40)*(1000000/4000000.0)));
@@ -2698,14 +2697,16 @@ void main(void) {
 }
 
 void setup(void){
-    ANSEL =0b00000011;
+    ANSEL =0b00000111;
     ANSELH = 0x00;
 
     OSCCONbits.IRCF = 0b0100;
     OSCCONbits.SCS = 1;
 
-    TRISA = 0b00000011;
+    TRISA = 0b00000111;
+    TRISD = 0x00;
     PORTA = 0x00;
+    PORTD = 0x00;
 
 
     ADCON0bits.ADCS = 0b00;
