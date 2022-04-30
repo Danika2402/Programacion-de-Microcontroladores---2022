@@ -145,6 +145,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "167
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 167: extern volatile unsigned char PORTA __attribute__((address(0x005)));
 [v _PORTA `Vuc ~T0 @X0 0 e@5 ]
+"1547
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1547:     struct {
+[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S57 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1546
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1546: typedef union {
+[u S56 `S57 1 ]
+[n S56 . . ]
+"1558
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1558: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x087)));
+[v _TRISCbits `VS56 ~T0 @X0 0 e@135 ]
+"291
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 291: extern volatile unsigned char PORTC __attribute__((address(0x007)));
+[v _PORTC `Vuc ~T0 @X0 0 e@7 ]
 "1353
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1353:     struct {
 [s S50 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -171,17 +185,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2992
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 2992: extern volatile ADCON1bits_t ADCON1bits __attribute__((address(0x09F)));
 [v _ADCON1bits `VS115 ~T0 @X0 0 e@159 ]
-"1547
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1547:     struct {
-[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S57 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
-"1546
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1546: typedef union {
-[u S56 `S57 1 ]
-[n S56 . . ]
-"1558
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1558: extern volatile TRISCbits_t TRISCbits __attribute__((address(0x087)));
-[v _TRISCbits `VS56 ~T0 @X0 0 e@135 ]
 "2042
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 2042: extern volatile unsigned char PR2 __attribute__((address(0x092)));
 [v _PR2 `Vuc ~T0 @X0 0 e@146 ]
@@ -476,10 +479,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3547: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "38 PWM.c
-[; ;PWM.c: 38: unsigned short CCP1,CCP2, pot3;
+[; ;PWM.c: 38: unsigned short CCP1,CCP2, pot3,pot;
 [v _CCP1 `us ~T0 @X0 1 e ]
 [v _CCP2 `us ~T0 @X0 1 e ]
 [v _pot3 `us ~T0 @X0 1 e ]
+[v _pot `us ~T0 @X0 1 e ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
 "40
 [; ;PWM.c: 40: void __attribute__((picinterrupt(("")))) isr (void){
@@ -531,21 +535,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == -> . . _ADCON0bits 0 2 `i -> 2 `i 144  ]
 {
 "52
-[; ;PWM.c: 52:             pot3 = map(ADRESH, 0, 255, 62, 5);
-[e = _pot3 ( _map (4 , , , , _ADRESH -> -> 0 `i `uc -> -> 255 `i `uc -> -> 62 `i `us -> -> 5 `i `us ]
+[; ;PWM.c: 52:             pot = map(ADRESH, 0, 255, 0, 2);
+[e = _pot ( _map (4 , , , , _ADRESH -> -> 0 `i `uc -> -> 255 `i `uc -> -> 0 `i `us -> -> 2 `i `us ]
 "54
-[; ;PWM.c: 54:             if(pot3==0)
-[e $ ! == -> _pot3 `ui -> -> 0 `i `ui 145  ]
+[; ;PWM.c: 54:             if(pot3 < pot)
+[e $ ! < -> _pot3 `ui -> _pot `ui 145  ]
 "55
-[; ;PWM.c: 55:                 PORTCbits.RC2 = 1;
-[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+[; ;PWM.c: 55:                 PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
 [e $U 146  ]
 "56
 [; ;PWM.c: 56:             else
 [e :U 145 ]
 "57
-[; ;PWM.c: 57:                 PORTCbits.RC2 = 0;
-[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;PWM.c: 57:                 PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
 [e :U 146 ]
 "59
 [; ;PWM.c: 59:         }
@@ -569,8 +573,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;PWM.c: 63:         ++pot3;
 [e =+ _pot3 -> -> 1 `i `us ]
 "65
-[; ;PWM.c: 65:         if(pot3 > 5)
-[e $ ! > -> _pot3 `ui -> -> 5 `i `ui 149  ]
+[; ;PWM.c: 65:         if(pot3 == 20)
+[e $ ! == -> _pot3 `ui -> -> 20 `i `ui 149  ]
 "66
 [; ;PWM.c: 66:             pot3=0;
 [e = _pot3 -> -> 0 `i `us ]
@@ -579,8 +583,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;PWM.c: 68:         INTCONbits.T0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
 "69
-[; ;PWM.c: 69:         TMR0 = 254;
-[e = _TMR0 -> -> 254 `i `uc ]
+[; ;PWM.c: 69:         TMR0 = 255;
+[e = _TMR0 -> -> 255 `i `uc ]
 "70
 [; ;PWM.c: 70:     }
 }
@@ -680,159 +684,165 @@ Version 4.0 HI-TECH Software Intermediate Code
 "100
 [; ;PWM.c: 100:     TRISA = 0b00000111;
 [e = _TRISA -> -> 7 `i `uc ]
-"102
-[; ;PWM.c: 102:     PORTA = 0x00;
+"101
+[; ;PWM.c: 101:     PORTA = 0x00;
 [e = _PORTA -> -> 0 `i `uc ]
-"106
-[; ;PWM.c: 106:     OPTION_REGbits.T0CS = 0;
+"102
+[; ;PWM.c: 102:     TRISCbits.TRISC3 = 0;
+[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
+"103
+[; ;PWM.c: 103:     PORTC = 0x00;
+[e = _PORTC -> -> 0 `i `uc ]
+"105
+[; ;PWM.c: 105:     OPTION_REGbits.T0CS = 0;
 [e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
-"107
-[; ;PWM.c: 107:     OPTION_REGbits.PSA = 0;
+"106
+[; ;PWM.c: 106:     OPTION_REGbits.PSA = 0;
 [e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
-"108
-[; ;PWM.c: 108:     OPTION_REGbits.PS2 = 1;
+"107
+[; ;PWM.c: 107:     OPTION_REGbits.PS2 = 1;
 [e = . . _OPTION_REGbits 1 2 -> -> 1 `i `uc ]
-"109
-[; ;PWM.c: 109:     OPTION_REGbits.PS1 = 1;
+"108
+[; ;PWM.c: 108:     OPTION_REGbits.PS1 = 1;
 [e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
-"110
-[; ;PWM.c: 110:     OPTION_REGbits.PS0 = 1;
+"109
+[; ;PWM.c: 109:     OPTION_REGbits.PS0 = 1;
 [e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
-"111
-[; ;PWM.c: 111:     TMR0 = 254;
-[e = _TMR0 -> -> 254 `i `uc ]
-"115
-[; ;PWM.c: 115:     ADCON0bits.ADCS = 0b00;
+"110
+[; ;PWM.c: 110:     TMR0 = 255;
+[e = _TMR0 -> -> 255 `i `uc ]
+"114
+[; ;PWM.c: 114:     ADCON0bits.ADCS = 0b00;
 [e = . . _ADCON0bits 0 3 -> -> 0 `i `uc ]
-"117
-[; ;PWM.c: 117:     ADCON1bits.VCFG0 = 0;
+"116
+[; ;PWM.c: 116:     ADCON1bits.VCFG0 = 0;
 [e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
-"118
-[; ;PWM.c: 118:     ADCON1bits.VCFG1 = 0;
+"117
+[; ;PWM.c: 117:     ADCON1bits.VCFG1 = 0;
 [e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
-"120
-[; ;PWM.c: 120:     ADCON0bits.CHS = 0b0000;
+"119
+[; ;PWM.c: 119:     ADCON0bits.CHS = 0b0000;
 [e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-"121
-[; ;PWM.c: 121:     ADCON1bits.ADFM = 0;
+"120
+[; ;PWM.c: 120:     ADCON1bits.ADFM = 0;
 [e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
-"122
-[; ;PWM.c: 122:     ADCON0bits.ADON = 1;
+"121
+[; ;PWM.c: 121:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"123
-[; ;PWM.c: 123:     _delay((unsigned long)((40)*(1000000/4000000.0)));
+"122
+[; ;PWM.c: 122:     _delay((unsigned long)((40)*(1000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"126
-[; ;PWM.c: 126:     TRISCbits.TRISC2 = 1;
+"125
+[; ;PWM.c: 125:     TRISCbits.TRISC2 = 1;
 [e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
-"127
-[; ;PWM.c: 127:     TRISCbits.TRISC1 = 1;
+"126
+[; ;PWM.c: 126:     TRISCbits.TRISC1 = 1;
 [e = . . _TRISCbits 0 1 -> -> 1 `i `uc ]
-"128
-[; ;PWM.c: 128:     PR2 = 155;
+"127
+[; ;PWM.c: 127:     PR2 = 155;
 [e = _PR2 -> -> 155 `i `uc ]
-"131
-[; ;PWM.c: 131:     CCP1CON = 0;
+"130
+[; ;PWM.c: 130:     CCP1CON = 0;
 [e = _CCP1CON -> -> 0 `i `uc ]
-"132
-[; ;PWM.c: 132:     CCP2CON = 0;
+"131
+[; ;PWM.c: 131:     CCP2CON = 0;
 [e = _CCP2CON -> -> 0 `i `uc ]
-"133
-[; ;PWM.c: 133:     CCP1CONbits.P1M = 0;
+"132
+[; ;PWM.c: 132:     CCP1CONbits.P1M = 0;
 [e = . . _CCP1CONbits 0 2 -> -> 0 `i `uc ]
-"134
-[; ;PWM.c: 134:     CCP1CONbits.CCP1M = 0b1100;
+"133
+[; ;PWM.c: 133:     CCP1CONbits.CCP1M = 0b1100;
 [e = . . _CCP1CONbits 0 0 -> -> 12 `i `uc ]
-"135
-[; ;PWM.c: 135:     CCP2CONbits.CCP2M = 0b1100;
+"134
+[; ;PWM.c: 134:     CCP2CONbits.CCP2M = 0b1100;
 [e = . . _CCP2CONbits 0 0 -> -> 12 `i `uc ]
-"137
-[; ;PWM.c: 137:     CCPR1L = 125>>2;
+"136
+[; ;PWM.c: 136:     CCPR1L = 125>>2;
 [e = _CCPR1L -> >> -> 125 `i -> 2 `i `uc ]
-"138
-[; ;PWM.c: 138:     CCP1CONbits.DC1B = 125 & 0b11;
+"137
+[; ;PWM.c: 137:     CCP1CONbits.DC1B = 125 & 0b11;
 [e = . . _CCP1CONbits 0 1 -> & -> 125 `i -> 3 `i `uc ]
-"140
-[; ;PWM.c: 140:     CCPR2L = 125>>2;
+"139
+[; ;PWM.c: 139:     CCPR2L = 125>>2;
 [e = _CCPR2L -> >> -> 125 `i -> 2 `i `uc ]
-"141
-[; ;PWM.c: 141:     CCP2CONbits.DC2B0 = 125 & 0b1;
+"140
+[; ;PWM.c: 140:     CCP2CONbits.DC2B0 = 125 & 0b1;
 [e = . . _CCP2CONbits 0 1 -> & -> 125 `i -> 1 `i `uc ]
-"142
-[; ;PWM.c: 142:     CCP2CONbits.DC2B1 = 125 & 0b1;
+"141
+[; ;PWM.c: 141:     CCP2CONbits.DC2B1 = 125 & 0b1;
 [e = . . _CCP2CONbits 0 2 -> & -> 125 `i -> 1 `i `uc ]
-"144
-[; ;PWM.c: 144:     PIR1bits.TMR2IF = 0;
+"143
+[; ;PWM.c: 143:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"145
-[; ;PWM.c: 145:     T2CONbits.T2CKPS = 0b11;
+"144
+[; ;PWM.c: 144:     T2CONbits.T2CKPS = 0b11;
 [e = . . _T2CONbits 0 0 -> -> 3 `i `uc ]
-"146
-[; ;PWM.c: 146:     T2CONbits.TMR2ON = 1;
+"145
+[; ;PWM.c: 145:     T2CONbits.TMR2ON = 1;
 [e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-"147
-[; ;PWM.c: 147:     while(!PIR1bits.TMR2IF);
+"146
+[; ;PWM.c: 146:     while(!PIR1bits.TMR2IF);
 [e $U 161  ]
 [e :U 162 ]
 [e :U 161 ]
 [e $ ! != -> . . _PIR1bits 0 1 `i -> 0 `i 162  ]
 [e :U 163 ]
-"148
-[; ;PWM.c: 148:     PIR1bits.TMR2IF = 0;
+"147
+[; ;PWM.c: 147:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"150
-[; ;PWM.c: 150:     TRISCbits.TRISC2 = 0;
+"149
+[; ;PWM.c: 149:     TRISCbits.TRISC2 = 0;
 [e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-"151
-[; ;PWM.c: 151:     TRISCbits.TRISC1 = 0;
+"150
+[; ;PWM.c: 150:     TRISCbits.TRISC1 = 0;
 [e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
-"154
-[; ;PWM.c: 154:     PIR1bits.ADIF = 0;
+"153
+[; ;PWM.c: 153:     PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"155
-[; ;PWM.c: 155:     PIE1bits.ADIE = 1;
+"154
+[; ;PWM.c: 154:     PIE1bits.ADIE = 1;
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"156
-[; ;PWM.c: 156:     INTCONbits.PEIE = 1;
+"155
+[; ;PWM.c: 155:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"157
-[; ;PWM.c: 157:     INTCONbits.GIE = 1;
+"156
+[; ;PWM.c: 156:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"158
-[; ;PWM.c: 158:     INTCONbits.T0IF = 0;
+"157
+[; ;PWM.c: 157:     INTCONbits.T0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"159
-[; ;PWM.c: 159:     INTCONbits.T0IE = 1;
+"158
+[; ;PWM.c: 158:     INTCONbits.T0IE = 1;
 [e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
-"160
-[; ;PWM.c: 160:     return;
+"159
+[; ;PWM.c: 159:     return;
 [e $UE 160  ]
-"161
-[; ;PWM.c: 161: }
+"160
+[; ;PWM.c: 160: }
 [e :UE 160 ]
 }
-"163
-[; ;PWM.c: 163: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
-[v _map `(us ~T0 @X0 1 ef5`uc`uc`uc`us`us ]
 "164
-[; ;PWM.c: 164:             unsigned short y0, unsigned short y1){
+[; ;PWM.c: 164: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
+[v _map `(us ~T0 @X0 1 ef5`uc`uc`uc`us`us ]
+"165
+[; ;PWM.c: 165:             unsigned short y0, unsigned short y1){
 {
 [e :U _map ]
-"163
-[; ;PWM.c: 163: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
+"164
+[; ;PWM.c: 164: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
 [v _x `uc ~T0 @X0 1 r1 ]
 [v _x0 `uc ~T0 @X0 1 r2 ]
 [v _x1 `uc ~T0 @X0 1 r3 ]
-"164
-[; ;PWM.c: 164:             unsigned short y0, unsigned short y1){
+"165
+[; ;PWM.c: 165:             unsigned short y0, unsigned short y1){
 [v _y0 `us ~T0 @X0 1 r4 ]
 [v _y1 `us ~T0 @X0 1 r5 ]
 [f ]
-"165
-[; ;PWM.c: 165:     return (unsigned short)(y0+((float)(y1-y0)/(x1-x0))*(x-x0));
+"166
+[; ;PWM.c: 166:     return (unsigned short)(y0+((float)(y1-y0)/(x1-x0))*(x-x0));
 [e ) -> + -> -> _y0 `ui `f * / -> - -> _y1 `ui -> _y0 `ui `f -> - -> _x1 `i -> _x0 `i `f -> - -> _x `i -> _x0 `i `f `us ]
 [e $UE 164  ]
-"166
-[; ;PWM.c: 166: }
+"167
+[; ;PWM.c: 167: }
 [e :UE 164 ]
 }

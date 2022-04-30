@@ -19,7 +19,7 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-#define _tmr0_value 254 //2ms
+#define _tmr0_value 255 //1ms
 #define _XTAL_FREQ 1000000
 
 #include <xc.h>
@@ -33,14 +33,14 @@ unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
 #define OUT_MIN 62              // Valor minimo de ancho de pulso de señal PWM
 #define OUT_MAX 125             // Valor maximo de ancho de pulso de señal PWM
 
-#define OUT_TMR0_MAX 5
+#define OUT_TMR0_MAX 2
 
-unsigned short CCP1,CCP2, pot3;            // Variable para almacenar ancho de pulso al hacer la interpolaci lineal
+unsigned short CCP1,CCP2, pot3,pot;            // Variable para almacenar ancho de pulso al hacer la interpolaci lineal
 
 void __interrupt() isr (void){
     if(PIR1bits.ADIF){                      
         if(ADCON0bits.CHS == 0){            
-            CCP1 = map(ADRESH, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); 
+            CCP1 = map(ADRESH, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); //mapeamos valor de potenciometro
             CCPR1L = (uint8_t)(CCP1>>2);    
             CCP1CONbits.DC1B = CCP1 & 0b11; 
         }else if(ADCON0bits.CHS == 1){
@@ -49,24 +49,24 @@ void __interrupt() isr (void){
             CCP2CONbits.DC2B0 = CCP2 & 0b01;
             CCP2CONbits.DC2B1 = CCP2 & 0b10;
         }else if(ADCON0bits.CHS == 2){
-            pot3 = map(ADRESH, IN_MIN, IN_MAX, OUT_MIN, OUT_TMR0_MAX);
+            pot = map(ADRESH, IN_MIN, IN_MAX, IN_MIN, OUT_TMR0_MAX);
             
-            if(pot3==0)
-                PORTCbits.RC2 = 1;
+            if(pot3 < pot)
+                PORTCbits.RC3 = 1;
             else
-                PORTCbits.RC2 = 0;
+                PORTCbits.RC3 = 0;
         
         }
         PIR1bits.ADIF = 0;                 
     }
     else if(INTCONbits.T0IF){
         ++pot3;
-        
-        if(pot3 > 5)
+        //++PORTD;
+        if(pot3 == 20)      
             pot3=0;
         
         INTCONbits.T0IF = 0;
-        TMR0 = _tmr0_value; 
+        TMR0 = _tmr0_value;     //1ms incrementamos variable
     }
     
     return;
@@ -98,10 +98,9 @@ void setup(void){
     OSCCONbits.SCS = 1;
     
     TRISA = 0b00000111;     //RA1 y RA0 RA2
-    //TRISD = 0x00;
     PORTA = 0x00;
-    //PORTD = 0x00;
-    
+    TRISCbits.TRISC3 = 0;
+    PORTC = 0x00;
     //configuracion TMR0
     OPTION_REGbits.T0CS = 0;
     OPTION_REGbits.PSA = 0; 
@@ -131,7 +130,7 @@ void setup(void){
     CCP1CON = 0;                //Apagamos CCP1
     CCP2CON = 0;                //Apagamos CCP2
     CCP1CONbits.P1M = 0;        //modo single output
-    CCP1CONbits.CCP1M = 0b1100; //PWM CCP2
+    CCP1CONbits.CCP1M = 0b1100; //PWM CCP1
     CCP2CONbits.CCP2M = 0b1100; //PWM CCP2
     
     CCPR1L = 125>>2;
@@ -159,6 +158,8 @@ void setup(void){
     INTCONbits.T0IE = 1;        //habilitar int. TMR0
     return;
 }
+
+// y = y0 + [(y1 - y0)/(x1-x0)]*(x-x0)
 
 unsigned short map(uint8_t x, uint8_t x0, uint8_t x1, 
             unsigned short y0, unsigned short y1){

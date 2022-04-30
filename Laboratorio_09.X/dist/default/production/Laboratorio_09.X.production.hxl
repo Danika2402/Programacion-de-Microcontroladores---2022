@@ -9,13 +9,13 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 5h		(dist/default/production\Laboratorio_09.X.production.hex)
-  8h - FC9h		(dist/default/production\Laboratorio_09.X.production.hex)
-  1826h - 1FFFh		(dist/default/production\Laboratorio_09.X.production.hex)
+  8h - FCDh		(dist/default/production\Laboratorio_09.X.production.hex)
+  1818h - 1FFFh		(dist/default/production\Laboratorio_09.X.production.hex)
   4000h - 4007h		(dist/default/production\Laboratorio_09.X.production.hex)
   400Eh - 4011h		(dist/default/production\Laboratorio_09.X.production.hex)
  Unused ranges:
   6h - 7h
-  FCAh - 1825h
+  FCEh - 1817h
   2000h - 3FFFh
   4008h - 400Dh
 
@@ -278,9 +278,10 @@
 00000F90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000FA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000FB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000FC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- --
+00000FC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
 ----------------------------------------------------------
-00001820 | -- -- -- -- -- -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00001810 | -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1 H1 H1
+00001820 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001830 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001840 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001850 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

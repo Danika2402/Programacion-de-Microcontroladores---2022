@@ -2658,7 +2658,7 @@ void setup(void);
 unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
             unsigned short out_min, unsigned short out_max);
 # 38 "PWM.c"
-unsigned short CCP1,CCP2, pot3;
+unsigned short CCP1,CCP2, pot3,pot;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if(PIR1bits.ADIF){
@@ -2672,12 +2672,12 @@ void __attribute__((picinterrupt(("")))) isr (void){
             CCP2CONbits.DC2B0 = CCP2 & 0b01;
             CCP2CONbits.DC2B1 = CCP2 & 0b10;
         }else if(ADCON0bits.CHS == 2){
-            pot3 = map(ADRESH, 0, 255, 62, 5);
+            pot = map(ADRESH, 0, 255, 0, 2);
 
-            if(pot3==0)
-                PORTCbits.RC2 = 1;
+            if(pot3 < pot)
+                PORTCbits.RC3 = 1;
             else
-                PORTCbits.RC2 = 0;
+                PORTCbits.RC3 = 0;
 
         }
         PIR1bits.ADIF = 0;
@@ -2685,11 +2685,11 @@ void __attribute__((picinterrupt(("")))) isr (void){
     else if(INTCONbits.T0IF){
         ++pot3;
 
-        if(pot3 > 5)
+        if(pot3 == 20)
             pot3=0;
 
         INTCONbits.T0IF = 0;
-        TMR0 = 254;
+        TMR0 = 255;
     }
 
     return;
@@ -2721,17 +2721,16 @@ void setup(void){
     OSCCONbits.SCS = 1;
 
     TRISA = 0b00000111;
-
     PORTA = 0x00;
-
-
+    TRISCbits.TRISC3 = 0;
+    PORTC = 0x00;
 
     OPTION_REGbits.T0CS = 0;
     OPTION_REGbits.PSA = 0;
     OPTION_REGbits.PS2 = 1;
     OPTION_REGbits.PS1 = 1;
     OPTION_REGbits.PS0 = 1;
-    TMR0 = 254;
+    TMR0 = 255;
 
 
 
@@ -2782,6 +2781,8 @@ void setup(void){
     INTCONbits.T0IE = 1;
     return;
 }
+
+
 
 unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
             unsigned short y0, unsigned short y1){
