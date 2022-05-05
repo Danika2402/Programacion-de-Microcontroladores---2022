@@ -12,6 +12,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "554
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 554: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
 [v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
+"1141
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1141: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
 "1252
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1252:     struct {
 [s S45 :1 `uc 1 :1 `uc 1 :4 `uc 1 :2 `uc 1 ]
@@ -42,9 +45,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "26 USART.c
 [; ;USART.c: 26: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
-"229 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 229: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"32
+[; ;USART.c: 32: void Print(char *str);
+[v _Print `(v ~T0 @X0 0 ef1`*uc ]
+"33
+[; ;USART.c: 33: void TX(char dato);
+[v _TX `(v ~T0 @X0 0 ef1`uc ]
+"353 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 353: extern volatile unsigned char PORTD __attribute__((address(0x008)));
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "3388
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3388: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
@@ -72,15 +81,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1603
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1603: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"353
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 353: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "167
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 167: extern volatile unsigned char PORTA __attribute__((address(0x005)));
 [v _PORTA `Vuc ~T0 @X0 0 e@5 ]
-"1479
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1479: extern volatile unsigned char TRISB __attribute__((address(0x086)));
-[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
 "2984
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 2984:     struct {
 [s S116 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -181,10 +184,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "483
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 483: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
 [v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
-"36 USART.c
-[; ;USART.c: 36: void TX(char dato);
-[v _TX `(v ~T0 @X0 0 ef1`uc ]
-"1134 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+"1134
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1134: extern volatile unsigned char TXREG __attribute__((address(0x019)));
 [v _TXREG `Vuc ~T0 @X0 0 e@25 ]
 "8 USART.c
@@ -445,105 +445,223 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3547
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3547: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"31 USART.c
-[; ;USART.c: 31: const char tabla[] = {'H','o','l','a',' '};
-[v _tabla `Cuc ~T0 @X0 -> 5 `i e ]
-[i _tabla
-:U ..
--> -> 72 `ui `uc
--> -> 111 `ui `uc
--> -> 108 `ui `uc
--> -> 97 `ui `uc
--> -> 32 `ui `uc
-..
-]
-"32
-[; ;USART.c: 32: char string = 0;
-[v _string `uc ~T0 @X0 1 e ]
-[i _string
--> -> 0 `i `uc
-]
-"33
-[; ;USART.c: 33: uint8_t unidad, decena, centena;
+"28 USART.c
+[; ;USART.c: 28: uint8_t unidad, decena, centena;
 [v _unidad `uc ~T0 @X0 1 e ]
 [v _decena `uc ~T0 @X0 1 e ]
 [v _centena `uc ~T0 @X0 1 e ]
-"34
-[; ;USART.c: 34: uint8_t indice, pot;
+"29
+[; ;USART.c: 29: uint8_t indice, pot, ASCII;
 [v _indice `uc ~T0 @X0 1 e ]
 [v _pot `uc ~T0 @X0 1 e ]
+[v _ASCII `uc ~T0 @X0 1 e ]
+"30
+[; ;USART.c: 30: uint8_t inicio = 0;
+[v _inicio `uc ~T0 @X0 1 e ]
+[i _inicio
+-> -> 0 `i `uc
+]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"38
-[; ;USART.c: 38: void __attribute__((picinterrupt(("")))) isr (void){
+"35
+[; ;USART.c: 35: void __attribute__((picinterrupt(("")))) isr (void){
 [v _isr `(v ~T1 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
-"42
-[; ;USART.c: 42:            if(PIR1bits.ADIF){
-[e $ ! != -> . . _PIR1bits 0 6 `i -> 0 `i 139  ]
-{
-"43
-[; ;USART.c: 43:         if(ADCON0bits.CHS == 0)
-[e $ ! == -> . . _ADCON0bits 0 2 `i -> 0 `i 140  ]
-"44
-[; ;USART.c: 44:             pot = ADRESH;
-[e = _pot _ADRESH ]
-[e :U 140 ]
-"45
-[; ;USART.c: 45:         PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"46
-[; ;USART.c: 46:     }
-}
+"36
+[; ;USART.c: 36:     if(PIR1bits.RCIF)
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 139  ]
+"37
+[; ;USART.c: 37:         indice = RCREG;
+[e = _indice _RCREG ]
+[e $U 140  ]
+"39
+[; ;USART.c: 39:     else if(PIR1bits.ADIF){
 [e :U 139 ]
-"50
-[; ;USART.c: 50:     return;
+[e $ ! != -> . . _PIR1bits 0 6 `i -> 0 `i 141  ]
+{
+"40
+[; ;USART.c: 40:         if(ADCON0bits.CHS == 0)
+[e $ ! == -> . . _ADCON0bits 0 2 `i -> 0 `i 142  ]
+"41
+[; ;USART.c: 41:             pot = ADRESH;
+[e = _pot _ADRESH ]
+[e :U 142 ]
+"42
+[; ;USART.c: 42:         PIR1bits.ADIF = 0;
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+"43
+[; ;USART.c: 43:     }
+}
+[e :U 141 ]
+[e :U 140 ]
+"47
+[; ;USART.c: 47:     return;
 [e $UE 138  ]
-"51
-[; ;USART.c: 51: }
+"48
+[; ;USART.c: 48: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"53
-[; ;USART.c: 53: void main(void) {
+"50
+[; ;USART.c: 50: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"54
-[; ;USART.c: 54:     setup();
+"51
+[; ;USART.c: 51:     setup();
 [e ( _setup ..  ]
-"56
-[; ;USART.c: 56:     while(1){
-[e :U 143 ]
-{
-"57
-[; ;USART.c: 57:         if(ADCON0bits.GO == 0){
-[e $ ! == -> . . _ADCON0bits 1 1 `i -> 0 `i 145  ]
-{
-"58
-[; ;USART.c: 58:             ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"59
-[; ;USART.c: 59:         }
-}
+"53
+[; ;USART.c: 53:     while(1){
 [e :U 145 ]
+{
+"54
+[; ;USART.c: 54:         if(ADCON0bits.GO == 0){
+[e $ ! == -> . . _ADCON0bits 1 1 `i -> 0 `i 147  ]
+{
+"55
+[; ;USART.c: 55:             ADCON0bits.GO = 1;
+[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+"56
+[; ;USART.c: 56:         }
+}
+[e :U 147 ]
+"58
+[; ;USART.c: 58:         centena = pot/100;
+[e = _centena -> / -> _pot `i -> 100 `i `uc ]
+"59
+[; ;USART.c: 59:         decena = (pot - (100 * centena))/10;
+[e = _decena -> / - -> _pot `i * -> 100 `i -> _centena `i -> 10 `i `uc ]
 "60
-[; ;USART.c: 60:         PORTB = pot;
-[e = _PORTB _pot ]
+[; ;USART.c: 60:         unidad = pot - (100 * centena)-(10 * decena);
+[e = _unidad -> - - -> _pot `i * -> 100 `i -> _centena `i * -> 10 `i -> _decena `i `uc ]
+"62
+[; ;USART.c: 62:         centena += 48;
+[e =+ _centena -> -> 48 `i `uc ]
+"63
+[; ;USART.c: 63:         decena += 48;
+[e =+ _decena -> -> 48 `i `uc ]
+"64
+[; ;USART.c: 64:         unidad += 48;
+[e =+ _unidad -> -> 48 `i `uc ]
+"66
+[; ;USART.c: 66:         if(inicio==0){
+[e $ ! == -> _inicio `i -> 0 `i 148  ]
+{
+"67
+[; ;USART.c: 67:             Print("1. Leer Potenciometro\r");
+[e ( _Print (1 :s 1C ]
+"68
+[; ;USART.c: 68:             Print("2. Enviar Ascii\r");
+[e ( _Print (1 :s 2C ]
+"69
+[; ;USART.c: 69:             inicio = 1;
+[e = _inicio -> -> 1 `i `uc ]
+"70
+[; ;USART.c: 70:         }
+}
+[e :U 148 ]
+"72
+[; ;USART.c: 72:         if(PIR1bits.RCIF == 0){
+[e $ ! == -> . . _PIR1bits 0 5 `i -> 0 `i 149  ]
+{
+"73
+[; ;USART.c: 73:             switch(indice){
+[e $U 151  ]
+{
+"74
+[; ;USART.c: 74:                 case('1'):
+[e :U 152 ]
+"75
+[; ;USART.c: 75:                     Print("\r");
+[e ( _Print (1 :s 3C ]
+"76
+[; ;USART.c: 76:                     TX(centena);
+[e ( _TX (1 -> _centena `uc ]
+"77
+[; ;USART.c: 77:                     TX(decena);
+[e ( _TX (1 -> _decena `uc ]
+"78
+[; ;USART.c: 78:                     TX(unidad);
+[e ( _TX (1 -> _unidad `uc ]
+"79
+[; ;USART.c: 79:                     Print("\rListo\r\r");
+[e ( _Print (1 :s 4C ]
+"80
+[; ;USART.c: 80:                     inicio = 0;
+[e = _inicio -> -> 0 `i `uc ]
+"81
+[; ;USART.c: 81:                     indice = 0;
+[e = _indice -> -> 0 `i `uc ]
+"82
+[; ;USART.c: 82:                     break;
+[e $U 150  ]
+"84
+[; ;USART.c: 84:                 case('2'):
+[e :U 153 ]
+"85
+[; ;USART.c: 85:                     Print("\rIngresa un dato\r");
+[e ( _Print (1 :s 5C ]
+"86
+[; ;USART.c: 86:                     ASCII = 1;
+[e = _ASCII -> -> 1 `i `uc ]
+"88
+[; ;USART.c: 88:                         while(PIR1bits.RCIF==0){
+[e $U 154  ]
+[e :U 155 ]
+{
+"90
+[; ;USART.c: 90:                             PORTD = RCREG;
+[e = _PORTD _RCREG ]
+"91
+[; ;USART.c: 91:                             Print("Listo\r\r");
+[e ( _Print (1 :s 6C ]
+"92
+[; ;USART.c: 92:                             ASCII = 0;
+[e = _ASCII -> -> 0 `i `uc ]
+"93
+[; ;USART.c: 93:                             inicio = 0;
+[e = _inicio -> -> 0 `i `uc ]
+"94
+[; ;USART.c: 94:                             indice = 0;
+[e = _indice -> -> 0 `i `uc ]
+"95
+[; ;USART.c: 95:                         }
+}
+[e :U 154 ]
+"88
+[; ;USART.c: 88:                         while(PIR1bits.RCIF==0){
+[e $ == -> . . _PIR1bits 0 5 `i -> 0 `i 155  ]
+[e :U 156 ]
+"97
+[; ;USART.c: 97:                     break;
+[e $U 150  ]
+"98
+[; ;USART.c: 98:             }
+}
+[e $U 150  ]
+[e :U 151 ]
+[e [\ -> _indice `i , $ -> -> 49 `ui `i 152
+ , $ -> -> 50 `ui `i 153
+ 150 ]
+[e :U 150 ]
+"99
+[; ;USART.c: 99:         }
+}
+[e :U 149 ]
 "100
 [; ;USART.c: 100:     }
 }
-[e :U 142 ]
-[e $U 143  ]
 [e :U 144 ]
+[e $U 145  ]
+[e :U 146 ]
 "101
 [; ;USART.c: 101:     return;
-[e $UE 141  ]
+[e $UE 143  ]
 "102
 [; ;USART.c: 102: }
-[e :UE 141 ]
+[e :UE 143 ]
 }
 "104
 [; ;USART.c: 104: void setup(void){
@@ -575,127 +693,130 @@ Version 4.0 HI-TECH Software Intermediate Code
 "115
 [; ;USART.c: 115:     PORTA = 0x00;
 [e = _PORTA -> -> 0 `i `uc ]
-"116
-[; ;USART.c: 116:     TRISB =0x00;
-[e = _TRISB -> -> 0 `i `uc ]
-"117
-[; ;USART.c: 117:     PORTB = 0x00;
-[e = _PORTB -> -> 0 `i `uc ]
-"119
-[; ;USART.c: 119:     ADCON0bits.ADCS = 0b00;
+"118
+[; ;USART.c: 118:     ADCON0bits.ADCS = 0b00;
 [e = . . _ADCON0bits 0 3 -> -> 0 `i `uc ]
-"121
-[; ;USART.c: 121:     ADCON1bits.VCFG0 = 0;
+"120
+[; ;USART.c: 120:     ADCON1bits.VCFG0 = 0;
 [e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
-"122
-[; ;USART.c: 122:     ADCON1bits.VCFG1 = 1;
+"121
+[; ;USART.c: 121:     ADCON1bits.VCFG1 = 1;
 [e = . . _ADCON1bits 0 2 -> -> 1 `i `uc ]
-"124
-[; ;USART.c: 124:     ADCON0bits.CHS = 0b0000;
+"123
+[; ;USART.c: 123:     ADCON0bits.CHS = 0b0000;
 [e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-"125
-[; ;USART.c: 125:     ADCON1bits.ADFM = 0;
+"124
+[; ;USART.c: 124:     ADCON1bits.ADFM = 0;
 [e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
-"126
-[; ;USART.c: 126:     ADCON0bits.ADON = 1;
+"125
+[; ;USART.c: 125:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"127
-[; ;USART.c: 127:     _delay((unsigned long)((40)*(1000000/4000000.0)));
+"126
+[; ;USART.c: 126:     _delay((unsigned long)((40)*(1000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"130
-[; ;USART.c: 130:     TXSTAbits.SYNC = 0;
+"129
+[; ;USART.c: 129:     TXSTAbits.SYNC = 0;
 [e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-"131
-[; ;USART.c: 131:     TXSTAbits.BRGH = 1;
+"130
+[; ;USART.c: 130:     TXSTAbits.BRGH = 1;
 [e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-"132
-[; ;USART.c: 132:     BAUDCTLbits.BRG16 = 1;
+"131
+[; ;USART.c: 131:     BAUDCTLbits.BRG16 = 1;
 [e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
-"134
-[; ;USART.c: 134:     SPBRG = 25;
+"133
+[; ;USART.c: 133:     SPBRG = 25;
 [e = _SPBRG -> -> 25 `i `uc ]
-"135
-[; ;USART.c: 135:     SPBRGH = 0;
+"134
+[; ;USART.c: 134:     SPBRGH = 0;
 [e = _SPBRGH -> -> 0 `i `uc ]
-"137
-[; ;USART.c: 137:     RCSTAbits.SPEN = 1;
+"136
+[; ;USART.c: 136:     RCSTAbits.SPEN = 1;
 [e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"138
-[; ;USART.c: 138:     TXSTAbits.TX9 = 0;
+"137
+[; ;USART.c: 137:     TXSTAbits.TX9 = 0;
 [e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
-"139
-[; ;USART.c: 139:     TXSTAbits.TXEN = 1;
+"138
+[; ;USART.c: 138:     TXSTAbits.TXEN = 1;
 [e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-"140
-[; ;USART.c: 140:     RCSTAbits.CREN = 1;
+"139
+[; ;USART.c: 139:     RCSTAbits.CREN = 1;
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"142
-[; ;USART.c: 142:     PIR1bits.ADIF = 0;
+"141
+[; ;USART.c: 141:     PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"143
-[; ;USART.c: 143:     PIE1bits.ADIE = 1;
+"142
+[; ;USART.c: 142:     PIE1bits.ADIE = 1;
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"144
-[; ;USART.c: 144:     INTCONbits.PEIE = 1;
+"143
+[; ;USART.c: 143:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"145
-[; ;USART.c: 145:     INTCONbits.GIE = 1;
+"144
+[; ;USART.c: 144:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"145
+[; ;USART.c: 145:     PIE1bits.RCIE = 1;
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+"147
+[; ;USART.c: 147:     return;
+[e $UE 157  ]
 "148
-[; ;USART.c: 148:     return;
-[e $UE 146  ]
-"149
-[; ;USART.c: 149: }
-[e :UE 146 ]
+[; ;USART.c: 148: }
+[e :UE 157 ]
 }
-"151
-[; ;USART.c: 151: void Print(char *str){
+"150
+[; ;USART.c: 150: void Print(char *str){
 [v _Print `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _Print ]
 [v _str `*uc ~T0 @X0 1 r1 ]
 [f ]
-"152
-[; ;USART.c: 152:         while(*str != '\0'){
-[e $U 148  ]
-[e :U 149 ]
+"151
+[; ;USART.c: 151:         while(*str != '\0'){
+[e $U 159  ]
+[e :U 160 ]
 {
-"153
-[; ;USART.c: 153:             TX(*str);
-[e ( _TX (1 *U _str ]
-"154
-[; ;USART.c: 154:             str++;
-[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"155
-[; ;USART.c: 155:         }
-}
-[e :U 148 ]
 "152
-[; ;USART.c: 152:         while(*str != '\0'){
-[e $ != -> *U _str `ui -> 0 `ui 149  ]
-[e :U 150 ]
-"156
-[; ;USART.c: 156: }
-[e :UE 147 ]
+[; ;USART.c: 152:             TX(*str);
+[e ( _TX (1 *U _str ]
+"153
+[; ;USART.c: 153:             str++;
+[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"154
+[; ;USART.c: 154:         }
 }
-"158
-[; ;USART.c: 158: void TX(char dato){
+[e :U 159 ]
+"151
+[; ;USART.c: 151:         while(*str != '\0'){
+[e $ != -> *U _str `ui -> 0 `ui 160  ]
+[e :U 161 ]
+"155
+[; ;USART.c: 155: }
+[e :UE 158 ]
+}
+"157
+[; ;USART.c: 157: void TX(char dato){
 [v _TX `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _TX ]
 [v _dato `uc ~T0 @X0 1 r1 ]
 [f ]
+"159
+[; ;USART.c: 159:     while(TXSTAbits.TRMT==0);
+[e $U 163  ]
+[e :U 164 ]
+[e :U 163 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 164  ]
+[e :U 165 ]
 "160
-[; ;USART.c: 160:     while(TXSTAbits.TRMT==0);
-[e $U 152  ]
-[e :U 153 ]
-[e :U 152 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 153  ]
-[e :U 154 ]
-"161
-[; ;USART.c: 161:         TXREG = dato;
+[; ;USART.c: 160:         TXREG = dato;
 [e = _TXREG -> _dato `uc ]
-"162
-[; ;USART.c: 162: }
-[e :UE 151 ]
+"161
+[; ;USART.c: 161: }
+[e :UE 162 ]
 }
+[a 5C 13 73 110 103 114 101 115 97 32 117 110 32 100 97 116 111 13 0 ]
+[a 1C 49 46 32 76 101 101 114 32 80 111 116 101 110 99 105 111 109 101 116 114 111 13 0 ]
+[a 2C 50 46 32 69 110 118 105 97 114 32 65 115 99 105 105 13 0 ]
+[a 4C 13 76 105 115 116 111 13 13 0 ]
+[a 6C 76 105 115 116 111 13 13 0 ]
+[a 3C 13 0 ]

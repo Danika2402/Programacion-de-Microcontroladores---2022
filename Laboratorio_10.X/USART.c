@@ -25,23 +25,20 @@
 #include <stdint.h>
 void setup(void);
 
-//void USART_Tx(char data);
-//void USART_Cadena(char *str);
-
-const char tabla[] = {'H','o','l','a',' '};
-char string = 0;
 uint8_t unidad, decena, centena;
-uint8_t indice, pot;
+uint8_t indice, pot, ASCII;
+uint8_t inicio = 0;
+
 void Print(char *str);
 void TX(char dato);
 
 void __interrupt() isr (void){
-    /*if(PIR1bits.RCIF)          
+    if(PIR1bits.RCIF)          
         indice = RCREG;
-        //USART_Cadena(" Hello fck wrld \r");
-    else*/ if(PIR1bits.ADIF){
-        if(ADCON0bits.CHS == 0)     //utilizamos 2 canales donde cada uno tiene 
-            pot = ADRESH;         //un potenciometro de 1k, dependiendo de cual canal
+        
+    else if(PIR1bits.ADIF){
+        if(ADCON0bits.CHS == 0)     
+            pot = ADRESH;        
         PIR1bits.ADIF = 0;    
     }
     
@@ -54,49 +51,52 @@ void main(void) {
     setup();
     
     while(1){
-        if(ADCON0bits.GO == 0){             // No hay proceso de conversion
-            ADCON0bits.GO = 1;              // Iniciamos proceso de conversi n�
+        if(ADCON0bits.GO == 0){             
+            ADCON0bits.GO = 1;              
         }
-        PORTB = pot;
-        /*centena = pot/100;                            
+        
+        centena = pot/100;                            
         decena = (pot - (100 * centena))/10;         
         unidad = pot - (100 * centena)-(10 * decena);
         
-        centena += 48;
-        decena += 48;
-        unidad += 48;
+        centena += 48;      //La terminal utiliza formato ASCII y el 48 es 
+        decena += 48;       //en numero 0 en ese formato, por eso lo sumamos
+        unidad += 48;       //a las variables despues de hacer la conversion 
+                            //para que sea de 0 a 255
+        if(inicio==0){
+            Print("1. Leer Potenciometro\r");   //Utilizamos la variable para que 
+            Print("2. Enviar Ascii\r");         //la terminal no este imprimiendo 
+            inicio = 1;                         //infinitamente sin pausa
+        }
         
-        Print("1. Leer Potenciometro\r");
-        Print("2. Enviar Ascii\r");
-        
-        while(PIR1bits.RCIF == 0);
-        switch(indice){
-            case('1'):
-                TX(centena);
-                TX(decena);
-                TX(unidad);
-                Print("\rListo\r");
-                break;
-                
-            case('2'):
-                Print("Ingresa un dato\r");
-                while(PIR1bits.RCIF);          
-                PORTD = RCREG;
-                Print("Listo\r");
-                break;
-        }*/
-        
-        //indice = 0;
-        //__delay_ms(1000);
-        /*while(indice <= 6){
-            
-            if(PIR1bits.TXIF){
-                TXREG = tabla[indice];
-                ++indice;
+        if(PIR1bits.RCIF == 0){             //Aqui chequeamos si recivimos un dato,
+            switch(indice){                 //dependiendo de este vamos  un "case"
+                case('1'):
+                    Print("\r");            //Si recibimos 1 entonces subimos
+                    TX(centena);            //el valor del potenciometro a la terminal
+                    TX(decena);             //que fue dividido en 3 variables para 
+                    TX(unidad);             //que se pueda imprimir
+                    Print("\rListo\r\r");
+                    inicio = 0;             //Limpiamos indice para que no se realize
+                    indice = 0;             //un loop continuo
+                    break;
+
+                case('2'):
+                    Print("\rIngresa un dato\r");   //Si es 2, entramos en otro mini loop
+                    ASCII = 1;                      //donde la variable es usada para quedarnos en el loop
+                    //while(ASCII ==1){               //y en eso la terminal espera en
+                        while(PIR1bits.RCIF==0){       //recivir un dato y terminar el case
+                            //indice = 0;
+                            PORTD = RCREG;
+                            Print("Listo\r\r");
+                            ASCII = 0;
+                            inicio = 0;
+                            indice = 0;
+                        }
+                    //}
+                    break;
             }
-        }*/
-        //Print();
-        //TXREG = 'Hola';
+        }
     }
     return;
 }
@@ -113,8 +113,7 @@ void setup(void){
     TRISD = 0x00;
     PORTD = 0x00;
     PORTA = 0x00;
-    TRISB =0x00;
-    PORTB = 0x00;
+
     //Configuraciones de ADC
     ADCON0bits.ADCS = 0b00;     // Fosc/2
     
@@ -143,7 +142,7 @@ void setup(void){
     PIE1bits.ADIE = 1;          //habilitar int. ADC
     INTCONbits.PEIE = 1;        //habilitar int. perifericos
     INTCONbits.GIE = 1;         //habilitar int. globales
-    //PIE1bits.RCIE = 1;          // Habilitamos Interrupciones de recepción
+    PIE1bits.RCIE = 1;          // Habilitamos Interrupciones de recepción
     
     return;
 }
@@ -160,16 +159,3 @@ void TX(char dato){
     while(TXSTAbits.TRMT==0);
         TXREG = dato;
 }
-
-/*
-void USART_Cadena(char *str){
-        while(*str != '\0'){
-            USART_Tx(*str);
-            str++;
-        }
-}
-    
-void USART_Tx(char data){
-        while(TXSTAbits.TRMT == 0);
-        TXREG = data;
-    }*/

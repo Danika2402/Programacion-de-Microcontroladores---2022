@@ -2655,21 +2655,18 @@ extern __bank0 __bit __timeout;
 
 void setup(void);
 
-
-
-
-const char tabla[] = {'H','o','l','a',' '};
-char string = 0;
 uint8_t unidad, decena, centena;
-uint8_t indice, pot;
+uint8_t indice, pot, ASCII;
+uint8_t inicio = 0;
+
 void Print(char *str);
 void TX(char dato);
 
 void __attribute__((picinterrupt(("")))) isr (void){
+    if(PIR1bits.RCIF)
+        indice = RCREG;
 
-
-
-           if(PIR1bits.ADIF){
+    else if(PIR1bits.ADIF){
         if(ADCON0bits.CHS == 0)
             pot = ADRESH;
         PIR1bits.ADIF = 0;
@@ -2687,8 +2684,49 @@ void main(void) {
         if(ADCON0bits.GO == 0){
             ADCON0bits.GO = 1;
         }
-        PORTB = pot;
-# 100 "USART.c"
+
+        centena = pot/100;
+        decena = (pot - (100 * centena))/10;
+        unidad = pot - (100 * centena)-(10 * decena);
+
+        centena += 48;
+        decena += 48;
+        unidad += 48;
+
+        if(inicio==0){
+            Print("1. Leer Potenciometro\r");
+            Print("2. Enviar Ascii\r");
+            inicio = 1;
+        }
+
+        if(PIR1bits.RCIF == 0){
+            switch(indice){
+                case('1'):
+                    Print("\r");
+                    TX(centena);
+                    TX(decena);
+                    TX(unidad);
+                    Print("\rListo\r\r");
+                    inicio = 0;
+                    indice = 0;
+                    break;
+
+                case('2'):
+                    Print("\rIngresa un dato\r");
+                    ASCII = 1;
+
+                        while(PIR1bits.RCIF==0){
+
+                            PORTD = RCREG;
+                            Print("Listo\r\r");
+                            ASCII = 0;
+                            inicio = 0;
+                            indice = 0;
+                        }
+
+                    break;
+            }
+        }
     }
     return;
 }
@@ -2705,8 +2743,7 @@ void setup(void){
     TRISD = 0x00;
     PORTD = 0x00;
     PORTA = 0x00;
-    TRISB =0x00;
-    PORTB = 0x00;
+
 
     ADCON0bits.ADCS = 0b00;
 
@@ -2735,7 +2772,7 @@ void setup(void){
     PIE1bits.ADIE = 1;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
-
+    PIE1bits.RCIE = 1;
 
     return;
 }
