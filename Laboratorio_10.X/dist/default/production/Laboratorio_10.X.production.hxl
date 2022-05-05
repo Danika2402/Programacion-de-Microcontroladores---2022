@@ -9,12 +9,12 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 5h		(dist/default/production\Laboratorio_10.X.production.hex)
-  8h - 505h		(dist/default/production\Laboratorio_10.X.production.hex)
+  8h - 4FDh		(dist/default/production\Laboratorio_10.X.production.hex)
   4000h - 4007h		(dist/default/production\Laboratorio_10.X.production.hex)
   400Eh - 4011h		(dist/default/production\Laboratorio_10.X.production.hex)
  Unused ranges:
   6h - 7h
-  506h - 3FFFh
+  4FEh - 3FFFh
   4008h - 400Dh
 
 ### Hex Memory Map ###
@@ -103,8 +103,7 @@
 000004C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000004D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000004E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000004F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000500 | H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- --
+000004F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
 ----------------------------------------------------------
 00004000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- H1 H1
 00004010 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --

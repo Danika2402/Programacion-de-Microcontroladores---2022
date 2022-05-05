@@ -33,17 +33,15 @@ void Print(char *str);
 void TX(char dato);
 
 void __interrupt() isr (void){
-    if(PIR1bits.RCIF)          
-        indice = RCREG;
-        
-    else if(PIR1bits.ADIF){
-        if(ADCON0bits.CHS == 0)     
+    if(PIR1bits.RCIF){          //esperamos un dato y lo guardamos en una variable
+        indice = RCREG;         //ASCII es para un case 
+        ASCII =0;
+    }
+    else if(PIR1bits.ADIF){     //ADC en RA0 donde guardamos el valor del potenciometro
+        if(ADCON0bits.CHS == 0)     //en una variable
             pot = ADRESH;        
         PIR1bits.ADIF = 0;    
     }
-    
-    
-    
     return;
 }
     
@@ -51,7 +49,7 @@ void main(void) {
     setup();
     
     while(1){
-        if(ADCON0bits.GO == 0){             
+        if(ADCON0bits.GO == 0){    //Solo usamos un canal          
             ADCON0bits.GO = 1;              
         }
         
@@ -84,16 +82,13 @@ void main(void) {
                 case('2'):
                     Print("\rIngresa un dato\r");   //Si es 2, entramos en otro mini loop
                     ASCII = 1;                      //donde la variable es usada para quedarnos en el loop
-                    //while(ASCII ==1){               //y en eso la terminal espera en
-                        while(PIR1bits.RCIF==0){       //recivir un dato y terminar el case
-                            //indice = 0;
-                            PORTD = RCREG;
-                            Print("Listo\r\r");
-                            ASCII = 0;
-                            inicio = 0;
-                            indice = 0;
-                        }
-                    //}
+                    while(ASCII ==1);               //que solo termina en la interrupcion
+                        //PORTD = RCREG;            //que cambia el valor de la variable
+                                                   //con eso se sube el caracter al    
+                    PORTD = RCREG;                  //puerto D y reiniciamos todo
+                    Print("Listo\r\r");
+                    inicio = 0;
+                    indice = 0;
                     break;
             }
         }
@@ -103,13 +98,13 @@ void main(void) {
 
 void setup(void){
     
-    ANSEL =0b00000001;      //AN0 AN1 AN2
+    ANSEL =0b00000001;      //AN0 
     ANSELH = 0x00;
     
     OSCCONbits.IRCF = 0b0100;   //1MHz
     OSCCONbits.SCS = 1;
     
-    TRISA = 0b00000001;     //RA1 y RA0 RA2
+    TRISA = 0b00000001;     //RA0 
     TRISD = 0x00;
     PORTD = 0x00;
     PORTA = 0x00;
@@ -148,14 +143,14 @@ void setup(void){
 }
 
 void Print(char *str){
-        while(*str != '\0'){
-            TX(*str);
-            str++;
+        while(*str != '\0'){    //Utilizamos estas subrutinas para mandar caracteres
+            TX(*str);           //a la terminal, donde se utiliza un puntero que incrementa
+            str++;              //entonces esto selecciona cada caracter 
         }
 }
 
 void TX(char dato){
     
-    while(TXSTAbits.TRMT==0);
-        TXREG = dato;
+    while(TXSTAbits.TRMT==0);   //aqui enviamos caracter por caracter lo que queremos
+        TXREG = dato;           //imprimir
 }

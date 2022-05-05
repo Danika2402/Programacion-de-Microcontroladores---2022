@@ -2663,17 +2663,15 @@ void Print(char *str);
 void TX(char dato);
 
 void __attribute__((picinterrupt(("")))) isr (void){
-    if(PIR1bits.RCIF)
+    if(PIR1bits.RCIF){
         indice = RCREG;
-
+        ASCII =0;
+    }
     else if(PIR1bits.ADIF){
         if(ADCON0bits.CHS == 0)
             pot = ADRESH;
         PIR1bits.ADIF = 0;
     }
-
-
-
     return;
 }
 
@@ -2714,16 +2712,13 @@ void main(void) {
                 case('2'):
                     Print("\rIngresa un dato\r");
                     ASCII = 1;
+                    while(ASCII ==1);
 
-                        while(PIR1bits.RCIF==0){
 
-                            PORTD = RCREG;
-                            Print("Listo\r\r");
-                            ASCII = 0;
-                            inicio = 0;
-                            indice = 0;
-                        }
-
+                    PORTD = RCREG;
+                    Print("Listo\r\r");
+                    inicio = 0;
+                    indice = 0;
                     break;
             }
         }

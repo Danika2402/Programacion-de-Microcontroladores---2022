@@ -19,13 +19,13 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "35 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_10.X\USART.c
 [v _isr isr `II(v  1 e 1 0 ]
-"50
+"48
 [v _main main `(v  1 e 1 0 ]
-"104
+"99
 [v _setup setup `(v  1 e 1 0 ]
-"150
+"145
 [v _Print Print `(v  1 e 1 0 ]
-"157
+"152
 [v _TX TX `(v  1 e 1 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -197,15 +197,15 @@
 [v _ASCII ASCII `uc  1 e 1 0 ]
 "30
 [v _inicio inicio `uc  1 e 1 0 ]
-"50
+"48
 [v _main main `(v  1 e 1 0 ]
 {
-"102
+"97
 } 0
-"104
+"99
 [v _setup setup `(v  1 e 1 0 ]
 {
-"148
+"143
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -243,24 +243,24 @@
 [v ___awdiv@dividend dividend `i  1 p 2 4 ]
 "41
 } 0
-"150 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_10.X\USART.c
+"145 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_10.X\USART.c
 [v _Print Print `(v  1 e 1 0 ]
 {
 [v Print@str str `*.24uc  1 a 1 wreg ]
 [v Print@str str `*.24uc  1 a 1 wreg ]
 [v Print@str str `*.24uc  1 a 1 5 ]
-"155
+"150
 } 0
-"157
+"152
 [v _TX TX `(v  1 e 1 0 ]
 {
 [v TX@dato dato `uc  1 a 1 wreg ]
 [v TX@dato dato `uc  1 a 1 wreg ]
 [v TX@dato dato `uc  1 a 1 3 ]
-"161
+"156
 } 0
 "35
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"48
+"46
 } 0
