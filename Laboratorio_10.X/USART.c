@@ -151,6 +151,7 @@ void Print(char *str){
 
 void TX(char dato){
     
-    while(TXSTAbits.TRMT==0);   //aqui enviamos caracter por caracter lo que queremos
+    while(TXSTAbits.TRMT==0)
+        ;                       //aqui enviamos caracter por caracter lo que queremos
         TXREG = dato;           //imprimir
 }

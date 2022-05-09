@@ -799,17 +799,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _dato `uc ~T0 @X0 1 r1 ]
 [f ]
 "154
-[; ;USART.c: 154:     while(TXSTAbits.TRMT==0);
+[; ;USART.c: 154:     while(TXSTAbits.TRMT==0)
 [e $U 163  ]
 [e :U 164 ]
+"155
+[; ;USART.c: 155:         ;
 [e :U 163 ]
+"154
+[; ;USART.c: 154:     while(TXSTAbits.TRMT==0)
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 164  ]
 [e :U 165 ]
-"155
-[; ;USART.c: 155:         TXREG = dato;
-[e = _TXREG -> _dato `uc ]
 "156
-[; ;USART.c: 156: }
+[; ;USART.c: 156:         TXREG = dato;
+[e = _TXREG -> _dato `uc ]
+"157
+[; ;USART.c: 157: }
 [e :UE 162 ]
 }
 [a 5C 13 73 110 103 114 101 115 97 32 117 110 32 100 97 116 111 13 0 ]

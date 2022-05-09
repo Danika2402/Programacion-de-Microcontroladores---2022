@@ -178,7 +178,7 @@ strings 2C2 353 STRING 2C2 0
 text1 354 4FD CODE 354 0
 %locals
 dist/default/production\Laboratorio_10.X.production.o
-C:\Users\HP\AppData\Local\Temp\xcAsd8s.s
+C:\Users\HP\AppData\Local\Temp\xcAsieo.s
 581 F 0 CODE 0
 584 F 0 CODE 0
 616 F 0 CODE 0
@@ -333,8 +333,10 @@ USART.c
 150 25D 0 CODE 0
 152 273 0 CODE 0
 154 274 0 CODE 0
-155 27A 0 CODE 0
-156 27E 0 CODE 0
+155 274 0 CODE 0
+154 274 0 CODE 0
+156 27A 0 CODE 0
+157 27E 0 CODE 0
 35 21A 0 CODE 0
 36 21A 0 CODE 0
 37 220 0 CODE 0

@@ -2781,6 +2781,7 @@ void Print(char *str){
 
 void TX(char dato){
 
-    while(TXSTAbits.TRMT==0);
+    while(TXSTAbits.TRMT==0)
+        ;
         TXREG = dato;
 }
