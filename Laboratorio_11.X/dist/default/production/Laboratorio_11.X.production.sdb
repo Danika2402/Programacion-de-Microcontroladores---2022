@@ -15,8 +15,10 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "59
 [v _main main `(v  1 e 1 0 ]
-"82
+"84
 [v _setup setup `(v  1 e 1 0 ]
+"167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
 [s S22 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
@@ -26,7 +28,7 @@
 `uc 1 RA6 1 0 :1:6 
 `uc 1 RA7 1 0 :1:7 
 ]
-"184 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+"184
 [u S31 . 1 `S22 1 . 1 0 ]
 [v _PORTAbits PORTAbits `VES31  1 e 1 @5 ]
 [s S142 . 1 `uc 1 RB0 1 0 :1:0 
@@ -73,20 +75,6 @@
 "554
 [u S51 . 1 `S43 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES51  1 e 1 @12 ]
-[s S239 . 1 `uc 1 SSPM 1 0 :4:0 
-`uc 1 CKP 1 0 :1:4 
-`uc 1 SSPEN 1 0 :1:5 
-`uc 1 SSPOV 1 0 :1:6 
-`uc 1 WCOL 1 0 :1:7 
-]
-"871
-[s S245 . 1 `uc 1 SSPM0 1 0 :1:0 
-`uc 1 SSPM1 1 0 :1:1 
-`uc 1 SSPM2 1 0 :1:2 
-`uc 1 SSPM3 1 0 :1:3 
-]
-[u S250 . 1 `S239 1 . 1 0 `S245 1 . 1 0 ]
-[v _SSPCONbits SSPCONbits `VES250  1 e 1 @20 ]
 "1239
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 [s S62 . 1 `uc 1 ADON 1 0 :1:0 
@@ -112,39 +100,13 @@
 ]
 [u S82 . 1 `S62 1 . 1 0 `S67 1 . 1 0 `S76 1 . 1 0 `S79 1 . 1 0 ]
 [v _ADCON0bits ADCON0bits `VES82  1 e 1 @31 ]
-[s S375 . 1 `uc 1 PS 1 0 :3:0 
-`uc 1 PSA 1 0 :1:3 
-`uc 1 T0SE 1 0 :1:4 
-`uc 1 T0CS 1 0 :1:5 
-`uc 1 INTEDG 1 0 :1:6 
-`uc 1 nRBPU 1 0 :1:7 
-]
-"1367
-[s S382 . 1 `uc 1 PS0 1 0 :1:0 
-`uc 1 PS1 1 0 :1:1 
-`uc 1 PS2 1 0 :1:2 
-]
-[u S386 . 1 `S375 1 . 1 0 `S382 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES386  1 e 1 @129 ]
 "1417
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S354 . 1 `uc 1 TRISB0 1 0 :1:0 
-`uc 1 TRISB1 1 0 :1:1 
-`uc 1 TRISB2 1 0 :1:2 
-`uc 1 TRISB3 1 0 :1:3 
-`uc 1 TRISB4 1 0 :1:4 
-`uc 1 TRISB5 1 0 :1:5 
-`uc 1 TRISB6 1 0 :1:6 
-`uc 1 TRISB7 1 0 :1:7 
-]
-"1496
-[u S363 . 1 `S354 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES363  1 e 1 @134 ]
 "1541
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1603
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S220 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S221 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -153,102 +115,31 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1719
-[u S228 . 1 `S220 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES228  1 e 1 @140 ]
-[s S170 . 1 `uc 1 SCS 1 0 :1:0 
+[u S229 . 1 `S221 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES229  1 e 1 @140 ]
+[s S171 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1883
-[s S176 . 1 `uc 1 . 1 0 :4:0 
+[s S177 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S181 . 1 `S170 1 . 1 0 `S176 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES181  1 e 1 @143 ]
-[s S265 . 1 `uc 1 BF 1 0 :1:0 
-`uc 1 UA 1 0 :1:1 
-`uc 1 R_nW 1 0 :1:2 
-`uc 1 S 1 0 :1:3 
-`uc 1 P 1 0 :1:4 
-`uc 1 D_nA 1 0 :1:5 
-`uc 1 CKE 1 0 :1:6 
-`uc 1 SMP 1 0 :1:7 
-]
-"2232
-[s S274 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 R 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 D 1 0 :1:5 
-]
-[s S279 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 I2C_READ 1 0 :1:2 
-`uc 1 I2C_START 1 0 :1:3 
-`uc 1 I2C_STOP 1 0 :1:4 
-`uc 1 I2C_DATA 1 0 :1:5 
-]
-[s S285 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 nW 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 nA 1 0 :1:5 
-]
-[s S290 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 nWRITE 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 nADDRESS 1 0 :1:5 
-]
-[s S295 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 R_W 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 D_A 1 0 :1:5 
-]
-[s S300 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 READ_WRITE 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 DATA_ADDRESS 1 0 :1:5 
-]
-[u S305 . 1 `S265 1 . 1 0 `S274 1 . 1 0 `S279 1 . 1 0 `S285 1 . 1 0 `S290 1 . 1 0 `S295 1 . 1 0 `S300 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES305  1 e 1 @148 ]
-[s S401 . 1 `uc 1 WPUB 1 0 :8:0 
-]
-"2367
-[s S403 . 1 `uc 1 WPUB0 1 0 :1:0 
-`uc 1 WPUB1 1 0 :1:1 
-`uc 1 WPUB2 1 0 :1:2 
-`uc 1 WPUB3 1 0 :1:3 
-`uc 1 WPUB4 1 0 :1:4 
-`uc 1 WPUB5 1 0 :1:5 
-`uc 1 WPUB6 1 0 :1:6 
-`uc 1 WPUB7 1 0 :1:7 
-]
-[u S412 . 1 `S401 1 . 1 0 `S403 1 . 1 0 ]
-[v _WPUBbits WPUBbits `VES412  1 e 1 @149 ]
-[s S427 . 1 `uc 1 IOCB 1 0 :8:0 
-]
-"2437
-[s S429 . 1 `uc 1 IOCB0 1 0 :1:0 
-`uc 1 IOCB1 1 0 :1:1 
-`uc 1 IOCB2 1 0 :1:2 
-`uc 1 IOCB3 1 0 :1:3 
-`uc 1 IOCB4 1 0 :1:4 
-`uc 1 IOCB5 1 0 :1:5 
-`uc 1 IOCB6 1 0 :1:6 
-`uc 1 IOCB7 1 0 :1:7 
-]
-[u S438 . 1 `S427 1 . 1 0 `S429 1 . 1 0 ]
-[v _IOCBbits IOCBbits `VES438  1 e 1 @150 ]
-[s S205 . 1 `uc 1 . 1 0 :4:0 
+[u S182 . 1 `S171 1 . 1 0 `S177 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES182  1 e 1 @143 ]
+[s S200 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2992
-[u S211 . 1 `S205 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES211  1 e 1 @159 ]
+[u S206 . 1 `S200 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES206  1 e 1 @159 ]
 "3388
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3450
@@ -256,12 +147,12 @@
 "59 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_11.X\SPI.c
 [v _main main `(v  1 e 1 0 ]
 {
-"80
-} 0
 "82
+} 0
+"84
 [v _setup setup `(v  1 e 1 0 ]
 {
-"156
+"157
 } 0
 "32
 [v _isr isr `II(v  1 e 1 0 ]

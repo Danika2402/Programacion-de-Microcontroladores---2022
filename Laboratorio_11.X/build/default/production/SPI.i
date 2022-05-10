@@ -2660,7 +2660,7 @@ uint8_t cont_slave,pot_master;
 char valor_temp;
 
 void __attribute__((picinterrupt(("")))) isr (void){
-    if (PORTAbits.RA0==1){
+    if (PORTAbits.RA0){
         if(PIR1bits.ADIF){
             if(ADCON0bits.CHS == 2)
                 PORTD = ADRESH;
@@ -2682,10 +2682,12 @@ void __attribute__((picinterrupt(("")))) isr (void){
 void main(void) {
     setup();
     while(1){
-        if(ADCON0bits.GO == 0){
-            ADCON0bits.GO = 1;
+        if(PORTAbits.RA0){
+            if(ADCON0bits.GO == 0){
+                ADCON0bits.GO = 1;
+            }
         }
-# 78 "SPI.c"
+# 80 "SPI.c"
     }
     return;
 }
@@ -2694,21 +2696,20 @@ void setup(void){
     ANSELH = 0x00;
 
     TRISA = 0b00100101;
-
+    PORTA = 0X00;
     TRISD = 0x00;
     PORTD = 0x00;
 
     OSCCONbits.IRCF = 0b0100;
     OSCCONbits.SCS = 1;
-    _delay((unsigned long)((1000)*(1000000/4000.0)));
 
-    if(PORTAbits.RA0){
+
+                         {
         ANSEL =0b00000100;
-
 
         TRISC = 0b00010000;
         PORTC = 0x00;
-# 110 "SPI.c"
+# 111 "SPI.c"
         ADCON0bits.ADCS = 0b00;
 
         ADCON1bits.VCFG0 = 0;
@@ -2725,34 +2726,6 @@ void setup(void){
         INTCONbits.PEIE = 1;
         INTCONbits.GIE = 1;
 
-    }else{
-        ANSEL =0x00;
-        TRISC = 0b00011000;
-        PORTC = 0x00;
-
-
-        SSPCONbits.SSPM = 0b0100;
-        SSPCONbits.CKP = 0;
-        SSPCONbits.SSPEN = 1;
-
-        SSPSTATbits.CKE = 1;
-        SSPSTATbits.SMP = 0;
-
-
-        TRISBbits.TRISB0 = 1;
-        TRISBbits.TRISB1 = 1;
-        OPTION_REGbits.nRBPU = 0;
-        WPUBbits.WPUB = 0x03;
-        IOCBbits.IOCB = 0x03;
-
-
-        INTCONbits.RBIE = 1;
-        INTCONbits.RBIF = 0;
-
-
-        INTCONbits.PEIE = 1;
-        INTCONbits.GIE = 1;
-
     }
-
+# 157 "SPI.c"
 }

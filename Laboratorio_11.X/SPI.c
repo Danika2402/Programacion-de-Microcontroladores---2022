@@ -30,7 +30,7 @@ uint8_t cont_slave,pot_master;
 char valor_temp;
 
 void __interrupt() isr (void){
-    if (PORTAbits.RA0==1){
+    if (PORTAbits.RA0){
         if(PIR1bits.ADIF){     //ADC en RA0 donde guardamos el valor del potenciometro
             if(ADCON0bits.CHS == 2)     //en una variable
                 PORTD = ADRESH;        
@@ -59,8 +59,10 @@ void __interrupt() isr (void){
 void main(void) {
     setup();
     while(1){
-        if(ADCON0bits.GO == 0){    //Solo usamos un canal          
-            ADCON0bits.GO = 1;              
+        if(PORTAbits.RA0){
+            if(ADCON0bits.GO == 0){    //Solo usamos un canal          
+                ADCON0bits.GO = 1;              
+            }
         }
         /*if(PORTAbits.RA0){
             SSPBUF = pot_master;
@@ -83,17 +85,16 @@ void setup(void){
     ANSELH = 0x00;
     
     TRISA = 0b00100101;
-    //PORTA = 0X00;
+    PORTA = 0X00;
     TRISD = 0x00;
     PORTD = 0x00;
     
     OSCCONbits.IRCF = 0b0100;   //1MHz
     OSCCONbits.SCS = 1;
-    __delay_ms(1000);
+    //__delay_ms(1000);
     
-    if(PORTAbits.RA0){
+    /*if(PORTAbits.RA0)*/{
         ANSEL =0b00000100;      //AN2
-        //TRISA = 0b00100101;
         
         TRISC = 0b00010000;         // -> SDI entrada, SCK y SD0 como salida
         PORTC = 0x00;
@@ -123,7 +124,7 @@ void setup(void){
         INTCONbits.PEIE = 1;        //habilitar int. perifericos
         INTCONbits.GIE = 1;         //habilitar int. globales
 
-    }else{
+    }/*else{
         ANSEL =0x00;      
         TRISC = 0b00011000; // -> SDI y SCK entradas, SD0 como salida
         PORTC = 0x00;
@@ -151,6 +152,6 @@ void setup(void){
         INTCONbits.PEIE = 1;        //habilitar int. perifericos
         INTCONbits.GIE = 1;         //habilitar int. globales
     
-    }
+    }*/
     
 }
