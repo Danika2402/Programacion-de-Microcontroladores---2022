@@ -31,6 +31,7 @@
 
 
 
+
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2648,13 +2649,16 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 24 "SPI_SLAVE.c" 2
+# 25 "SPI_SLAVE.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c90\\stdint.h" 1 3
-# 25 "SPI_SLAVE.c" 2
+# 26 "SPI_SLAVE.c" 2
 
 void setup(void);
 uint8_t cont_slave;
+
+
+uint8_t val_temporal;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if(INTCONbits.RBIF){
@@ -2665,11 +2669,14 @@ void __attribute__((picinterrupt(("")))) isr (void){
         INTCONbits.RBIF = 0;
     }
     else if (PIR1bits.SSPIF){
+
+        SSPBUF = 0xFF;
+        _delay((unsigned long)((1)*(1000000/4000.0)));
+
         while (!SSPSTATbits.BF){}
-        PORTD = SSPBUF;
+        SSPBUF = cont_slave;
 
         _delay((unsigned long)((1)*(1000000/4000.0)));
-        SSPBUF = cont_slave;
 
         PIR1bits.SSPIF = 0;
     }
@@ -2689,8 +2696,6 @@ void setup(void){
 
     TRISA = 0b00100000;
     PORTA = 0X00;
-    TRISD = 0x00;
-    PORTD = 0x00;
 
     TRISC = 0b00011000;
     PORTC = 0x00;

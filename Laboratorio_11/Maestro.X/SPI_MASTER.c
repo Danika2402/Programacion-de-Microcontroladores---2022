@@ -20,11 +20,14 @@
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 #define _XTAL_FREQ 1000000
+#define FLAG_SPI_1 0xFF
+#define FLAG_SPI_2 0xDD
+
 
 #include <xc.h>
 #include <stdint.h>
 void setup(void);
-uint8_t pot_master;
+uint8_t pot_master,val_temp;
 
 void __interrupt() isr (void){
     if(PIR1bits.ADIF){     //ADC en RA0 donde guardamos el valor del potenciometro
@@ -41,29 +44,61 @@ void main(void) {
         if(ADCON0bits.GO == 0){    //Solo usamos un canal          
             ADCON0bits.GO = 1;              
         }
-        /*
-        PORTAbits.RA7 = 1; 
         
-        SSPBUF = pot_master;
-        __delay_ms(1);
+        val_temp = SSPBUF;
         
+        if(val_temp==FLAG_SPI_1){
+            PORTAbits.RA7 = 1;      
+            __delay_ms(10);         
+            PORTAbits.RA7 = 0; 
+            
+            while(!SSPSTATbits.BF){}
+            PORTD = SSPBUF;
+        }
+        if(val_temp==FLAG_SPI_2){
+            PORTAbits.RA6 = 1;      
+            __delay_ms(10);         
+            PORTAbits.RA6 = 0;
+            
+            SSPBUF = pot_master;
+            while(!SSPSTATbits.BF){}
+        }
+        
+        /*PORTAbits.RA7 = 1;     
+        __delay_ms(10);         
+        PORTAbits.RA7 = 0;      
+        
+        SSPBUF = FLAG_SPI_1;   
         while(!SSPSTATbits.BF){}
         PORTD = SSPBUF;
-        __delay_ms(1);
         
-        PORTAbits.RA7 = 0;*/
+        PORTAbits.RA6 = 1;     
+        __delay_ms(10);         
+        PORTAbits.RA6 = 0;
+        
+        SSPBUF = FLAG_SPI_2;
+        while(!SSPSTATbits.BF){}
+        SSPBUF = pot_master; 
+        
+        __delay_ms(100);
+        /*PORTAbits.RA7 = 0;      
+        __delay_ms(1);  
+ 
+        while(!SSPSTATbits.BF){}// Esperamos a que se reciba un dato
+        PORTD = SSPBUF;         // Mostramos dato recibido en PORTD
+        
+        __delay_ms(1); 
+        PORTAbits.RA7 = 1;      
+        
+        PORTAbits.RA6 = 0;      
+        __delay_ms(1);  
         
         SSPBUF = pot_master;   // Cargamos valor del contador al buffer
         while(!SSPSTATbits.BF){}// Esperamos a que termine el envio
-            
-        PORTAbits.RA7 = 1;      // Deshabilitamos el ss del esclavo
-        __delay_ms(1);        
-        PORTAbits.RA7 = 0;      // habilitamos nuevamente el escalvo      
-                                   
-        while(!SSPSTATbits.BF){}// Esperamos a que se reciba un dato
-        PORTD = SSPBUF;         // Mostramos dato recibido en PORTD
-        __delay_ms(1);       // Enviamos y pedimos datos cada 1 segundo
+        __delay_ms(1);      
         
+        PORTAbits.RA6 = 1;      
+        */
     }
     return;
 }
