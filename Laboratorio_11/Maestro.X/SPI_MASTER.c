@@ -20,17 +20,15 @@
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 #define _XTAL_FREQ 1000000
-#define FLAG_SPI_1 0xFF
-#define FLAG_SPI_2 0xDD
-
+#define FLAG_SPI 0xFF
 
 #include <xc.h>
 #include <stdint.h>
 void setup(void);
-uint8_t pot_master,val_temp;
-char SPI;
+uint8_t pot_master;
+
 void __interrupt() isr (void){
-    if(PIR1bits.ADIF){     //ADC en RA0 donde guardamos el valor del potenciometro
+    if(PIR1bits.ADIF){              //ADC en RA2 donde guardamos el valor del potenciometro
         if(ADCON0bits.CHS == 2)     //en una variable
             pot_master = ADRESH;        
         PIR1bits.ADIF = 0;
@@ -45,72 +43,21 @@ void main(void) {
             ADCON0bits.GO = 1;              
         }
         
-        PORTAbits.RA7 = 1;  
-        PORTAbits.RA6 = 0;
-        
-        SSPBUF = pot_master;
-        while(!SSPSTATbits.BF){}
+        PORTAbits.RA7 = 1;          //Desactivamos y activamos el esclavo que 
+        PORTAbits.RA6 = 0;          //queremos usar
+        __delay_ms(1);
+        SSPBUF = pot_master;        //Para este enviamos el dato del POT
+        while(!SSPSTATbits.BF){}    //esperamos a que se envie
         __delay_ms(10);
         
-        PORTAbits.RA7 = 0;  
+        PORTAbits.RA7 = 0;          //cambiamos de esclavo
         PORTAbits.RA6 = 1;
+        __delay_ms(1);
         
-        while(!SSPSTATbits.BF){}
-        PORTD = SSPBUF;
+        SSPBUF = FLAG_SPI;          //enviamos dato un dato cualquiera para activar 
+        while(!SSPSTATbits.BF){}    //los pulsos de reloj para que asi el esclavo
+        PORTD = SSPBUF;             //nos envie un dato y lo guardamos en PORTD
         __delay_ms(10);
-        /*if(val_temp==FLAG_SPI_1){
-            PORTAbits.RA7 = 1;      
-            __delay_ms(10);         
-            PORTAbits.RA7 = 0; 
-            
-            SSPBUF = 0x01;
-            while(!SSPSTATbits.BF){}
-            PORTD = SSPBUF;
-        }
-        if(val_temp==FLAG_SPI_2){
-            PORTAbits.RA6 = 1;      
-            __delay_ms(10);         
-            PORTAbits.RA6 = 0;
-            
-            SSPBUF = pot_master;
-            while(!SSPSTATbits.BF){}
-        }
-        
-        /*PORTAbits.RA7 = 1;     
-        __delay_ms(10);         
-        PORTAbits.RA7 = 0;      
-        
-        SSPBUF = FLAG_SPI_1;   
-        while(!SSPSTATbits.BF){}
-        PORTD = SSPBUF;
-        
-        PORTAbits.RA6 = 1;     
-        __delay_ms(10);         
-        PORTAbits.RA6 = 0;
-        
-        SSPBUF = FLAG_SPI_2;
-        while(!SSPSTATbits.BF){}
-        SSPBUF = pot_master; 
-        
-        __delay_ms(100);
-        /*PORTAbits.RA7 = 0;      
-        __delay_ms(1);  
- 
-        while(!SSPSTATbits.BF){}// Esperamos a que se reciba un dato
-        PORTD = SSPBUF;         // Mostramos dato recibido en PORTD
-        
-        __delay_ms(1); 
-        PORTAbits.RA7 = 1;      
-        
-        PORTAbits.RA6 = 0;      
-        __delay_ms(1);  
-        
-        SSPBUF = pot_master;   // Cargamos valor del contador al buffer
-        while(!SSPSTATbits.BF){}// Esperamos a que termine el envio
-        __delay_ms(1);      
-        
-        PORTAbits.RA6 = 1;      
-        */
     }
     return;
 }
@@ -119,7 +66,7 @@ void setup(void){
     ANSELH = 0x00;
     ANSEL =0b00000100;      //AN2
     
-    TRISA = 0b00000100;
+    TRISA = 0b00000100;     //RA2 potenciometro
     PORTA = 0X00;
     TRISD = 0x00;
     PORTD = 0x00;

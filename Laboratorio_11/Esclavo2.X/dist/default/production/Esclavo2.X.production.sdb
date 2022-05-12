@@ -19,13 +19,13 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"39 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_11\Esclavo2.X\SPI_SLAVE_2.c
+"37 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_11\Esclavo2.X\SPI_SLAVE_2.c
 [v _isr isr `II(v  1 e 1 0 ]
-"50
+"52
 [v _main main `(v  1 e 1 0 ]
-"63
+"61
 [v _setup setup `(v  1 e 1 0 ]
-"116
+"112
 [v _map map `(us  1 e 2 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -94,12 +94,12 @@
 [v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
 "942
 [v _CCP1CON CCP1CON `VEuc  1 e 1 @23 ]
-[s S151 . 1 `uc 1 CCP1M 1 0 :4:0 
+[s S147 . 1 `uc 1 CCP1M 1 0 :4:0 
 `uc 1 DC1B 1 0 :2:4 
 `uc 1 P1M 1 0 :2:6 
 ]
 "969
-[s S155 . 1 `uc 1 CCP1M0 1 0 :1:0 
+[s S151 . 1 `uc 1 CCP1M0 1 0 :1:0 
 `uc 1 CCP1M1 1 0 :1:1 
 `uc 1 CCP1M2 1 0 :1:2 
 `uc 1 CCP1M3 1 0 :1:3 
@@ -108,12 +108,12 @@
 `uc 1 P1M0 1 0 :1:6 
 `uc 1 P1M1 1 0 :1:7 
 ]
-[s S164 . 1 `uc 1 . 1 0 :4:0 
+[s S160 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CCP1Y 1 0 :1:4 
 `uc 1 CCP1X 1 0 :1:5 
 ]
-[u S168 . 1 `S151 1 . 1 0 `S155 1 . 1 0 `S164 1 . 1 0 ]
-[v _CCP1CONbits CCP1CONbits `VES168  1 e 1 @23 ]
+[u S164 . 1 `S147 1 . 1 0 `S151 1 . 1 0 `S160 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES164  1 e 1 @23 ]
 "1417
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1541
@@ -157,7 +157,7 @@
 [v _OSCCONbits OSCCONbits `VES207  1 e 1 @143 ]
 "2042
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
-[s S41 . 1 `uc 1 BF 1 0 :1:0 
+[s S47 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -167,118 +167,123 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "2232
-[s S50 . 1 `uc 1 . 1 0 :2:0 
+[s S56 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S55 . 1 `uc 1 . 1 0 :2:0 
+[s S61 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S61 . 1 `uc 1 . 1 0 :2:0 
+[s S67 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S66 . 1 `uc 1 . 1 0 :2:0 
+[s S72 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S71 . 1 `uc 1 . 1 0 :2:0 
+[s S77 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S76 . 1 `uc 1 . 1 0 :2:0 
+[s S82 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S81 . 1 `S41 1 . 1 0 `S50 1 . 1 0 `S55 1 . 1 0 `S61 1 . 1 0 `S66 1 . 1 0 `S71 1 . 1 0 `S76 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES81  1 e 1 @148 ]
+[u S87 . 1 `S47 1 . 1 0 `S56 1 . 1 0 `S61 1 . 1 0 `S67 1 . 1 0 `S72 1 . 1 0 `S77 1 . 1 0 `S82 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES87  1 e 1 @148 ]
 "3388
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3450
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"35 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_11\Esclavo2.X\SPI_SLAVE_2.c
+"34 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_11\Esclavo2.X\SPI_SLAVE_2.c
 [v _PWM PWM `uc  1 e 1 0 ]
-"37
+"35
 [v _CCP1 CCP1 `us  1 e 2 0 ]
-"50
+"52
 [v _main main `(v  1 e 1 0 ]
 {
-"61
+"59
 } 0
-"63
+"61
 [v _setup setup `(v  1 e 1 0 ]
 {
-"112
+"108
 } 0
-"116
+"37
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"50
+} 0
+"112
 [v _map map `(us  1 e 2 0 ]
 {
 [v map@x x `uc  1 a 1 wreg ]
 [v map@x x `uc  1 a 1 wreg ]
-[v map@x0 x0 `uc  1 p 1 13 ]
-[v map@x1 x1 `uc  1 p 1 14 ]
-"117
-[v map@y0 y0 `us  1 p 2 15 ]
-[v map@y1 y1 `us  1 p 2 17 ]
-[v map@x x `uc  1 a 1 8 ]
-"119
+[v map@x0 x0 `uc  1 p 1 5 ]
+[v map@x1 x1 `uc  1 p 1 6 ]
+"113
+[v map@y0 y0 `us  1 p 2 7 ]
+[v map@y1 y1 `us  1 p 2 9 ]
+[v map@x x `uc  1 a 1 78 ]
+"115
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
 {
 [v ___xxtofl@sign sign `uc  1 a 1 wreg ]
 "13
-[v ___xxtofl@arg arg `ul  1 a 4 6 ]
+[v ___xxtofl@arg arg `ul  1 a 4 10 ]
 "12
-[v ___xxtofl@exp exp `uc  1 a 1 5 ]
+[v ___xxtofl@exp exp `uc  1 a 1 9 ]
 "10
 [v ___xxtofl@sign sign `uc  1 a 1 wreg ]
-[v ___xxtofl@val val `l  1 p 4 4 ]
+[v ___xxtofl@val val `l  1 p 4 0 ]
 "15
-[v ___xxtofl@sign sign `uc  1 a 1 4 ]
+[v ___xxtofl@sign sign `uc  1 a 1 8 ]
 "44
 } 0
 "43 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\fltol.c
 [v ___fltol __fltol `(l  1 e 4 0 ]
 {
 "45
-[v ___fltol@exp1 exp1 `uc  1 a 1 79 ]
-[v ___fltol@sign1 sign1 `uc  1 a 1 78 ]
+[v ___fltol@exp1 exp1 `uc  1 a 1 77 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 76 ]
 "43
-[v ___fltol@f1 f1 `d  1 p 4 4 ]
+[v ___fltol@f1 f1 `d  1 p 4 72 ]
 "70
 } 0
 "8 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S696 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S695 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S701 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S704 . 4 `l 1 i 4 0 `d 1 f 4 0 `S696 1 fAsBytes 4 0 `S701 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S704  1 a 4 56 ]
+[s S700 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S703 . 4 `l 1 i 4 0 `d 1 f 4 0 `S695 1 fAsBytes 4 0 `S700 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S703  1 a 4 46 ]
 "12
-[v ___flmul@grs grs `ul  1 a 4 51 ]
-[s S773 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[v ___flmul@grs grs `ul  1 a 4 40 ]
+[s S772 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S776 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S773 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S776  1 a 2 60 ]
+[u S775 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S772 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S775  1 a 2 50 ]
 "10
-[v ___flmul@bexp bexp `uc  1 a 1 55 ]
+[v ___flmul@bexp bexp `uc  1 a 1 45 ]
 "11
-[v ___flmul@aexp aexp `uc  1 a 1 50 ]
+[v ___flmul@aexp aexp `uc  1 a 1 44 ]
 "9
-[v ___flmul@sign sign `uc  1 a 1 49 ]
+[v ___flmul@sign sign `uc  1 a 1 39 ]
 "8
-[v ___flmul@b b `d  1 p 4 36 ]
-[v ___flmul@a a `d  1 p 4 40 ]
+[v ___flmul@b b `d  1 p 4 26 ]
+[v ___flmul@a a `d  1 p 4 30 ]
 "205
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\Umul8_16.c
@@ -286,53 +291,48 @@
 {
 [v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
 "6
-[v __Umul8_16@word_mpld word_mpld `ui  1 a 2 2 ]
+[v __Umul8_16@word_mpld word_mpld `ui  1 a 2 6 ]
 "5
-[v __Umul8_16@product product `ui  1 a 2 0 ]
+[v __Umul8_16@product product `ui  1 a 2 4 ]
 "4
 [v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
-[v __Umul8_16@multiplicand multiplicand `uc  1 p 1 4 ]
-[v __Umul8_16@multiplier multiplier `uc  1 a 1 4 ]
+[v __Umul8_16@multiplicand multiplicand `uc  1 p 1 0 ]
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 8 ]
 "60
 } 0
 "8 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\sprcdiv.c
 [v ___fldiv __fldiv `(d  1 e 4 0 ]
 {
 "21
-[v ___fldiv@grs grs `ul  1 a 4 30 ]
+[v ___fldiv@grs grs `ul  1 a 4 20 ]
 "22
-[v ___fldiv@rem rem `ul  1 a 4 23 ]
+[v ___fldiv@rem rem `ul  1 a 4 13 ]
 "20
-[v ___fldiv@new_exp new_exp `i  1 a 2 28 ]
+[v ___fldiv@new_exp new_exp `i  1 a 2 18 ]
 "19
-[v ___fldiv@aexp aexp `uc  1 a 1 35 ]
+[v ___fldiv@aexp aexp `uc  1 a 1 25 ]
 "18
-[v ___fldiv@bexp bexp `uc  1 a 1 34 ]
+[v ___fldiv@bexp bexp `uc  1 a 1 24 ]
 "16
-[v ___fldiv@sign sign `uc  1 a 1 27 ]
+[v ___fldiv@sign sign `uc  1 a 1 17 ]
 "8
-[v ___fldiv@a a `d  1 p 4 10 ]
-[v ___fldiv@b b `d  1 p 4 14 ]
+[v ___fldiv@a a `d  1 p 4 0 ]
+[v ___fldiv@b b `d  1 p 4 4 ]
 "185
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 {
 "17
-[v ___fladd@grs grs `uc  1 a 1 3 ]
+[v ___fladd@grs grs `uc  1 a 1 71 ]
 "15
-[v ___fladd@bexp bexp `uc  1 a 1 2 ]
+[v ___fladd@bexp bexp `uc  1 a 1 70 ]
 "16
-[v ___fladd@aexp aexp `uc  1 a 1 1 ]
+[v ___fladd@aexp aexp `uc  1 a 1 69 ]
 "13
-[v ___fladd@signs signs `uc  1 a 1 0 ]
+[v ___fladd@signs signs `uc  1 a 1 68 ]
 "10
-[v ___fladd@b b `d  1 p 4 62 ]
-[v ___fladd@a a `d  1 p 4 66 ]
+[v ___fladd@b b `d  1 p 4 52 ]
+[v ___fladd@a a `d  1 p 4 56 ]
 "237
-} 0
-"39 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_11\Esclavo2.X\SPI_SLAVE_2.c
-[v _isr isr `II(v  1 e 1 0 ]
-{
-"48
 } 0

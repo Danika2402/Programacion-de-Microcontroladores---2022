@@ -32,8 +32,6 @@
 
 
 
-
-
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2651,14 +2649,14 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 27 "SPI_MASTER.c" 2
+# 25 "SPI_MASTER.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c90\\stdint.h" 1 3
-# 28 "SPI_MASTER.c" 2
+# 26 "SPI_MASTER.c" 2
 
 void setup(void);
-uint8_t pot_master,val_temp;
-char SPI;
+uint8_t pot_master;
+
 void __attribute__((picinterrupt(("")))) isr (void){
     if(PIR1bits.ADIF){
         if(ADCON0bits.CHS == 2)
@@ -2677,18 +2675,19 @@ void main(void) {
 
         PORTAbits.RA7 = 1;
         PORTAbits.RA6 = 0;
-
+        _delay((unsigned long)((1)*(1000000/4000.0)));
         SSPBUF = pot_master;
         while(!SSPSTATbits.BF){}
         _delay((unsigned long)((10)*(1000000/4000.0)));
 
         PORTAbits.RA7 = 0;
         PORTAbits.RA6 = 1;
+        _delay((unsigned long)((1)*(1000000/4000.0)));
 
+        SSPBUF = 0xFF;
         while(!SSPSTATbits.BF){}
         PORTD = SSPBUF;
         _delay((unsigned long)((10)*(1000000/4000.0)));
-# 114 "SPI_MASTER.c"
     }
     return;
 }

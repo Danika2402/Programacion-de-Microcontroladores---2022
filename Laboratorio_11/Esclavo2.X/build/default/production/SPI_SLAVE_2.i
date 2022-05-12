@@ -2658,20 +2658,22 @@ extern __bank0 __bit __timeout;
 
 
 
-
 void setup(void);
 unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
             unsigned short out_min, unsigned short out_max);
 uint8_t PWM;
-uint8_t val_temporal;
 unsigned short CCP1;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if (PIR1bits.SSPIF){
+        _delay((unsigned long)((1)*(1000000/4000.0)));
         while (!SSPSTATbits.BF){}
         PWM = SSPBUF;
-
         _delay((unsigned long)((10)*(1000000/4000.0)));
+
+        CCP1 = map(PWM, 0, 255, 62, 125);
+        CCPR1L = (uint8_t)(CCP1>>2);
+        CCP1CONbits.DC1B = CCP1 & 0b11;
 
         PIR1bits.SSPIF = 0;
     }
@@ -2681,10 +2683,6 @@ void main(void) {
     setup();
 
     while(1){
-
-        CCP1 = map(PWM, 0, 255, 62, 125);
-        CCPR1L = (uint8_t)(CCP1>>2);
-        CCP1CONbits.DC1B = CCP1 & 0b11;
 
     }
     return;
@@ -2729,9 +2727,7 @@ void setup(void){
     while(!PIR1bits.TMR2IF);
     PIR1bits.TMR2IF = 0;
 
-    TRISCbits.TRISC1 = 0;
-
-
+    TRISCbits.TRISC2 = 0;
 
 
     PIR1bits.SSPIF = 0;

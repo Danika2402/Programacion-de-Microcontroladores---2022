@@ -20,27 +20,23 @@
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 #define _XTAL_FREQ 1000000
-#define FLAG_SPI 0xFF
 
 #include <xc.h>
 #include <stdint.h>
 void setup(void);
 uint8_t cont_slave;
 
-
-uint8_t val_temporal;
-
 void __interrupt() isr (void){
     if(INTCONbits.RBIF){        //Chequear si se prendio la bandera
-        if (!PORTBbits.RB0)     //Si RB0 = 0, incrementar PORTA             
+        if (!PORTBbits.RB0)     //Si RB0 = 0, incrementar varible           
             ++cont_slave;            
-        if(!PORTBbits.RB1)      //Si RB1 = 0, decrementar PORTA
+        if(!PORTBbits.RB1)      //Si RB1 = 0, decrementar variable
             --cont_slave;
         INTCONbits.RBIF = 0;    // Limpiamos bandera 
     }
     else if (PIR1bits.SSPIF){
-        
-        SSPBUF = cont_slave;
+        __delay_ms(1);
+        SSPBUF = cont_slave;        //enviamos el valor de la variable al maestro
         while (!SSPSTATbits.BF){}
         __delay_ms(10);
         

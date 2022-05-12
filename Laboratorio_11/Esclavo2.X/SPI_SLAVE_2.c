@@ -22,7 +22,6 @@
 
 #include <xc.h>
 #include <stdint.h>
-#define FLAG_SPI 0xDD
 
 #define IN_MIN 0                // Valor minimo de entrada del potenciometro
 #define IN_MAX 255              // Valor maximo de entrada del potenciometro
@@ -33,15 +32,18 @@ void setup(void);
 unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max, 
             unsigned short out_min, unsigned short out_max);
 uint8_t PWM;
-uint8_t val_temporal;
 unsigned short CCP1;
 
 void __interrupt() isr (void){
     if (PIR1bits.SSPIF){
-        while (!SSPSTATbits.BF){}
-        PWM = SSPBUF;
-
+        __delay_ms(1);
+        while (!SSPSTATbits.BF){}   //Recivimos potenciometro desde el maestro
+        PWM = SSPBUF;               //lo guardamos en una variable
         __delay_ms(10);
+        
+        CCP1 = map(PWM, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); //mapeamos valor de potenciometro
+        CCPR1L = (uint8_t)(CCP1>>2);    
+        CCP1CONbits.DC1B = CCP1 & 0b11; 
         
         PIR1bits.SSPIF = 0;
     }
@@ -52,10 +54,6 @@ void main(void) {
     
     while(1){
         
-        CCP1 = map(PWM, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); //mapeamos valor de potenciometro
-        CCPR1L = (uint8_t)(CCP1>>2);    
-        CCP1CONbits.DC1B = CCP1 & 0b11; 
-        
     }
     return;
 }
@@ -64,7 +62,7 @@ void setup(void){
     ANSELH = 0x00;
     ANSEL = 0x00;
     
-    TRISA = 0b00100000;
+    TRISA = 0b00100000; //RA5 slave select
     PORTA = 0X00;
     
     TRISC = 0b00011000; // -> SDI y SCK entradas, SD0 como salida
@@ -99,11 +97,9 @@ void setup(void){
     while(!PIR1bits.TMR2IF);
     PIR1bits.TMR2IF = 0;        //Esperar ciclo TMR2
     
-    TRISCbits.TRISC1 = 0;       //Habilitar salida CCP2
+    TRISCbits.TRISC2 = 0;       //Habilitar salida CCP1
     
     //Configuraciones de interrupcioens
-    //PIR1bits.ADIF = 0;          //bandera int. ADC
-    //PIE1bits.ADIE = 1;          //habilitar int. ADC
     PIR1bits.SSPIF = 0;         // Limpiamos bandera de SPI
     PIE1bits.SSPIE = 1;         // Habilitamos int. de SPI
     INTCONbits.PEIE = 1;        //habilitar int. perifericos
