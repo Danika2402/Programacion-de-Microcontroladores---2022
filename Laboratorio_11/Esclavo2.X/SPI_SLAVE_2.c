@@ -38,13 +38,10 @@ unsigned short CCP1;
 
 void __interrupt() isr (void){
     if (PIR1bits.SSPIF){
-        SSPBUF = FLAG_SPI;
-        __delay_ms(1);
-        
         while (!SSPSTATbits.BF){}
         PWM = SSPBUF;
 
-        __delay_ms(1);
+        __delay_ms(10);
         
         PIR1bits.SSPIF = 0;
     }

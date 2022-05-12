@@ -15,11 +15,11 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "40
 [v _main main `(v  1 e 1 0 ]
-"106
+"118
 [v _setup setup `(v  1 e 1 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S93 . 1 `uc 1 RA0 1 0 :1:0 
+[s S92 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -29,8 +29,8 @@
 `uc 1 RA7 1 0 :1:7 
 ]
 "184
-[u S102 . 1 `S93 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES102  1 e 1 @5 ]
+[u S101 . 1 `S92 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES101  1 e 1 @5 ]
 "291
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "353
@@ -135,7 +135,7 @@
 ]
 [u S228 . 1 `S217 1 . 1 0 `S223 1 . 1 0 ]
 [v _OSCCONbits OSCCONbits `VES228  1 e 1 @143 ]
-[s S120 . 1 `uc 1 BF 1 0 :1:0 
+[s S114 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -145,39 +145,39 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "2232
-[s S129 . 1 `uc 1 . 1 0 :2:0 
+[s S123 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S134 . 1 `uc 1 . 1 0 :2:0 
+[s S128 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S140 . 1 `uc 1 . 1 0 :2:0 
+[s S134 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S145 . 1 `uc 1 . 1 0 :2:0 
+[s S139 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S150 . 1 `uc 1 . 1 0 :2:0 
+[s S144 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S155 . 1 `uc 1 . 1 0 :2:0 
+[s S149 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S160 . 1 `S120 1 . 1 0 `S129 1 . 1 0 `S134 1 . 1 0 `S140 1 . 1 0 `S145 1 . 1 0 `S150 1 . 1 0 `S155 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES160  1 e 1 @148 ]
+[u S154 . 1 `S114 1 . 1 0 `S123 1 . 1 0 `S128 1 . 1 0 `S134 1 . 1 0 `S139 1 . 1 0 `S144 1 . 1 0 `S149 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES154  1 e 1 @148 ]
 [s S269 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
@@ -193,16 +193,15 @@
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
 "30 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_11\Maestro.X\SPI_MASTER.c
 [v _pot_master pot_master `uc  1 e 1 0 ]
-[v _val_temp val_temp `uc  1 e 1 0 ]
 "40
 [v _main main `(v  1 e 1 0 ]
 {
-"104
+"116
 } 0
-"106
+"118
 [v _setup setup `(v  1 e 1 0 ]
 {
-"147
+"159
 } 0
 "32
 [v _isr isr `II(v  1 e 1 0 ]

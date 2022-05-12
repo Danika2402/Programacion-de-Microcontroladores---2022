@@ -28,7 +28,7 @@
 #include <stdint.h>
 void setup(void);
 uint8_t pot_master,val_temp;
-
+char SPI;
 void __interrupt() isr (void){
     if(PIR1bits.ADIF){     //ADC en RA0 donde guardamos el valor del potenciometro
         if(ADCON0bits.CHS == 2)     //en una variable
@@ -45,13 +45,25 @@ void main(void) {
             ADCON0bits.GO = 1;              
         }
         
-        val_temp = SSPBUF;
+        PORTAbits.RA7 = 1;  
+        PORTAbits.RA6 = 0;
         
-        if(val_temp==FLAG_SPI_1){
+        SSPBUF = pot_master;
+        while(!SSPSTATbits.BF){}
+        __delay_ms(10);
+        
+        PORTAbits.RA7 = 0;  
+        PORTAbits.RA6 = 1;
+        
+        while(!SSPSTATbits.BF){}
+        PORTD = SSPBUF;
+        __delay_ms(10);
+        /*if(val_temp==FLAG_SPI_1){
             PORTAbits.RA7 = 1;      
             __delay_ms(10);         
             PORTAbits.RA7 = 0; 
             
+            SSPBUF = 0x01;
             while(!SSPSTATbits.BF){}
             PORTD = SSPBUF;
         }

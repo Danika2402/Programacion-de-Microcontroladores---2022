@@ -12,14 +12,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "554
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 554: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
 [v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
-"844
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 844: extern volatile unsigned char SSPBUF __attribute__((address(0x013)));
-[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
-[v F36 `(v ~T0 @X0 1 tf1`ul ]
-"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\builtins.h
-[v __delay `JF36 ~T0 @X0 0 e ]
-[p i __delay ]
-"2184 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+"2184
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 2184:     struct {
 [s S82 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S82 . BF UA R_nW S P D_nA CKE SMP ]
@@ -54,6 +47,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2232
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 2232: extern volatile SSPSTATbits_t SSPSTATbits __attribute__((address(0x094)));
 [v _SSPSTATbits `VS81 ~T0 @X0 0 e@148 ]
+"844
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 844: extern volatile unsigned char SSPBUF __attribute__((address(0x013)));
+[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
+[v F36 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\builtins.h
+[v __delay `JF36 ~T0 @X0 0 e ]
+[p i __delay ]
 [p mainexit ]
 "32 SPI_SLAVE_2.c
 [; ;SPI_SLAVE_2.c: 32: void setup(void);
@@ -468,13 +468,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 139  ]
 {
 "41
-[; ;SPI_SLAVE_2.c: 41:         SSPBUF = 0xDD;
-[e = _SSPBUF -> -> 221 `i `uc ]
-"42
-[; ;SPI_SLAVE_2.c: 42:         _delay((unsigned long)((1)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"44
-[; ;SPI_SLAVE_2.c: 44:         while (!SSPSTATbits.BF){}
+[; ;SPI_SLAVE_2.c: 41:         while (!SSPSTATbits.BF){}
 [e $U 140  ]
 [e :U 141 ]
 {
@@ -482,185 +476,185 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 140 ]
 [e $ ! != -> . . _SSPSTATbits 0 0 `i -> 0 `i 141  ]
 [e :U 142 ]
-"45
-[; ;SPI_SLAVE_2.c: 45:         PWM = SSPBUF;
+"42
+[; ;SPI_SLAVE_2.c: 42:         PWM = SSPBUF;
 [e = _PWM _SSPBUF ]
-"47
-[; ;SPI_SLAVE_2.c: 47:         _delay((unsigned long)((1)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"49
-[; ;SPI_SLAVE_2.c: 49:         PIR1bits.SSPIF = 0;
+"44
+[; ;SPI_SLAVE_2.c: 44:         _delay((unsigned long)((10)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"46
+[; ;SPI_SLAVE_2.c: 46:         PIR1bits.SSPIF = 0;
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"50
-[; ;SPI_SLAVE_2.c: 50:     }
+"47
+[; ;SPI_SLAVE_2.c: 47:     }
 }
 [e :U 139 ]
-"51
-[; ;SPI_SLAVE_2.c: 51: }
+"48
+[; ;SPI_SLAVE_2.c: 48: }
 [e :UE 138 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"53
-[; ;SPI_SLAVE_2.c: 53: void main(void) {
+"50
+[; ;SPI_SLAVE_2.c: 50: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"54
-[; ;SPI_SLAVE_2.c: 54:     setup();
+"51
+[; ;SPI_SLAVE_2.c: 51:     setup();
 [e ( _setup ..  ]
-"56
-[; ;SPI_SLAVE_2.c: 56:     while(1){
+"53
+[; ;SPI_SLAVE_2.c: 53:     while(1){
 [e :U 145 ]
 {
-"58
-[; ;SPI_SLAVE_2.c: 58:         CCP1 = map(PWM, 0, 255, 62, 125);
+"55
+[; ;SPI_SLAVE_2.c: 55:         CCP1 = map(PWM, 0, 255, 62, 125);
 [e = _CCP1 ( _map (4 , , , , _PWM -> -> 0 `i `uc -> -> 255 `i `uc -> -> 62 `i `us -> -> 125 `i `us ]
-"59
-[; ;SPI_SLAVE_2.c: 59:         CCPR1L = (uint8_t)(CCP1>>2);
+"56
+[; ;SPI_SLAVE_2.c: 56:         CCPR1L = (uint8_t)(CCP1>>2);
 [e = _CCPR1L -> >> -> _CCP1 `ui -> 2 `i `uc ]
-"60
-[; ;SPI_SLAVE_2.c: 60:         CCP1CONbits.DC1B = CCP1 & 0b11;
+"57
+[; ;SPI_SLAVE_2.c: 57:         CCP1CONbits.DC1B = CCP1 & 0b11;
 [e = . . _CCP1CONbits 0 1 -> & -> _CCP1 `ui -> -> 3 `i `ui `uc ]
-"62
-[; ;SPI_SLAVE_2.c: 62:     }
+"59
+[; ;SPI_SLAVE_2.c: 59:     }
 }
 [e :U 144 ]
 [e $U 145  ]
 [e :U 146 ]
-"63
-[; ;SPI_SLAVE_2.c: 63:     return;
+"60
+[; ;SPI_SLAVE_2.c: 60:     return;
 [e $UE 143  ]
-"64
-[; ;SPI_SLAVE_2.c: 64: }
+"61
+[; ;SPI_SLAVE_2.c: 61: }
 [e :UE 143 ]
 }
-"66
-[; ;SPI_SLAVE_2.c: 66: void setup(void){
+"63
+[; ;SPI_SLAVE_2.c: 63: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"67
-[; ;SPI_SLAVE_2.c: 67:     ANSELH = 0x00;
+"64
+[; ;SPI_SLAVE_2.c: 64:     ANSELH = 0x00;
 [e = _ANSELH -> -> 0 `i `uc ]
-"68
-[; ;SPI_SLAVE_2.c: 68:     ANSEL = 0x00;
+"65
+[; ;SPI_SLAVE_2.c: 65:     ANSEL = 0x00;
 [e = _ANSEL -> -> 0 `i `uc ]
-"70
-[; ;SPI_SLAVE_2.c: 70:     TRISA = 0b00100000;
+"67
+[; ;SPI_SLAVE_2.c: 67:     TRISA = 0b00100000;
 [e = _TRISA -> -> 32 `i `uc ]
-"71
-[; ;SPI_SLAVE_2.c: 71:     PORTA = 0X00;
+"68
+[; ;SPI_SLAVE_2.c: 68:     PORTA = 0X00;
 [e = _PORTA -> -> 0 `i `uc ]
-"73
-[; ;SPI_SLAVE_2.c: 73:     TRISC = 0b00011000;
+"70
+[; ;SPI_SLAVE_2.c: 70:     TRISC = 0b00011000;
 [e = _TRISC -> -> 24 `i `uc ]
-"74
-[; ;SPI_SLAVE_2.c: 74:     PORTC = 0x00;
+"71
+[; ;SPI_SLAVE_2.c: 71:     PORTC = 0x00;
 [e = _PORTC -> -> 0 `i `uc ]
-"76
-[; ;SPI_SLAVE_2.c: 76:     OSCCONbits.IRCF = 0b0100;
+"73
+[; ;SPI_SLAVE_2.c: 73:     OSCCONbits.IRCF = 0b0100;
 [e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
-"77
-[; ;SPI_SLAVE_2.c: 77:     OSCCONbits.SCS = 1;
+"74
+[; ;SPI_SLAVE_2.c: 74:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"80
-[; ;SPI_SLAVE_2.c: 80:     SSPCONbits.SSPM = 0b0100;
+"77
+[; ;SPI_SLAVE_2.c: 77:     SSPCONbits.SSPM = 0b0100;
 [e = . . _SSPCONbits 0 0 -> -> 4 `i `uc ]
-"81
-[; ;SPI_SLAVE_2.c: 81:     SSPCONbits.CKP = 0;
+"78
+[; ;SPI_SLAVE_2.c: 78:     SSPCONbits.CKP = 0;
 [e = . . _SSPCONbits 0 1 -> -> 0 `i `uc ]
-"82
-[; ;SPI_SLAVE_2.c: 82:     SSPCONbits.SSPEN = 1;
+"79
+[; ;SPI_SLAVE_2.c: 79:     SSPCONbits.SSPEN = 1;
 [e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
-"84
-[; ;SPI_SLAVE_2.c: 84:     SSPSTATbits.CKE = 1;
+"81
+[; ;SPI_SLAVE_2.c: 81:     SSPSTATbits.CKE = 1;
 [e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
-"85
-[; ;SPI_SLAVE_2.c: 85:     SSPSTATbits.SMP = 0;
+"82
+[; ;SPI_SLAVE_2.c: 82:     SSPSTATbits.SMP = 0;
 [e = . . _SSPSTATbits 0 7 -> -> 0 `i `uc ]
-"88
-[; ;SPI_SLAVE_2.c: 88:     TRISCbits.TRISC2 = 1;
+"85
+[; ;SPI_SLAVE_2.c: 85:     TRISCbits.TRISC2 = 1;
 [e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
-"89
-[; ;SPI_SLAVE_2.c: 89:     PR2 = 155;
+"86
+[; ;SPI_SLAVE_2.c: 86:     PR2 = 155;
 [e = _PR2 -> -> 155 `i `uc ]
-"92
-[; ;SPI_SLAVE_2.c: 92:     CCP1CON = 0;
+"89
+[; ;SPI_SLAVE_2.c: 89:     CCP1CON = 0;
 [e = _CCP1CON -> -> 0 `i `uc ]
-"93
-[; ;SPI_SLAVE_2.c: 93:     CCP1CONbits.P1M = 0;
+"90
+[; ;SPI_SLAVE_2.c: 90:     CCP1CONbits.P1M = 0;
 [e = . . _CCP1CONbits 0 2 -> -> 0 `i `uc ]
-"94
-[; ;SPI_SLAVE_2.c: 94:     CCP1CONbits.CCP1M = 0b1100;
+"91
+[; ;SPI_SLAVE_2.c: 91:     CCP1CONbits.CCP1M = 0b1100;
 [e = . . _CCP1CONbits 0 0 -> -> 12 `i `uc ]
-"96
-[; ;SPI_SLAVE_2.c: 96:     CCPR1L = 125>>2;
+"93
+[; ;SPI_SLAVE_2.c: 93:     CCPR1L = 125>>2;
 [e = _CCPR1L -> >> -> 125 `i -> 2 `i `uc ]
-"97
-[; ;SPI_SLAVE_2.c: 97:     CCP1CONbits.DC1B = 125 & 0b11;
+"94
+[; ;SPI_SLAVE_2.c: 94:     CCP1CONbits.DC1B = 125 & 0b11;
 [e = . . _CCP1CONbits 0 1 -> & -> 125 `i -> 3 `i `uc ]
-"99
-[; ;SPI_SLAVE_2.c: 99:     PIR1bits.TMR2IF = 0;
+"96
+[; ;SPI_SLAVE_2.c: 96:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"100
-[; ;SPI_SLAVE_2.c: 100:     T2CONbits.T2CKPS = 0b11;
+"97
+[; ;SPI_SLAVE_2.c: 97:     T2CONbits.T2CKPS = 0b11;
 [e = . . _T2CONbits 0 0 -> -> 3 `i `uc ]
-"101
-[; ;SPI_SLAVE_2.c: 101:     T2CONbits.TMR2ON = 1;
+"98
+[; ;SPI_SLAVE_2.c: 98:     T2CONbits.TMR2ON = 1;
 [e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-"102
-[; ;SPI_SLAVE_2.c: 102:     while(!PIR1bits.TMR2IF);
+"99
+[; ;SPI_SLAVE_2.c: 99:     while(!PIR1bits.TMR2IF);
 [e $U 148  ]
 [e :U 149 ]
 [e :U 148 ]
 [e $ ! != -> . . _PIR1bits 0 1 `i -> 0 `i 149  ]
 [e :U 150 ]
-"103
-[; ;SPI_SLAVE_2.c: 103:     PIR1bits.TMR2IF = 0;
+"100
+[; ;SPI_SLAVE_2.c: 100:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"105
-[; ;SPI_SLAVE_2.c: 105:     TRISCbits.TRISC1 = 0;
+"102
+[; ;SPI_SLAVE_2.c: 102:     TRISCbits.TRISC1 = 0;
 [e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
-"110
-[; ;SPI_SLAVE_2.c: 110:     PIR1bits.SSPIF = 0;
+"107
+[; ;SPI_SLAVE_2.c: 107:     PIR1bits.SSPIF = 0;
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"111
-[; ;SPI_SLAVE_2.c: 111:     PIE1bits.SSPIE = 1;
+"108
+[; ;SPI_SLAVE_2.c: 108:     PIE1bits.SSPIE = 1;
 [e = . . _PIE1bits 0 3 -> -> 1 `i `uc ]
-"112
-[; ;SPI_SLAVE_2.c: 112:     INTCONbits.PEIE = 1;
+"109
+[; ;SPI_SLAVE_2.c: 109:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"113
-[; ;SPI_SLAVE_2.c: 113:     INTCONbits.GIE = 1;
+"110
+[; ;SPI_SLAVE_2.c: 110:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"115
-[; ;SPI_SLAVE_2.c: 115: }
+"112
+[; ;SPI_SLAVE_2.c: 112: }
 [e :UE 147 ]
 }
-"119
-[; ;SPI_SLAVE_2.c: 119: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
+"116
+[; ;SPI_SLAVE_2.c: 116: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
 [v _map `(us ~T0 @X0 1 ef5`uc`uc`uc`us`us ]
-"120
-[; ;SPI_SLAVE_2.c: 120:             unsigned short y0, unsigned short y1){
+"117
+[; ;SPI_SLAVE_2.c: 117:             unsigned short y0, unsigned short y1){
 {
 [e :U _map ]
-"119
-[; ;SPI_SLAVE_2.c: 119: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
+"116
+[; ;SPI_SLAVE_2.c: 116: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
 [v _x `uc ~T0 @X0 1 r1 ]
 [v _x0 `uc ~T0 @X0 1 r2 ]
 [v _x1 `uc ~T0 @X0 1 r3 ]
-"120
-[; ;SPI_SLAVE_2.c: 120:             unsigned short y0, unsigned short y1){
+"117
+[; ;SPI_SLAVE_2.c: 117:             unsigned short y0, unsigned short y1){
 [v _y0 `us ~T0 @X0 1 r4 ]
 [v _y1 `us ~T0 @X0 1 r5 ]
 [f ]
-"121
-[; ;SPI_SLAVE_2.c: 121:     return (unsigned short)(y0+((float)(y1-y0)/(x1-x0))*(x-x0));
+"118
+[; ;SPI_SLAVE_2.c: 118:     return (unsigned short)(y0+((float)(y1-y0)/(x1-x0))*(x-x0));
 [e ) -> + -> -> _y0 `ui `f * / -> - -> _y1 `ui -> _y0 `ui `f -> - -> _x1 `i -> _x0 `i `f -> - -> _x `i -> _x0 `i `f `us ]
 [e $UE 151  ]
-"122
-[; ;SPI_SLAVE_2.c: 122: }
+"119
+[; ;SPI_SLAVE_2.c: 119: }
 [e :UE 151 ]
 }

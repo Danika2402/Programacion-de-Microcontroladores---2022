@@ -2670,13 +2670,9 @@ void __attribute__((picinterrupt(("")))) isr (void){
     }
     else if (PIR1bits.SSPIF){
 
-        SSPBUF = 0xFF;
-        _delay((unsigned long)((1)*(1000000/4000.0)));
-
-        while (!SSPSTATbits.BF){}
         SSPBUF = cont_slave;
-
-        _delay((unsigned long)((1)*(1000000/4000.0)));
+        while (!SSPSTATbits.BF){}
+        _delay((unsigned long)((10)*(1000000/4000.0)));
 
         PIR1bits.SSPIF = 0;
     }

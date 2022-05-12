@@ -2658,7 +2658,7 @@ extern __bank0 __bit __timeout;
 
 void setup(void);
 uint8_t pot_master,val_temp;
-
+char SPI;
 void __attribute__((picinterrupt(("")))) isr (void){
     if(PIR1bits.ADIF){
         if(ADCON0bits.CHS == 2)
@@ -2675,25 +2675,20 @@ void main(void) {
             ADCON0bits.GO = 1;
         }
 
-        val_temp = SSPBUF;
+        PORTAbits.RA7 = 1;
+        PORTAbits.RA6 = 0;
 
-        if(val_temp==0xFF){
-            PORTAbits.RA7 = 1;
-            _delay((unsigned long)((10)*(1000000/4000.0)));
-            PORTAbits.RA7 = 0;
+        SSPBUF = pot_master;
+        while(!SSPSTATbits.BF){}
+        _delay((unsigned long)((10)*(1000000/4000.0)));
 
-            while(!SSPSTATbits.BF){}
-            PORTD = SSPBUF;
-        }
-        if(val_temp==0xDD){
-            PORTAbits.RA6 = 1;
-            _delay((unsigned long)((10)*(1000000/4000.0)));
-            PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
+        PORTAbits.RA6 = 1;
 
-            SSPBUF = pot_master;
-            while(!SSPSTATbits.BF){}
-        }
-# 102 "SPI_MASTER.c"
+        while(!SSPSTATbits.BF){}
+        PORTD = SSPBUF;
+        _delay((unsigned long)((10)*(1000000/4000.0)));
+# 114 "SPI_MASTER.c"
     }
     return;
 }

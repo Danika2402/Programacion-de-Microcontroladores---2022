@@ -2668,13 +2668,10 @@ unsigned short CCP1;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if (PIR1bits.SSPIF){
-        SSPBUF = 0xDD;
-        _delay((unsigned long)((1)*(1000000/4000.0)));
-
         while (!SSPSTATbits.BF){}
         PWM = SSPBUF;
 
-        _delay((unsigned long)((1)*(1000000/4000.0)));
+        _delay((unsigned long)((10)*(1000000/4000.0)));
 
         PIR1bits.SSPIF = 0;
     }

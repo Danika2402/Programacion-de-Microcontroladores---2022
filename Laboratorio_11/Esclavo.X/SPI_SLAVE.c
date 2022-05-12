@@ -40,13 +40,9 @@ void __interrupt() isr (void){
     }
     else if (PIR1bits.SSPIF){
         
-        SSPBUF = FLAG_SPI;
-        __delay_ms(1);
-        
-        while (!SSPSTATbits.BF){}
         SSPBUF = cont_slave;
-
-        __delay_ms(1);
+        while (!SSPSTATbits.BF){}
+        __delay_ms(10);
         
         PIR1bits.SSPIF = 0;
     }
