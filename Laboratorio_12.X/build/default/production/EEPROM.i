@@ -2659,7 +2659,7 @@ uint8_t cont;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if(INTCONbits.RBIF){
-        if (!PORTBbits.RB0)
+        if (PORTBbits.RB0)
 
             __asm("sleep");
         INTCONbits.RBIF = 0;
@@ -2668,6 +2668,7 @@ void __attribute__((picinterrupt(("")))) isr (void){
     else if(PIR1bits.ADIF){
         if(ADCON0bits.CHS == 0)
             PORTD = ADRESH;
+
         PIR1bits.ADIF = 0;
     }
 }
@@ -2675,9 +2676,10 @@ void __attribute__((picinterrupt(("")))) isr (void){
 void main(void) {
     setup();
     while(1){
-        if(ADCON0bits.GO == 0){
+
+
+        if(ADCON0bits.GO == 0)
             ADCON0bits.GO = 1;
-        }
 
     }
     return;

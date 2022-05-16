@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.35 build 20211206165544 
-                                                                                               Sun May 15 21:47:28 2022
+                                                                                               Mon May 16 09:14:51 2022
 
 Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1 
      1                           	processor	16F887
@@ -287,7 +287,7 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    273 ;;
    274 ;; *************** function _main *****************
    275 ;; Defined at:
-   276 ;;		line 45 in file "EEPROM.c"
+   276 ;;		line 46 in file "EEPROM.c"
    277 ;; Parameters:    Size  Location     Type
    278 ;;		None
    279 ;; Auto vars:     Size  Location     Type
@@ -322,11 +322,11 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    308                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
    309                           
    310                           
-   311                           ;EEPROM.c: 46:     setup();
+   311                           ;EEPROM.c: 47:     setup();
    312  007A  120A  118A  2014  120A  118A  	fcall	_setup
    313  007F                     l726:
    314                           
-   315                           ;EEPROM.c: 48:         if(ADCON0bits.GO == 0){
+   315                           ;EEPROM.c: 51:         if(ADCON0bits.GO == 0)
    316  007F  1283               	bcf	3,5	;RP0=0, select bank0
    317  0080  1303               	bcf	3,6	;RP1=0, select bank0
    318  0081  189F               	btfsc	31,1	;volatile
@@ -337,7 +337,7 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    323  0085                     u50:
    324  0085                     l728:
    325                           
-   326                           ;EEPROM.c: 49:             ADCON0bits.GO = 1;
+   326                           ;EEPROM.c: 52:             ADCON0bits.GO = 1;
    327  0085  149F               	bsf	31,1	;volatile
    328  0086  287F               	goto	l726
    329  0087  120A  118A  280C   	ljmp	start
@@ -347,7 +347,7 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    333  0014                     __ptext1:	
    334 ;; *************** function _setup *****************
    335 ;; Defined at:
-   336 ;;		line 56 in file "EEPROM.c"
+   336 ;;		line 58 in file "EEPROM.c"
    337 ;; Parameters:    Size  Location     Type
    338 ;;		None
    339 ;; Auto vars:     Size  Location     Type
@@ -383,18 +383,18 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    369                           ; Regs used in _setup: [wreg+status,2+status,0]
    370                           
    371                           
-   372                           ;EEPROM.c: 57:     ANSELH = 0x00;
+   372                           ;EEPROM.c: 59:     ANSELH = 0x00;
    373  0014  1683               	bsf	3,5	;RP0=1, select bank3
    374  0015  1703               	bsf	3,6	;RP1=1, select bank3
    375  0016  0189               	clrf	9	;volatile
    376  0017                     l662:
    377                           
-   378                           ;EEPROM.c: 58:     ANSEL =0b00000001;
+   378                           ;EEPROM.c: 60:     ANSEL =0b00000001;
    379  0017  3001               	movlw	1
    380  0018  0088               	movwf	8	;volatile
    381  0019                     l664:
    382                           
-   383                           ;EEPROM.c: 60:     OSCCONbits.IRCF = 0b0100;
+   383                           ;EEPROM.c: 62:     OSCCONbits.IRCF = 0b0100;
    384  0019  1683               	bsf	3,5	;RP0=1, select bank1
    385  001A  1303               	bcf	3,6	;RP1=0, select bank1
    386  001B  080F               	movf	15,w	;volatile
@@ -403,74 +403,74 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    389  001E  008F               	movwf	15	;volatile
    390  001F                     l666:
    391                           
-   392                           ;EEPROM.c: 61:     OSCCONbits.SCS = 1;
+   392                           ;EEPROM.c: 63:     OSCCONbits.SCS = 1;
    393  001F  140F               	bsf	15,0	;volatile
    394  0020                     l668:
    395                           
-   396                           ;EEPROM.c: 63:     TRISA = 0b00000001;
+   396                           ;EEPROM.c: 65:     TRISA = 0b00000001;
    397  0020  3001               	movlw	1
    398  0021  0085               	movwf	5	;volatile
    399  0022                     l670:
    400                           
-   401                           ;EEPROM.c: 64:     PORTA = 0x00;
+   401                           ;EEPROM.c: 66:     PORTA = 0x00;
    402  0022  1283               	bcf	3,5	;RP0=0, select bank0
    403  0023  1303               	bcf	3,6	;RP1=0, select bank0
    404  0024  0185               	clrf	5	;volatile
    405  0025                     l672:
    406                           
-   407                           ;EEPROM.c: 65:     PORTD = 0x00;
+   407                           ;EEPROM.c: 67:     PORTD = 0x00;
    408  0025  0188               	clrf	8	;volatile
    409  0026                     l674:
    410                           
-   411                           ;EEPROM.c: 66:     TRISD = 0x00;
+   411                           ;EEPROM.c: 68:     TRISD = 0x00;
    412  0026  1683               	bsf	3,5	;RP0=1, select bank1
    413  0027  1303               	bcf	3,6	;RP1=0, select bank1
    414  0028  0188               	clrf	8	;volatile
    415  0029                     l676:
    416                           
-   417                           ;EEPROM.c: 67:     TRISC = 0x00;
+   417                           ;EEPROM.c: 69:     TRISC = 0x00;
    418  0029  0187               	clrf	7	;volatile
    419  002A                     l678:
    420                           
-   421                           ;EEPROM.c: 68:     PORTC = 0x00;
+   421                           ;EEPROM.c: 70:     PORTC = 0x00;
    422  002A  1283               	bcf	3,5	;RP0=0, select bank0
    423  002B  1303               	bcf	3,6	;RP1=0, select bank0
    424  002C  0187               	clrf	7	;volatile
    425                           
-   426                           ;EEPROM.c: 71:     ADCON0bits.ADCS = 0b00;
+   426                           ;EEPROM.c: 73:     ADCON0bits.ADCS = 0b00;
    427  002D  303F               	movlw	-193
    428  002E  059F               	andwf	31,f	;volatile
    429  002F                     l680:
    430                           
-   431                           ;EEPROM.c: 73:     ADCON1bits.VCFG0 = 0;
+   431                           ;EEPROM.c: 75:     ADCON1bits.VCFG0 = 0;
    432  002F  1683               	bsf	3,5	;RP0=1, select bank1
    433  0030  1303               	bcf	3,6	;RP1=0, select bank1
    434  0031  121F               	bcf	31,4	;volatile
    435  0032                     l682:
    436                           
-   437                           ;EEPROM.c: 74:     ADCON1bits.VCFG1 = 1;
+   437                           ;EEPROM.c: 76:     ADCON1bits.VCFG1 = 1;
    438  0032  169F               	bsf	31,5	;volatile
    439                           
-   440                           ;EEPROM.c: 76:     ADCON0bits.CHS = 0b0000;
+   440                           ;EEPROM.c: 78:     ADCON0bits.CHS = 0b0000;
    441  0033  30C3               	movlw	-61
    442  0034  1283               	bcf	3,5	;RP0=0, select bank0
    443  0035  1303               	bcf	3,6	;RP1=0, select bank0
    444  0036  059F               	andwf	31,f	;volatile
    445  0037                     l684:
    446                           
-   447                           ;EEPROM.c: 77:     ADCON1bits.ADFM = 0;
+   447                           ;EEPROM.c: 79:     ADCON1bits.ADFM = 0;
    448  0037  1683               	bsf	3,5	;RP0=1, select bank1
    449  0038  1303               	bcf	3,6	;RP1=0, select bank1
    450  0039  139F               	bcf	31,7	;volatile
    451  003A                     l686:
    452                           
-   453                           ;EEPROM.c: 78:     ADCON0bits.ADON = 1;
+   453                           ;EEPROM.c: 80:     ADCON0bits.ADON = 1;
    454  003A  1283               	bcf	3,5	;RP0=0, select bank0
    455  003B  1303               	bcf	3,6	;RP1=0, select bank0
    456  003C  141F               	bsf	31,0	;volatile
    457  003D                     l688:
    458                           
-   459                           ;EEPROM.c: 79:     _delay((unsigned long)((40)*(1000000/4000000.0)));
+   459                           ;EEPROM.c: 81:     _delay((unsigned long)((40)*(1000000/4000000.0)));
    460  003D  3003               	movlw	3
    461  003E  00F3               	movwf	??_setup
    462  003F                     u67:
@@ -478,51 +478,51 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    464  0040  283F               	goto	u67
    465  0041                     l690:
    466                           
-   467                           ;EEPROM.c: 82:     TRISBbits.TRISB0 = 1;
+   467                           ;EEPROM.c: 84:     TRISBbits.TRISB0 = 1;
    468  0041  1683               	bsf	3,5	;RP0=1, select bank1
    469  0042  1303               	bcf	3,6	;RP1=0, select bank1
    470  0043  1406               	bsf	6,0	;volatile
    471  0044                     l692:
    472                           
-   473                           ;EEPROM.c: 83:     OPTION_REGbits.nRBPU = 0;
+   473                           ;EEPROM.c: 85:     OPTION_REGbits.nRBPU = 0;
    474  0044  1381               	bcf	1,7	;volatile
    475  0045                     l694:
    476                           
-   477                           ;EEPROM.c: 84:     WPUBbits.WPUB = 0x01;
+   477                           ;EEPROM.c: 86:     WPUBbits.WPUB = 0x01;
    478  0045  3001               	movlw	1
    479  0046  0095               	movwf	21	;volatile
    480  0047                     l696:
    481                           
-   482                           ;EEPROM.c: 85:     IOCBbits.IOCB = 0x01;
+   482                           ;EEPROM.c: 87:     IOCBbits.IOCB = 0x01;
    483  0047  3001               	movlw	1
    484  0048  0096               	movwf	22	;volatile
    485  0049                     l698:
    486                           
-   487                           ;EEPROM.c: 88:     INTCONbits.RBIE = 1;
+   487                           ;EEPROM.c: 90:     INTCONbits.RBIE = 1;
    488  0049  158B               	bsf	11,3	;volatile
    489  004A                     l700:
    490                           
-   491                           ;EEPROM.c: 89:     INTCONbits.RBIF = 0;
+   491                           ;EEPROM.c: 91:     INTCONbits.RBIF = 0;
    492  004A  100B               	bcf	11,0	;volatile
    493  004B                     l702:
    494                           
-   495                           ;EEPROM.c: 90:     PIR1bits.ADIF = 0;
+   495                           ;EEPROM.c: 92:     PIR1bits.ADIF = 0;
    496  004B  1283               	bcf	3,5	;RP0=0, select bank0
    497  004C  1303               	bcf	3,6	;RP1=0, select bank0
    498  004D  130C               	bcf	12,6	;volatile
    499  004E                     l704:
    500                           
-   501                           ;EEPROM.c: 91:     PIE1bits.ADIE = 1;
+   501                           ;EEPROM.c: 93:     PIE1bits.ADIE = 1;
    502  004E  1683               	bsf	3,5	;RP0=1, select bank1
    503  004F  1303               	bcf	3,6	;RP1=0, select bank1
    504  0050  170C               	bsf	12,6	;volatile
    505  0051                     l706:
    506                           
-   507                           ;EEPROM.c: 92:     INTCONbits.PEIE = 1;
+   507                           ;EEPROM.c: 94:     INTCONbits.PEIE = 1;
    508  0051  170B               	bsf	11,6	;volatile
    509  0052                     l708:
    510                           
-   511                           ;EEPROM.c: 93:     INTCONbits.GIE = 1;
+   511                           ;EEPROM.c: 95:     INTCONbits.GIE = 1;
    512  0052  178B               	bsf	11,7	;volatile
    513  0053                     l68:
    514  0053  0008               	return
@@ -573,10 +573,10 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    559  0058                     u1_20:
    560  0058                     i1l714:
    561                           
-   562                           ;EEPROM.c: 32:         if (!PORTBbits.RB0)
+   562                           ;EEPROM.c: 32:         if (PORTBbits.RB0)
    563  0058  1283               	bcf	3,5	;RP0=0, select bank0
    564  0059  1303               	bcf	3,6	;RP1=0, select bank0
-   565  005A  1806               	btfsc	6,0	;volatile
+   565  005A  1C06               	btfss	6,0	;volatile
    566  005B  285D               	goto	u2_21
    567  005C  285E               	goto	u2_20
    568  005D                     u2_21:
@@ -623,7 +623,7 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    609  0071  0088               	movwf	8	;volatile
    610  0072                     i1l722:
    611                           
-   612                           ;EEPROM.c: 41:         PIR1bits.ADIF = 0;
+   612                           ;EEPROM.c: 42:         PIR1bits.ADIF = 0;
    613  0072  130C               	bcf	12,6	;volatile
    614  0073                     i1l56:
    615  0073  0872               	movf	??_isr+2,w
@@ -827,7 +827,7 @@ DATA                 0      0       5      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.35 build 20211206165544 
-Symbol Table                                                                                   Sun May 15 21:47:28 2022
+Symbol Table                                                                                   Mon May 16 09:14:51 2022
 
                      l68 0053                       u50 0085                       u51 0084  
                      u67 003F                      l700 004A                      l702 004B  

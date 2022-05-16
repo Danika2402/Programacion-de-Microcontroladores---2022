@@ -29,7 +29,7 @@ uint8_t cont;
 
 void __interrupt() isr (void){
     if(INTCONbits.RBIF){        //Chequear si se prendio la bandera
-        if (!PORTBbits.RB0)     //Si RB0 = 0, incrementar varible           
+        if (PORTBbits.RB0)     //Si RB0 = 0, incrementar varible           
             //++PORTC;
             SLEEP();            
         INTCONbits.RBIF = 0;    // Limpiamos bandera 
@@ -37,7 +37,8 @@ void __interrupt() isr (void){
     
     else if(PIR1bits.ADIF){              //ADC en RA2 donde guardamos el valor del potenciometro
         if(ADCON0bits.CHS == 0)     //en una variable
-            PORTD = ADRESH;        
+            PORTD = ADRESH;
+        
         PIR1bits.ADIF = 0;
     }
 }
@@ -45,10 +46,11 @@ void __interrupt() isr (void){
 void main(void) {
     setup();
     while(1){
-        if(ADCON0bits.GO == 0){    //Solo usamos un canal          
-            ADCON0bits.GO = 1;              
-        }
         
+
+        if(ADCON0bits.GO == 0)    //Solo usamos un canal          
+            ADCON0bits.GO = 1;              
+
     }
     return;
 }
