@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.35 build 20211206165544 
-                                                                                               Mon May 16 09:14:51 2022
+                                                                                               Mon May 16 09:17:06 2022
 
 Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1 
      1                           	processor	16F887
@@ -251,7 +251,7 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    237                           
    238  0010                     __end_of__initialization:
    239  0010  0183               	clrf	3
-   240  0011  120A  118A  287A   	ljmp	_main	;jump to C main() function
+   240  0011  120A  118A  287B   	ljmp	_main	;jump to C main() function
    241                           
    242                           	psect	bssCOMMON
    243  0074                     __pbssCOMMON:
@@ -280,14 +280,14 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    266  0074                     ??_main:
    267                           
    268                           	psect	maintext
-   269  007A                     __pmaintext:	
+   269  007B                     __pmaintext:	
    270                           ; 1 bytes @ 0x4
    271 ;;
    272 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
    273 ;;
    274 ;; *************** function _main *****************
    275 ;; Defined at:
-   276 ;;		line 46 in file "EEPROM.c"
+   276 ;;		line 47 in file "EEPROM.c"
    277 ;; Parameters:    Size  Location     Type
    278 ;;		None
    279 ;; Auto vars:     Size  Location     Type
@@ -314,40 +314,40 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    300 ;; This function uses a non-reentrant model
    301 ;;
    302                           
-   303  007A                     _main:	
+   303  007B                     _main:	
    304                           ;psect for function _main
    305                           
-   306  007A                     l724:	
+   306  007B                     l726:	
    307                           ;incstack = 0
    308                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
    309                           
    310                           
-   311                           ;EEPROM.c: 47:     setup();
-   312  007A  120A  118A  2014  120A  118A  	fcall	_setup
-   313  007F                     l726:
+   311                           ;EEPROM.c: 48:     setup();
+   312  007B  120A  118A  2014  120A  118A  	fcall	_setup
+   313  0080                     l728:
    314                           
-   315                           ;EEPROM.c: 51:         if(ADCON0bits.GO == 0)
-   316  007F  1283               	bcf	3,5	;RP0=0, select bank0
-   317  0080  1303               	bcf	3,6	;RP1=0, select bank0
-   318  0081  189F               	btfsc	31,1	;volatile
-   319  0082  2884               	goto	u51
-   320  0083  2885               	goto	u50
-   321  0084                     u51:
-   322  0084  287F               	goto	l726
-   323  0085                     u50:
-   324  0085                     l728:
+   315                           ;EEPROM.c: 52:         if(ADCON0bits.GO == 0)
+   316  0080  1283               	bcf	3,5	;RP0=0, select bank0
+   317  0081  1303               	bcf	3,6	;RP1=0, select bank0
+   318  0082  189F               	btfsc	31,1	;volatile
+   319  0083  2885               	goto	u51
+   320  0084  2886               	goto	u50
+   321  0085                     u51:
+   322  0085  2880               	goto	l728
+   323  0086                     u50:
+   324  0086                     l730:
    325                           
-   326                           ;EEPROM.c: 52:             ADCON0bits.GO = 1;
-   327  0085  149F               	bsf	31,1	;volatile
-   328  0086  287F               	goto	l726
-   329  0087  120A  118A  280C   	ljmp	start
-   330  008A                     __end_of_main:
+   326                           ;EEPROM.c: 53:             ADCON0bits.GO = 1;
+   327  0086  149F               	bsf	31,1	;volatile
+   328  0087  2880               	goto	l728
+   329  0088  120A  118A  280C   	ljmp	start
+   330  008B                     __end_of_main:
    331                           
    332                           	psect	text1
    333  0014                     __ptext1:	
    334 ;; *************** function _setup *****************
    335 ;; Defined at:
-   336 ;;		line 58 in file "EEPROM.c"
+   336 ;;		line 59 in file "EEPROM.c"
    337 ;; Parameters:    Size  Location     Type
    338 ;;		None
    339 ;; Auto vars:     Size  Location     Type
@@ -383,18 +383,18 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    369                           ; Regs used in _setup: [wreg+status,2+status,0]
    370                           
    371                           
-   372                           ;EEPROM.c: 59:     ANSELH = 0x00;
+   372                           ;EEPROM.c: 60:     ANSELH = 0x00;
    373  0014  1683               	bsf	3,5	;RP0=1, select bank3
    374  0015  1703               	bsf	3,6	;RP1=1, select bank3
    375  0016  0189               	clrf	9	;volatile
    376  0017                     l662:
    377                           
-   378                           ;EEPROM.c: 60:     ANSEL =0b00000001;
+   378                           ;EEPROM.c: 61:     ANSEL =0b00000001;
    379  0017  3001               	movlw	1
    380  0018  0088               	movwf	8	;volatile
    381  0019                     l664:
    382                           
-   383                           ;EEPROM.c: 62:     OSCCONbits.IRCF = 0b0100;
+   383                           ;EEPROM.c: 63:     OSCCONbits.IRCF = 0b0100;
    384  0019  1683               	bsf	3,5	;RP0=1, select bank1
    385  001A  1303               	bcf	3,6	;RP1=0, select bank1
    386  001B  080F               	movf	15,w	;volatile
@@ -403,74 +403,74 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    389  001E  008F               	movwf	15	;volatile
    390  001F                     l666:
    391                           
-   392                           ;EEPROM.c: 63:     OSCCONbits.SCS = 1;
+   392                           ;EEPROM.c: 64:     OSCCONbits.SCS = 1;
    393  001F  140F               	bsf	15,0	;volatile
    394  0020                     l668:
    395                           
-   396                           ;EEPROM.c: 65:     TRISA = 0b00000001;
+   396                           ;EEPROM.c: 66:     TRISA = 0b00000001;
    397  0020  3001               	movlw	1
    398  0021  0085               	movwf	5	;volatile
    399  0022                     l670:
    400                           
-   401                           ;EEPROM.c: 66:     PORTA = 0x00;
+   401                           ;EEPROM.c: 67:     PORTA = 0x00;
    402  0022  1283               	bcf	3,5	;RP0=0, select bank0
    403  0023  1303               	bcf	3,6	;RP1=0, select bank0
    404  0024  0185               	clrf	5	;volatile
    405  0025                     l672:
    406                           
-   407                           ;EEPROM.c: 67:     PORTD = 0x00;
+   407                           ;EEPROM.c: 68:     PORTD = 0x00;
    408  0025  0188               	clrf	8	;volatile
    409  0026                     l674:
    410                           
-   411                           ;EEPROM.c: 68:     TRISD = 0x00;
+   411                           ;EEPROM.c: 69:     TRISD = 0x00;
    412  0026  1683               	bsf	3,5	;RP0=1, select bank1
    413  0027  1303               	bcf	3,6	;RP1=0, select bank1
    414  0028  0188               	clrf	8	;volatile
    415  0029                     l676:
    416                           
-   417                           ;EEPROM.c: 69:     TRISC = 0x00;
+   417                           ;EEPROM.c: 70:     TRISC = 0x00;
    418  0029  0187               	clrf	7	;volatile
    419  002A                     l678:
    420                           
-   421                           ;EEPROM.c: 70:     PORTC = 0x00;
+   421                           ;EEPROM.c: 71:     PORTC = 0x00;
    422  002A  1283               	bcf	3,5	;RP0=0, select bank0
    423  002B  1303               	bcf	3,6	;RP1=0, select bank0
    424  002C  0187               	clrf	7	;volatile
    425                           
-   426                           ;EEPROM.c: 73:     ADCON0bits.ADCS = 0b00;
+   426                           ;EEPROM.c: 74:     ADCON0bits.ADCS = 0b00;
    427  002D  303F               	movlw	-193
    428  002E  059F               	andwf	31,f	;volatile
    429  002F                     l680:
    430                           
-   431                           ;EEPROM.c: 75:     ADCON1bits.VCFG0 = 0;
+   431                           ;EEPROM.c: 76:     ADCON1bits.VCFG0 = 0;
    432  002F  1683               	bsf	3,5	;RP0=1, select bank1
    433  0030  1303               	bcf	3,6	;RP1=0, select bank1
    434  0031  121F               	bcf	31,4	;volatile
    435  0032                     l682:
    436                           
-   437                           ;EEPROM.c: 76:     ADCON1bits.VCFG1 = 1;
+   437                           ;EEPROM.c: 77:     ADCON1bits.VCFG1 = 1;
    438  0032  169F               	bsf	31,5	;volatile
    439                           
-   440                           ;EEPROM.c: 78:     ADCON0bits.CHS = 0b0000;
+   440                           ;EEPROM.c: 79:     ADCON0bits.CHS = 0b0000;
    441  0033  30C3               	movlw	-61
    442  0034  1283               	bcf	3,5	;RP0=0, select bank0
    443  0035  1303               	bcf	3,6	;RP1=0, select bank0
    444  0036  059F               	andwf	31,f	;volatile
    445  0037                     l684:
    446                           
-   447                           ;EEPROM.c: 79:     ADCON1bits.ADFM = 0;
+   447                           ;EEPROM.c: 80:     ADCON1bits.ADFM = 0;
    448  0037  1683               	bsf	3,5	;RP0=1, select bank1
    449  0038  1303               	bcf	3,6	;RP1=0, select bank1
    450  0039  139F               	bcf	31,7	;volatile
    451  003A                     l686:
    452                           
-   453                           ;EEPROM.c: 80:     ADCON0bits.ADON = 1;
+   453                           ;EEPROM.c: 81:     ADCON0bits.ADON = 1;
    454  003A  1283               	bcf	3,5	;RP0=0, select bank0
    455  003B  1303               	bcf	3,6	;RP1=0, select bank0
    456  003C  141F               	bsf	31,0	;volatile
    457  003D                     l688:
    458                           
-   459                           ;EEPROM.c: 81:     _delay((unsigned long)((40)*(1000000/4000000.0)));
+   459                           ;EEPROM.c: 82:     _delay((unsigned long)((40)*(1000000/4000000.0)));
    460  003D  3003               	movlw	3
    461  003E  00F3               	movwf	??_setup
    462  003F                     u67:
@@ -478,51 +478,51 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    464  0040  283F               	goto	u67
    465  0041                     l690:
    466                           
-   467                           ;EEPROM.c: 84:     TRISBbits.TRISB0 = 1;
+   467                           ;EEPROM.c: 85:     TRISBbits.TRISB0 = 1;
    468  0041  1683               	bsf	3,5	;RP0=1, select bank1
    469  0042  1303               	bcf	3,6	;RP1=0, select bank1
    470  0043  1406               	bsf	6,0	;volatile
    471  0044                     l692:
    472                           
-   473                           ;EEPROM.c: 85:     OPTION_REGbits.nRBPU = 0;
+   473                           ;EEPROM.c: 86:     OPTION_REGbits.nRBPU = 0;
    474  0044  1381               	bcf	1,7	;volatile
    475  0045                     l694:
    476                           
-   477                           ;EEPROM.c: 86:     WPUBbits.WPUB = 0x01;
+   477                           ;EEPROM.c: 87:     WPUBbits.WPUB = 0x01;
    478  0045  3001               	movlw	1
    479  0046  0095               	movwf	21	;volatile
    480  0047                     l696:
    481                           
-   482                           ;EEPROM.c: 87:     IOCBbits.IOCB = 0x01;
+   482                           ;EEPROM.c: 88:     IOCBbits.IOCB = 0x01;
    483  0047  3001               	movlw	1
    484  0048  0096               	movwf	22	;volatile
    485  0049                     l698:
    486                           
-   487                           ;EEPROM.c: 90:     INTCONbits.RBIE = 1;
+   487                           ;EEPROM.c: 91:     INTCONbits.RBIE = 1;
    488  0049  158B               	bsf	11,3	;volatile
    489  004A                     l700:
    490                           
-   491                           ;EEPROM.c: 91:     INTCONbits.RBIF = 0;
+   491                           ;EEPROM.c: 92:     INTCONbits.RBIF = 0;
    492  004A  100B               	bcf	11,0	;volatile
    493  004B                     l702:
    494                           
-   495                           ;EEPROM.c: 92:     PIR1bits.ADIF = 0;
+   495                           ;EEPROM.c: 93:     PIR1bits.ADIF = 0;
    496  004B  1283               	bcf	3,5	;RP0=0, select bank0
    497  004C  1303               	bcf	3,6	;RP1=0, select bank0
    498  004D  130C               	bcf	12,6	;volatile
    499  004E                     l704:
    500                           
-   501                           ;EEPROM.c: 93:     PIE1bits.ADIE = 1;
+   501                           ;EEPROM.c: 94:     PIE1bits.ADIE = 1;
    502  004E  1683               	bsf	3,5	;RP0=1, select bank1
    503  004F  1303               	bcf	3,6	;RP1=0, select bank1
    504  0050  170C               	bsf	12,6	;volatile
    505  0051                     l706:
    506                           
-   507                           ;EEPROM.c: 94:     INTCONbits.PEIE = 1;
+   507                           ;EEPROM.c: 95:     INTCONbits.PEIE = 1;
    508  0051  170B               	bsf	11,6	;volatile
    509  0052                     l708:
    510                           
-   511                           ;EEPROM.c: 95:     INTCONbits.GIE = 1;
+   511                           ;EEPROM.c: 96:     INTCONbits.GIE = 1;
    512  0052  178B               	bsf	11,7	;volatile
    513  0053                     l68:
    514  0053  0008               	return
@@ -590,7 +590,7 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    576  005F  100B               	bcf	11,0	;volatile
    577                           
    578                           ;EEPROM.c: 36:     }
-   579  0060  2873               	goto	i1l56
+   579  0060  2874               	goto	i1l56
    580  0061                     i1l51:	
    581                           ;EEPROM.c: 38:     else if(PIR1bits.ADIF){
    582                           
@@ -600,11 +600,11 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    586  0064  2866               	goto	u3_21
    587  0065  2867               	goto	u3_20
    588  0066                     u3_21:
-   589  0066  2873               	goto	i1l56
+   589  0066  2874               	goto	i1l56
    590  0067                     u3_20:
    591  0067                     i1l718:
    592                           
-   593                           ;EEPROM.c: 39:         if(ADCON0bits.CHS == 0)
+   593                           ;EEPROM.c: 39:         if(ADCON0bits.CHS == 0){
    594  0067  0C1F               	rrf	31,w	;volatile
    595  0068  00F0               	movwf	??_isr
    596  0069  0C70               	rrf	??_isr,w
@@ -614,7 +614,7 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    600  006D  286F               	goto	u4_21
    601  006E  2870               	goto	u4_20
    602  006F                     u4_21:
-   603  006F  2872               	goto	i1l722
+   603  006F  2873               	goto	i1l724
    604  0070                     u4_20:
    605  0070                     i1l720:
    606                           
@@ -623,92 +623,96 @@ Microchip MPLAB XC8 C Compiler v2.35 (Free license) build 20211206165544 Og1
    609  0071  0088               	movwf	8	;volatile
    610  0072                     i1l722:
    611                           
-   612                           ;EEPROM.c: 42:         PIR1bits.ADIF = 0;
-   613  0072  130C               	bcf	12,6	;volatile
-   614  0073                     i1l56:
-   615  0073  0872               	movf	??_isr+2,w
-   616  0074  008A               	movwf	10
-   617  0075  0E71               	swapf	??_isr+1,w
-   618  0076  0083               	movwf	3
-   619  0077  0EFE               	swapf	btemp,f
-   620  0078  0E7E               	swapf	btemp,w
-   621  0079  0009               	retfie
-   622  007A                     __end_of_isr:
-   623  007E                     btemp	set	126	;btemp
-   624  007E                     wtemp0	set	126
-   625                           
-   626                           	psect	intentry
-   627  0004                     __pintentry:	
-   628                           ;incstack = 0
-   629                           ; Regs used in _isr: [wreg+status,2+status,0]
-   630                           
-   631  0004                     interrupt_function:
-   632  007E                     saved_w	set	btemp
-   633  0004  00FE               	movwf	btemp
-   634  0005  0E03               	swapf	3,w
-   635  0006  00F1               	movwf	??_isr+1
-   636  0007  080A               	movf	10,w
-   637  0008  00F2               	movwf	??_isr+2
-   638  0009  120A  118A  2854   	ljmp	_isr
-   639                           
-   640                           	psect	idloc
-   641                           
-   642                           ;Config register IDLOC0 @ 0x2000
-   643                           ;	unspecified, using default values
-   644  2000                     	org	8192
-   645  2000  3FFF               	dw	16383
-   646                           
-   647                           ;Config register IDLOC1 @ 0x2001
-   648                           ;	unspecified, using default values
-   649  2001                     	org	8193
-   650  2001  3FFF               	dw	16383
-   651                           
-   652                           ;Config register IDLOC2 @ 0x2002
-   653                           ;	unspecified, using default values
-   654  2002                     	org	8194
-   655  2002  3FFF               	dw	16383
-   656                           
-   657                           ;Config register IDLOC3 @ 0x2003
-   658                           ;	unspecified, using default values
-   659  2003                     	org	8195
-   660  2003  3FFF               	dw	16383
-   661                           
-   662                           	psect	config
-   663                           
-   664                           ;Config register CONFIG1 @ 0x2007
-   665                           ;	Oscillator Selection bits
-   666                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
+   612                           ;EEPROM.c: 41:             INTCONbits.RBIF = 0;
+   613  0072  100B               	bcf	11,0	;volatile
+   614  0073                     i1l724:
+   615                           
+   616                           ;EEPROM.c: 43:         PIR1bits.ADIF = 0;
+   617  0073  130C               	bcf	12,6	;volatile
+   618  0074                     i1l56:
+   619  0074  0872               	movf	??_isr+2,w
+   620  0075  008A               	movwf	10
+   621  0076  0E71               	swapf	??_isr+1,w
+   622  0077  0083               	movwf	3
+   623  0078  0EFE               	swapf	btemp,f
+   624  0079  0E7E               	swapf	btemp,w
+   625  007A  0009               	retfie
+   626  007B                     __end_of_isr:
+   627  007E                     btemp	set	126	;btemp
+   628  007E                     wtemp0	set	126
+   629                           
+   630                           	psect	intentry
+   631  0004                     __pintentry:	
+   632                           ;incstack = 0
+   633                           ; Regs used in _isr: [wreg+status,2+status,0]
+   634                           
+   635  0004                     interrupt_function:
+   636  007E                     saved_w	set	btemp
+   637  0004  00FE               	movwf	btemp
+   638  0005  0E03               	swapf	3,w
+   639  0006  00F1               	movwf	??_isr+1
+   640  0007  080A               	movf	10,w
+   641  0008  00F2               	movwf	??_isr+2
+   642  0009  120A  118A  2854   	ljmp	_isr
+   643                           
+   644                           	psect	idloc
+   645                           
+   646                           ;Config register IDLOC0 @ 0x2000
+   647                           ;	unspecified, using default values
+   648  2000                     	org	8192
+   649  2000  3FFF               	dw	16383
+   650                           
+   651                           ;Config register IDLOC1 @ 0x2001
+   652                           ;	unspecified, using default values
+   653  2001                     	org	8193
+   654  2001  3FFF               	dw	16383
+   655                           
+   656                           ;Config register IDLOC2 @ 0x2002
+   657                           ;	unspecified, using default values
+   658  2002                     	org	8194
+   659  2002  3FFF               	dw	16383
+   660                           
+   661                           ;Config register IDLOC3 @ 0x2003
+   662                           ;	unspecified, using default values
+   663  2003                     	org	8195
+   664  2003  3FFF               	dw	16383
+   665                           
+   666                           	psect	config
+   667                           
+   668                           ;Config register CONFIG1 @ 0x2007
+   669                           ;	Oscillator Selection bits
+   670                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
       +                          unction on RA7/OSC1/CLKIN
-   667                           ;	Watchdog Timer Enable bit
-   668                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
-   669                           ;	Power-up Timer Enable bit
-   670                           ;	PWRTE = OFF, PWRT disabled
-   671                           ;	RE3/MCLR pin function select bit
-   672                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
-   673                           ;	Code Protection bit
-   674                           ;	CP = OFF, Program memory code protection is disabled
-   675                           ;	Data Code Protection bit
-   676                           ;	CPD = OFF, Data memory code protection is disabled
-   677                           ;	Brown Out Reset Selection bits
-   678                           ;	BOREN = OFF, BOR disabled
-   679                           ;	Internal External Switchover bit
-   680                           ;	IESO = OFF, Internal/External Switchover mode is disabled
-   681                           ;	Fail-Safe Clock Monitor Enabled bit
-   682                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
-   683                           ;	Low Voltage Programming Enable bit
-   684                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
-   685                           ;	In-Circuit Debugger Mode bit
-   686                           ;	DEBUG = 0x1, unprogrammed default
-   687  2007                     	org	8199
-   688  2007  20D4               	dw	8404
-   689                           
-   690                           ;Config register CONFIG2 @ 0x2008
-   691                           ;	Brown-out Reset Selection bit
-   692                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
-   693                           ;	Flash Program Memory Self Write Enable bits
-   694                           ;	WRT = OFF, Write protection off
-   695  2008                     	org	8200
-   696  2008  3FFF               	dw	16383
+   671                           ;	Watchdog Timer Enable bit
+   672                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+   673                           ;	Power-up Timer Enable bit
+   674                           ;	PWRTE = OFF, PWRT disabled
+   675                           ;	RE3/MCLR pin function select bit
+   676                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
+   677                           ;	Code Protection bit
+   678                           ;	CP = OFF, Program memory code protection is disabled
+   679                           ;	Data Code Protection bit
+   680                           ;	CPD = OFF, Data memory code protection is disabled
+   681                           ;	Brown Out Reset Selection bits
+   682                           ;	BOREN = OFF, BOR disabled
+   683                           ;	Internal External Switchover bit
+   684                           ;	IESO = OFF, Internal/External Switchover mode is disabled
+   685                           ;	Fail-Safe Clock Monitor Enabled bit
+   686                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
+   687                           ;	Low Voltage Programming Enable bit
+   688                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+   689                           ;	In-Circuit Debugger Mode bit
+   690                           ;	DEBUG = 0x1, unprogrammed default
+   691  2007                     	org	8199
+   692  2007  20D4               	dw	8404
+   693                           
+   694                           ;Config register CONFIG2 @ 0x2008
+   695                           ;	Brown-out Reset Selection bit
+   696                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
+   697                           ;	Flash Program Memory Self Write Enable bits
+   698                           ;	WRT = OFF, Write protection off
+   699  2008                     	org	8200
+   700  2008  3FFF               	dw	16383
 
 Data Sizes:
     Strings     0
@@ -827,39 +831,39 @@ DATA                 0      0       5      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.35 build 20211206165544 
-Symbol Table                                                                                   Mon May 16 09:14:51 2022
+Symbol Table                                                                                   Mon May 16 09:17:06 2022
 
-                     l68 0053                       u50 0085                       u51 0084  
+                     l68 0053                       u50 0086                       u51 0085  
                      u67 003F                      l700 004A                      l702 004B  
-                    l704 004E                      l706 0051                      l708 0052  
-                    l660 0014                      l724 007A                      l670 0022  
-                    l662 0017                      l726 007F                      l680 002F  
-                    l672 0025                      l664 0019                      l728 0085  
+                    l704 004E                      l706 0051                      l730 0086  
+                    l708 0052                      l660 0014                      l670 0022  
+                    l662 0017                      l726 007B                      l680 002F  
+                    l672 0025                      l664 0019                      l728 0080  
                     l690 0041                      l682 0032                      l674 0026  
                     l666 001F                      l692 0044                      l684 0037  
                     l676 0029                      l668 0020                      l694 0045  
                     l686 003A                      l678 002A                      l696 0047  
                     l688 003D                      l698 0049                      _isr 0054  
                    ?_isr 0070                     i1l51 0061                     i1l52 005F  
-                   i1l56 0073                     u1_20 0058                     u1_21 0057  
+                   i1l56 0074                     u1_20 0058                     u1_21 0057  
                    u2_20 005E                     u2_21 005D                     u3_20 0067  
                    u3_21 0066                     u4_20 0070                     u4_21 006F  
-                   _cont 0074                     _main 007A                     btemp 007E  
+                   _cont 0074                     _main 007B                     btemp 007E  
                    start 000C                    ??_isr 0070                    ?_main 0070  
                   _ANSEL 0188                    i1l720 0070                    i1l712 0054  
-                  i1l722 0072                    i1l714 0058                    i1l716 005E  
-                  i1l718 0067                    _PORTA 0005                    _PORTC 0007  
-                  _PORTD 0008                    _TRISA 0085                    _TRISC 0087  
-                  _TRISD 0088                    _setup 0014                    pclath 000A  
-                  status 0003                    wtemp0 007E          __initialization 000F  
-           __end_of_main 008A                   ??_main 0074                   _ADRESH 001E  
-                 ?_setup 0070                   _ANSELH 0189                   saved_w 007E  
-__end_of__initialization 0010           __pcstackCOMMON 0070            __end_of_setup 0054  
-         _OPTION_REGbits 0081                  ??_setup 0073               __pmaintext 007A  
-             __pintentry 0004                  __ptext1 0014                  __ptext2 0054  
-   end_of_initialization 0010                _PORTBbits 0006                _TRISBbits 0086  
-    start_initialization 000F              __end_of_isr 007A              __pbssCOMMON 0074  
-              ___latbits 0002        interrupt_function 0004                 _IOCBbits 0096  
-               _PIE1bits 008C                 _PIR1bits 000C               _ADCON0bits 001F  
-             _ADCON1bits 009F                 _WPUBbits 0095               _INTCONbits 000B  
-               intlevel1 0000               _OSCCONbits 008F  
+                  i1l722 0072                    i1l714 0058                    i1l724 0073  
+                  i1l716 005E                    i1l718 0067                    _PORTA 0005  
+                  _PORTC 0007                    _PORTD 0008                    _TRISA 0085  
+                  _TRISC 0087                    _TRISD 0088                    _setup 0014  
+                  pclath 000A                    status 0003                    wtemp0 007E  
+        __initialization 000F             __end_of_main 008B                   ??_main 0074  
+                 _ADRESH 001E                   ?_setup 0070                   _ANSELH 0189  
+                 saved_w 007E  __end_of__initialization 0010           __pcstackCOMMON 0070  
+          __end_of_setup 0054           _OPTION_REGbits 0081                  ??_setup 0073  
+             __pmaintext 007B               __pintentry 0004                  __ptext1 0014  
+                __ptext2 0054     end_of_initialization 0010                _PORTBbits 0006  
+              _TRISBbits 0086      start_initialization 000F              __end_of_isr 007B  
+            __pbssCOMMON 0074                ___latbits 0002        interrupt_function 0004  
+               _IOCBbits 0096                 _PIE1bits 008C                 _PIR1bits 000C  
+             _ADCON0bits 001F               _ADCON1bits 009F                 _WPUBbits 0095  
+             _INTCONbits 000B                 intlevel1 0000               _OSCCONbits 008F  

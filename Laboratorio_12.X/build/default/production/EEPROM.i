@@ -2666,9 +2666,10 @@ void __attribute__((picinterrupt(("")))) isr (void){
     }
 
     else if(PIR1bits.ADIF){
-        if(ADCON0bits.CHS == 0)
+        if(ADCON0bits.CHS == 0){
             PORTD = ADRESH;
-
+            INTCONbits.RBIF = 0;
+        }
         PIR1bits.ADIF = 0;
     }
 }

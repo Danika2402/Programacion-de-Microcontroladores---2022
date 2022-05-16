@@ -36,9 +36,10 @@ void __interrupt() isr (void){
     }
     
     else if(PIR1bits.ADIF){              //ADC en RA2 donde guardamos el valor del potenciometro
-        if(ADCON0bits.CHS == 0)     //en una variable
+        if(ADCON0bits.CHS == 0){     //en una variable
             PORTD = ADRESH;
-        
+            INTCONbits.RBIF = 0;
+        }
         PIR1bits.ADIF = 0;
     }
 }
