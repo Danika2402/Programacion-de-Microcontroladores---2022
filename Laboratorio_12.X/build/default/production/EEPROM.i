@@ -13,7 +13,6 @@
 
 
 
-
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2649,44 +2648,45 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 25 "EEPROM.c" 2
+# 24 "EEPROM.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c90\\stdint.h" 1 3
-# 26 "EEPROM.c" 2
+# 25 "EEPROM.c" 2
 
 void setup(void);
-uint8_t cont;
+uint8_t address, cont;
+
+uint8_t read_EEPROM(uint8_t address);
+void write_EEPROM(uint8_t address, uint8_t data);
 
 void __attribute__((picinterrupt(("")))) isr (void){
-    if(INTCONbits.RBIF){
-        if (PORTBbits.RB0)
-
-            __asm("sleep");
-        INTCONbits.RBIF = 0;
-    }
-
-    else if(PIR1bits.ADIF){
-        if(ADCON0bits.CHS == 0){
-            PORTD = ADRESH;
-            INTCONbits.RBIF = 0;
-        }
+    if(PIR1bits.ADIF){
+        if(ADCON0bits.CHS == 0)
+            PORTC = ADRESH;
         PIR1bits.ADIF = 0;
     }
-}
+    else if(INTCONbits.RBIF){
+        if (!PORTBbits.RB0)
 
-void main(void) {
-    setup();
-    while(1){
+            write_EEPROM(0x05,PORTC);
+        INTCONbits.RBIF = 0;
 
-
-        if(ADCON0bits.GO == 0)
-            ADCON0bits.GO = 1;
 
     }
     return;
 }
 
-void setup(void){
+void main(void) {
+    setup();
+    while(1){
+        if(ADCON0bits.GO == 0)
+            ADCON0bits.GO = 1;
+        PORTD = read_EEPROM(0x05);
+    }
+    return;
+}
+
+void setup (void){
     ANSELH = 0x00;
     ANSEL =0b00000001;
 
@@ -2725,4 +2725,27 @@ void setup(void){
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
     return;
+}
+
+uint8_t read_EEPROM(uint8_t address){
+    EEADR = address;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD = 1;
+    return EEDAT;
+}
+void write_EEPROM(uint8_t address, uint8_t data){
+    EEADR = address;
+    EEDAT = data;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.WREN=1;
+
+    INTCONbits.GIE=0;
+    EECON2 = 0x55;
+    EECON2=0xaa;
+
+    EECON1bits.WR=1;
+
+    EECON1bits.WREN=0;
+    INTCONbits.RBIF=0;
+    INTCONbits.GIE=1;
 }

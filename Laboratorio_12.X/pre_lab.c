@@ -2,8 +2,9 @@
  * File:   EEPROM.c
  * Author: HP
  *
- * Created on 16 de mayo de 2022, 10:53 AM
+ * Created on 14 de mayo de 2022, 04:28 PM
  */
+
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
@@ -24,39 +25,37 @@
 #include <xc.h>
 #include <stdint.h>
 void setup(void);
-uint8_t address, cont;
-
-uint8_t read_EEPROM(uint8_t address);
-void write_EEPROM(uint8_t address, uint8_t data);
+uint8_t cont;
 
 void __interrupt() isr (void){
-    if(PIR1bits.ADIF){
-        if(ADCON0bits.CHS == 0)     //utilizamos 2 canales donde cada uno tiene 
-            PORTC = ADRESH;         //un potenciometro de 1k, dependiendo de cual canal
-        PIR1bits.ADIF = 0;    
-    }
-    else if(INTCONbits.RBIF){        
-        if (!PORTBbits.RB0)               
-            //++PORTD;
-            write_EEPROM(0x05,PORTC);
+    if(INTCONbits.RBIF){        //Chequear si se prendio la bandera
+        if (PORTBbits.RB0){     //Si RB0 = 0, incrementar varible           
+            //++PORTC;
+        INTCONbits.RBIF = 0;    // Limpiamos bandera    
+        SLEEP();            
+        }
         INTCONbits.RBIF = 0;
-        
-        //PORTD = read_EEPROM(0x05);
     }
-    return;
+    
+    else if(PIR1bits.ADIF){              //ADC en RA2 donde guardamos el valor del potenciometro
+        if(ADCON0bits.CHS == 0){     //en una variable
+            PORTD = ADRESH;
+            
+        }
+        PIR1bits.ADIF = 0;
+    }
 }
 
 void main(void) {
     setup();
     while(1){
         if(ADCON0bits.GO == 0)    //Solo usamos un canal          
-            ADCON0bits.GO = 1; 
-        PORTD = read_EEPROM(0x05);
+            ADCON0bits.GO = 1;              
     }
     return;
 }
 
-void setup (void){
+void setup(void){
     ANSELH = 0x00;
     ANSEL =0b00000001;      //AN0
     
@@ -95,27 +94,4 @@ void setup (void){
     INTCONbits.PEIE = 1;        //habilitar int. perifericos
     INTCONbits.GIE = 1;         //habilitar int. globales
     return;
-}
-
-uint8_t read_EEPROM(uint8_t address){
-    EEADR = address;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.RD = 1;
-    return EEDAT;
-}
-void write_EEPROM(uint8_t address, uint8_t data){
-    EEADR = address;
-    EEDAT = data;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.WREN=1;
-    
-    INTCONbits.GIE=0;
-    EECON2 = 0x55;
-    EECON2=0xaa;
-    
-    EECON1bits.WR=1;
-    
-    EECON1bits.WREN=0;
-    INTCONbits.RBIF=0;
-    INTCONbits.GIE=1;
 }
