@@ -11,15 +11,15 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"32 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_12.X\EEPROM.c
+"31 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_12.X\EEPROM.c
 [v _isr isr `II(v  1 e 1 0 ]
-"49
+"45
 [v _main main `(v  1 e 1 0 ]
-"59
+"55
 [v _setup setup `(v  1 e 1 0 ]
-"100
+"96
 [v _read_EEPROM read_EEPROM `(uc  1 e 1 0 ]
-"106
+"102
 [v _write_EEPROM write_EEPROM `(v  1 e 1 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -206,35 +206,35 @@
 [v _EECON1bits EECON1bits `VES337  1 e 1 @396 ]
 "3545
 [v _EECON2 EECON2 `VEuc  1 e 1 @397 ]
-"49 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_12.X\EEPROM.c
+"45 C:\Users\HP\Documents\Programacion de Microcontroladores\Laboratorio_12.X\EEPROM.c
 [v _main main `(v  1 e 1 0 ]
 {
-"57
+"53
 } 0
-"59
+"55
 [v _setup setup `(v  1 e 1 0 ]
 {
-"98
+"94
 } 0
-"100
+"96
 [v _read_EEPROM read_EEPROM `(uc  1 e 1 0 ]
 {
 [v read_EEPROM@address address `uc  1 a 1 wreg ]
 [v read_EEPROM@address address `uc  1 a 1 wreg ]
 [v read_EEPROM@address address `uc  1 a 1 5 ]
-"105
+"101
 } 0
-"32
+"31
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"47
+"43
 } 0
-"106
+"102
 [v _write_EEPROM write_EEPROM `(v  1 e 1 0 ]
 {
 [v write_EEPROM@address address `uc  1 a 1 wreg ]
 [v write_EEPROM@address address `uc  1 a 1 wreg ]
 [v write_EEPROM@data data `uc  1 p 1 0 ]
 [v write_EEPROM@address address `uc  1 a 1 1 ]
-"121
+"117
 } 0

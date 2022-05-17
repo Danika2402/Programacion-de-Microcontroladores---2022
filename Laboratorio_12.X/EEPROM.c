@@ -19,29 +19,25 @@
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
 #define _XTAL_FREQ 1000000
-#define FLAG_SPI 0xFF
 
 #include <xc.h>
 #include <stdint.h>
 void setup(void);
-uint8_t address, cont;
+uint8_t cont;
 
 uint8_t read_EEPROM(uint8_t address);
 void write_EEPROM(uint8_t address, uint8_t data);
 
 void __interrupt() isr (void){
     if(PIR1bits.ADIF){
-        if(ADCON0bits.CHS == 0)     //utilizamos 2 canales donde cada uno tiene 
-            PORTC = ADRESH;         //un potenciometro de 1k, dependiendo de cual canal
+        if(ADCON0bits.CHS == 0)     //utilizamos 1 canal 
+            PORTC = ADRESH;         //guardamos en PORTC
         PIR1bits.ADIF = 0;    
     }
     else if(INTCONbits.RBIF){        
-        if (!PORTBbits.RB0)               
-            //++PORTD;
-            write_EEPROM(0x05,PORTC);
+        if (!PORTBbits.RB0)               //si presiona el boton, guardamos en
+            write_EEPROM(0x05,PORTC);     //EEPROM el valor del PORTC, en una direccion
         INTCONbits.RBIF = 0;
-        
-        //PORTD = read_EEPROM(0x05);
     }
     return;
 }
@@ -49,10 +45,10 @@ void __interrupt() isr (void){
 void main(void) {
     setup();
     while(1){
-        if(ADCON0bits.GO == 0)    //Solo usamos un canal          
+        if(ADCON0bits.GO == 0)      //Solo usamos un canal          
             ADCON0bits.GO = 1; 
-        PORTD = read_EEPROM(0x05);
-    }
+        PORTD = read_EEPROM(0x05);  //mostramos en el PORTD el dato guardado en 
+    }                               //el EEPROM en la direccion
     return;
 }
 
@@ -99,23 +95,23 @@ void setup (void){
 
 uint8_t read_EEPROM(uint8_t address){
     EEADR = address;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.RD = 1;
-    return EEDAT;
+    EECON1bits.EEPGD = 0;   //Lectura al EEPROM
+    EECON1bits.RD = 1;      //Obtener dato
+    return EEDAT;           //lo regresamos
 }
 void write_EEPROM(uint8_t address, uint8_t data){
-    EEADR = address;
+    EEADR = address;        
     EEDAT = data;
-    EECON1bits.EEPGD = 0;
-    EECON1bits.WREN=1;
+    EECON1bits.EEPGD = 0;   //Escritura al EEPROM
+    EECON1bits.WREN=1;      //habilitar escritura
     
-    INTCONbits.GIE=0;
+    INTCONbits.GIE=0;       
     EECON2 = 0x55;
     EECON2=0xaa;
     
-    EECON1bits.WR=1;
+    EECON1bits.WR=1;        //iniciar escritura
     
-    EECON1bits.WREN=0;
-    INTCONbits.RBIF=0;
+    EECON1bits.WREN=0;      //desabilitar estritura
+    INTCONbits.RBIF=0;      //habilitar interrupciones
     INTCONbits.GIE=1;
 }
