@@ -49,29 +49,21 @@ void __interrupt() isr (void){
     }
     
     else if(modo==0){
-        TRISAbits.TRISA7 = 1;       //Deshabilitar salida CCP1
-        TRISAbits.TRISA6 = 0;
-        TRISAbits.TRISA5 = 0;
+        PORTE=1;
         if(INTCONbits.RBIF){
             if(!PORTBbits.RB1)
             ++PORTD;
         INTCONbits.RBIF = 0;
         }
     }else if(modo==1){
-        
-        TRISAbits.TRISA7 = 0;       //Deshabilitar salida CCP1
-        TRISAbits.TRISA6 = 1;
-        TRISAbits.TRISA5 = 0;
+        PORTE=2;
         if(INTCONbits.RBIF){
             if(!PORTBbits.RB1)
             --PORTD;
         INTCONbits.RBIF = 0;
         }
     }else if(modo==3){
-        
-        TRISAbits.TRISA7 = 0;       //Deshabilitar salida CCP1
-        TRISAbits.TRISA6 = 0;
-        TRISAbits.TRISA5 = 1;
+        PORTE=4;
         if(PIR1bits.ADIF){
             if(ADCON0bits.CHS == 0)     //utilizamos 2 canales donde cada uno tiene 
                 PORTD = ADRESH;         //un potenciometro de 1k, dependiendo de cual canal
@@ -99,6 +91,20 @@ void __interrupt() isr (void){
             --PORTD;
         INTCONbits.RBIF = 0;
     }*/
+    if(modo==0){
+        TRISEbits.TRISE0 = 1;       //Deshabilitar salida CCP1
+        TRISEbits.TRISE1 = 0;
+        TRISEbits.TRISE2 = 0;
+    }else if(modo==1){
+        TRISEbits.TRISE0 = 0;       //Deshabilitar salida CCP1
+        TRISEbits.TRISE1 = 1;
+        TRISEbits.TRISE2 = 0;
+        
+    }else if(modo==3){
+        TRISEbits.TRISE0 = 0;       //Deshabilitar salida CCP1
+        TRISEbits.TRISE1 = 0;
+        TRISEbits.TRISE2 = 1;
+    }
     return;
 }
 
@@ -130,14 +136,12 @@ void setup(void){
     TRISA = 0b00000011;     //RA1 y RA0
     PORTA = 0x00;
     
-        TRISAbits.TRISA7 = 0;       //Deshabilitar salida CCP1
-        TRISAbits.TRISA6 = 0;
-        TRISAbits.TRISA5 = 0;
     PORTC = 0x00;
     TRISC = 0x00;
     PORTD = 0x00;
     TRISD = 0x00;
-    
+    TRISE = 0x00;
+    PORTE = 0x00;
     //Configuraciones de ADC
     ADCON0bits.ADCS = 0b00;     // Fosc/2
     
