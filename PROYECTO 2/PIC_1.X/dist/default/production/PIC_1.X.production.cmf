@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
+$C:\Users\HP\AppData\Local\Temp\xcAslus.o
 idloc IDLOC 5 2000 2000 4 2 1
 reset_vec CODE 0 0 0 3 2 1
 end_init CODE 0 C C 3 2 1
@@ -19,9 +19,9 @@ config CONFIG 4 2007 2007 2 2 1
 $dist/default/production\PIC_1.X.production.o
 cinit CODE 0 F F D 2 1
 idloc IDLOC 5 2000 2000 4 2 1
-text1 CODE 0 A2 A2 70 2 1
-text2 CODE 0 1C 1C 86 2 1
-maintext CODE 0 112 112 10 2 1
+text1 CODE 0 1C 1C 70 2 1
+text2 CODE 0 8C 8C 69 2 1
+maintext CODE 0 F5 F5 10 2 1
 cstackCOMMON COMMON 1 79 79 4 1 1
 intentry CODE 0 4 4 8 2 1
 bssCOMMON COMMON 1 70 70 9 1 1
@@ -41,11 +41,11 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 122-1FFF 2
+CONST 105-1FFF 2
 ENTRY 3-3 2
-ENTRY 122-1FFF 2
+ENTRY 105-1FFF 2
 CODE 3-3 2
-CODE 122-1FFF 2
+CODE 105-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -53,9 +53,9 @@ SFR3 180-18F 1
 COMMON 7D-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 122-1FFF 2
+STRCODE 105-1FFF 2
 STRING 3-3 2
-STRING 122-1FFF 2
+STRING 105-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -70,118 +70,113 @@ STRING 122-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\PIC_1.X.production.o
-F cinit CODE >501:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-F cinit CODE >504:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-F cinit CODE >527:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-10 cinit CODE >528:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-11 cinit CODE >529:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-12 cinit CODE >530:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-13 cinit CODE >531:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-14 cinit CODE >532:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-15 cinit CODE >533:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-16 cinit CODE >534:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-17 cinit CODE >535:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-18 cinit CODE >541:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-18 cinit CODE >543:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
-19 cinit CODE >544:C:\Users\HP\AppData\Local\Temp\xcAsl2o.s
+F cinit CODE >501:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+F cinit CODE >504:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+F cinit CODE >527:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+10 cinit CODE >528:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+11 cinit CODE >529:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+12 cinit CODE >530:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+13 cinit CODE >531:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+14 cinit CODE >532:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+15 cinit CODE >533:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+16 cinit CODE >534:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+17 cinit CODE >535:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+18 cinit CODE >541:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+18 cinit CODE >543:C:\Users\HP\AppData\Local\Temp\xcAslus.s
+19 cinit CODE >544:C:\Users\HP\AppData\Local\Temp\xcAslus.s
 4 intentry CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-1C text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-1C text2 CODE >42:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-20 text2 CODE >43:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-26 text2 CODE >44:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-27 text2 CODE >46:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-2D text2 CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-31 text2 CODE >48:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-32 text2 CODE >49:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-33 text2 CODE >51:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-38 text2 CODE >52:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-3C text2 CODE >53:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-40 text2 CODE >54:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-44 text2 CODE >55:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-48 text2 CODE >56:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-4A text2 CODE >58:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-4F text2 CODE >59:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-53 text2 CODE >60:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-57 text2 CODE >61:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-5B text2 CODE >62:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-5D text2 CODE >63:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-5F text2 CODE >65:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-65 text2 CODE >66:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-69 text2 CODE >67:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-6D text2 CODE >68:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-72 text2 CODE >68:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-76 text2 CODE >69:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-78 text2 CODE >70:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7A text2 CODE >72:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7A text2 CODE >94:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7F text2 CODE >95:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-82 text2 CODE >96:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-83 text2 CODE >97:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-84 text2 CODE >98:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-8A text2 CODE >99:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-8D text2 CODE >100:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-8E text2 CODE >101:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-8F text2 CODE >103:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-96 text2 CODE >104:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-99 text2 CODE >105:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-9A text2 CODE >106:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-9B text2 CODE >109:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-A2 text1 CODE >128:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-A2 text1 CODE >130:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-A6 text1 CODE >131:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-A7 text1 CODE >133:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-AD text1 CODE >134:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-AE text1 CODE >136:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B0 text1 CODE >137:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B3 text1 CODE >139:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B4 text1 CODE >140:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B7 text1 CODE >141:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-BA text1 CODE >142:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-BD text1 CODE >143:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-BE text1 CODE >144:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-C1 text1 CODE >146:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-C3 text1 CODE >148:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-C6 text1 CODE >149:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-C7 text1 CODE >151:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-CB text1 CODE >152:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-CE text1 CODE >153:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-D1 text1 CODE >154:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-D5 text1 CODE >157:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-D8 text1 CODE >158:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-D9 text1 CODE >159:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-DB text1 CODE >162:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-DE text1 CODE >163:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-DF text1 CODE >164:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-E1 text1 CODE >165:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-E5 text1 CODE >166:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-E9 text1 CODE >168:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-EB text1 CODE >169:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-EF text1 CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-F1 text1 CODE >172:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-F2 text1 CODE >173:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-F3 text1 CODE >175:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-F4 text1 CODE >176:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-F6 text1 CODE >177:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-F7 text1 CODE >178:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-FB text1 CODE >179:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-FC text1 CODE >181:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-FF text1 CODE >182:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-100 text1 CODE >185:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-101 text1 CODE >186:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-102 text1 CODE >187:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-103 text1 CODE >188:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-105 text1 CODE >189:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-107 text1 CODE >192:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-108 text1 CODE >193:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-109 text1 CODE >194:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-10C text1 CODE >195:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-10F text1 CODE >196:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-110 text1 CODE >197:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-111 text1 CODE >199:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-112 maintext CODE >111:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-112 maintext CODE >112:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-117 maintext CODE >122:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-11D maintext CODE >123:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+8C text2 CODE >41:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+8C text2 CODE >42:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+90 text2 CODE >43:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+96 text2 CODE >44:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+97 text2 CODE >46:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+9D text2 CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+A1 text2 CODE >48:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+A2 text2 CODE >49:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+A3 text2 CODE >51:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+A8 text2 CODE >52:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+AB text2 CODE >53:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+AC text2 CODE >54:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+AD text2 CODE >55:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+AE text2 CODE >56:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B2 text2 CODE >57:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B6 text2 CODE >58:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+BA text2 CODE >59:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+BC text2 CODE >61:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+C1 text2 CODE >62:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+C4 text2 CODE >63:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+C5 text2 CODE >64:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+C6 text2 CODE >65:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+CA text2 CODE >66:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+CE text2 CODE >67:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+D0 text2 CODE >68:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+D2 text2 CODE >70:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+D8 text2 CODE >72:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+DB text2 CODE >73:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+DC text2 CODE >74:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+DD text2 CODE >75:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+E1 text2 CODE >76:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+E6 text2 CODE >76:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+EA text2 CODE >77:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+EC text2 CODE >78:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+EE text2 CODE >80:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+EE text2 CODE >104:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+1C text1 CODE >123:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+1C text1 CODE >125:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+20 text1 CODE >126:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+21 text1 CODE >128:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+27 text1 CODE >129:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+28 text1 CODE >131:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+2A text1 CODE >132:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+2D text1 CODE >134:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+2E text1 CODE >135:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+31 text1 CODE >136:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+34 text1 CODE >137:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+37 text1 CODE >138:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+38 text1 CODE >139:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+3B text1 CODE >141:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+3D text1 CODE >143:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+40 text1 CODE >144:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+41 text1 CODE >146:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+45 text1 CODE >147:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+48 text1 CODE >148:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+4B text1 CODE >149:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+4F text1 CODE >152:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+52 text1 CODE >153:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+53 text1 CODE >154:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+55 text1 CODE >157:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+58 text1 CODE >158:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+59 text1 CODE >159:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+5B text1 CODE >160:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+5F text1 CODE >161:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+63 text1 CODE >163:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+65 text1 CODE >164:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+69 text1 CODE >166:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+6B text1 CODE >167:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+6C text1 CODE >168:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+6D text1 CODE >170:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+6E text1 CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+70 text1 CODE >172:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+71 text1 CODE >173:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+75 text1 CODE >174:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+76 text1 CODE >176:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+79 text1 CODE >177:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7A text1 CODE >180:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7B text1 CODE >181:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7C text1 CODE >182:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7D text1 CODE >183:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7F text1 CODE >184:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+81 text1 CODE >187:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+82 text1 CODE >188:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+83 text1 CODE >189:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+86 text1 CODE >190:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+89 text1 CODE >191:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+8A text1 CODE >192:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+8B text1 CODE >194:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+F5 maintext CODE >106:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+F5 maintext CODE >107:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+FA maintext CODE >117:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+100 maintext CODE >118:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -195,27 +190,27 @@ FF text1 CODE >182:C:\Users\HP\Documents\Programacion de Microcontroladores\PROY
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-__Hspace_0 122 0 ABS 0 - -
+__Hspace_0 105 0 ABS 0 - -
 __Hspace_1 7D 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
-_main 224 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAslus.o
+_main 1EA 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
 _modo 78 0 COMMON 1 bssCOMMON dist/default/production\PIC_1.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-start 18 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
+start 18 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAslus.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAslus.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAslus.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAslus.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAslus.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAslus.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAslus.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\PIC_1.X.production.o
@@ -228,14 +223,13 @@ _CCPR1L 15 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _CCPR2L 1B 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _EECON2 18D 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
-___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
+___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAslus.o
+___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAslus.o
 _WPUBbits 95 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\PIC_1.X.production.o
 _TRISBbits 86 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-_TRISEbits 89 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
+___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAslus.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -254,6 +248,7 @@ __Lcinit 1E 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 5 idloc -
 __Lstack 0 0 STACK 2 stack -
 _PORTBbits 6 0 ABS 0 - dist/default/production\PIC_1.X.production.o
+_PORTEbits 9 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _INTCONbits B 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
@@ -273,16 +268,16 @@ __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 92 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-__S0 122 0 ABS 0 - -
+__S0 105 0 ABS 0 - -
 __S1 7D 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_isr 38 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
+_isr 118 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-__end_of_isr 144 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
+__end_of_isr 1EA 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAsl2o.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAslus.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-__pmaintext 224 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
+__pmaintext 1EA 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\PIC_1.X.production.o
@@ -300,8 +295,8 @@ end_of_initialization 30 0 CODE 0 cinit dist/default/production\PIC_1.X.producti
 __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 6 0 CODE 0 reset_vec -
-__ptext1 144 0 CODE 0 text1 dist/default/production\PIC_1.X.production.o
-__ptext2 38 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
+__ptext1 38 0 CODE 0 text1 dist/default/production\PIC_1.X.production.o
+__ptext2 118 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -310,7 +305,7 @@ __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 79 0 COMMON 1 cstackCOMMON dist/default/production\PIC_1.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main 244 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
+__end_of_main 20A 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
 _CCP2CONbits 1D 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _ANSEL 188 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _EEADR 10D 0 ABS 0 - dist/default/production\PIC_1.X.production.o
@@ -323,12 +318,12 @@ _TRISA 85 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _TRISC 87 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _TRISE 89 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-__end_of_setup 224 0 CODE 0 text1 dist/default/production\PIC_1.X.production.o
+__end_of_setup 118 0 CODE 0 text1 dist/default/production\PIC_1.X.production.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 interrupt_function 8 0 CODE 0 intentry dist/default/production\PIC_1.X.production.o
 _IOCBbits 96 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-_setup 144 0 CODE 0 text1 dist/default/production\PIC_1.X.production.o
+_setup 38 0 CODE 0 text1 dist/default/production\PIC_1.X.production.o
 _CCP1CON 17 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _CCP2CON 1D 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 __pintentry 8 0 CODE 0 intentry dist/default/production\PIC_1.X.production.o
@@ -360,7 +355,7 @@ _CCP1CONbits 17 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-intentry 0 4 8 11E 2
+intentry 0 4 8 101 2
 reset_vec 0 0 0 3 2
 bssCOMMON 1 70 70 D 1
 # %NOTES Section

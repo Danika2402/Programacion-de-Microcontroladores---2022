@@ -21,9 +21,9 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "41 C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"111
+"106
 [v _main main `(v  1 e 1 0 ]
-"128
+"123
 [v _setup setup `(v  1 e 1 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -45,6 +45,14 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "415
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
+[s S76 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"428
+[u S81 . 1 `S76 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES81  1 e 1 @9 ]
 [s S22 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
@@ -62,7 +70,7 @@
 ]
 [u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
-[s S77 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S89 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -71,8 +79,8 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "554
-[u S85 . 1 `S77 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES85  1 e 1 @12 ]
+[u S97 . 1 `S89 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES97  1 e 1 @12 ]
 [s S306 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 TOUTPS 1 0 :4:3 
@@ -132,13 +140,13 @@
 [v _CCP2CONbits CCP2CONbits `VES289  1 e 1 @29 ]
 "1239
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-[s S96 . 1 `uc 1 ADON 1 0 :1:0 
+[s S108 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1277
-[s S101 . 1 `uc 1 . 1 0 :1:0 
+[s S113 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -147,14 +155,14 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S110 . 1 `uc 1 . 1 0 :1:0 
+[s S122 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S113 . 1 `uc 1 . 1 0 :1:0 
+[s S125 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S116 . 1 `S96 1 . 1 0 `S101 1 . 1 0 `S110 1 . 1 0 `S113 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES116  1 e 1 @31 ]
+[u S128 . 1 `S108 1 . 1 0 `S113 1 . 1 0 `S122 1 . 1 0 `S125 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES128  1 e 1 @31 ]
 [s S355 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
@@ -201,14 +209,6 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1665
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S143 . 1 `uc 1 TRISE0 1 0 :1:0 
-`uc 1 TRISE1 1 0 :1:1 
-`uc 1 TRISE2 1 0 :1:2 
-`uc 1 TRISE3 1 0 :1:3 
-]
-"1678
-[u S148 . 1 `S143 1 . 1 0 ]
-[v _TRISEbits TRISEbits `VES148  1 e 1 @137 ]
 [s S433 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
@@ -220,20 +220,20 @@
 "1719
 [u S441 . 1 `S433 1 . 1 0 ]
 [v _PIE1bits PIE1bits `VES441  1 e 1 @140 ]
-[s S162 . 1 `uc 1 SCS 1 0 :1:0 
+[s S161 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1883
-[s S168 . 1 `uc 1 . 1 0 :4:0 
+[s S167 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S173 . 1 `S162 1 . 1 0 `S168 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES173  1 e 1 @143 ]
+[u S172 . 1 `S161 1 . 1 0 `S167 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES172  1 e 1 @143 ]
 "2042
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
 [s S381 . 1 `uc 1 WPUB 1 0 :8:0 
@@ -295,18 +295,18 @@
 [v _EECON2 EECON2 `VEuc  1 e 1 @397 ]
 "26 C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 [v _modo modo `uc  1 e 1 0 ]
-"111
+"106
 [v _main main `(v  1 e 1 0 ]
 {
-"126
+"121
 } 0
-"128
+"123
 [v _setup setup `(v  1 e 1 0 ]
 {
-"199
+"194
 } 0
 "41
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"109
+"104
 } 0

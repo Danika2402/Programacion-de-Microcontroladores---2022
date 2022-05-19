@@ -2679,49 +2679,43 @@ void __attribute__((picinterrupt(("")))) isr (void){
     }
 
     else if(modo==0){
-        PORTE=1;
+        PORTD=0x00;
+        PORTEbits.RE0 = 1;
+        PORTEbits.RE1 = 0;
+        PORTEbits.RE2 = 0;
         if(INTCONbits.RBIF){
             if(!PORTBbits.RB1)
             ++PORTD;
         INTCONbits.RBIF = 0;
         }
     }else if(modo==1){
-        PORTE=2;
+        PORTEbits.RE0 = 0;
+        PORTEbits.RE1 = 1;
+        PORTEbits.RE2 = 0;
         if(INTCONbits.RBIF){
             if(!PORTBbits.RB1)
             --PORTD;
         INTCONbits.RBIF = 0;
         }
     }else if(modo==3){
-        PORTE=4;
+
+        PORTEbits.RE0 = 0;
+        PORTEbits.RE1 = 0;
+        PORTEbits.RE2 = 1;
         if(PIR1bits.ADIF){
             if(ADCON0bits.CHS == 0)
                 PORTD = ADRESH;
         PIR1bits.ADIF = 0;
         }
     }
-# 94 "main.c"
-    if(modo==0){
-        TRISEbits.TRISE0 = 1;
-        TRISEbits.TRISE1 = 0;
-        TRISEbits.TRISE2 = 0;
-    }else if(modo==1){
-        TRISEbits.TRISE0 = 0;
-        TRISEbits.TRISE1 = 1;
-        TRISEbits.TRISE2 = 0;
-
-    }else if(modo==3){
-        TRISEbits.TRISE0 = 0;
-        TRISEbits.TRISE1 = 0;
-        TRISEbits.TRISE2 = 1;
-    }
+# 103 "main.c"
     return;
 }
 
 void main(void) {
     setup();
     while(1){
-# 122 "main.c"
+# 117 "main.c"
         if(ADCON0bits.GO == 0)
             ADCON0bits.GO = 1;
     }
