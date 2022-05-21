@@ -1,9 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
- <FRAME activewindow="1">
+ <FRAME activewindow="0">
   <PLACEMENT>2c00000000000000010000000083ffff0083ffffffffffffffffffffde00000040000000f7060000e4030000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
-  <WINDOW type="default" module="VSMDEBUG"/>
  </FRAME>
  <MODULE name="VSMDEBUG">
   <PWI>
@@ -68,7 +67,7 @@
    <POPUP w="130" x="439" flags="00000008" y="390" h="151" pid="7" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="8" x="459" flags="80000002" y="410" h="8" pid="8" iid="1">
+   <POPUP w="8" x="459" flags="00000002" y="410" h="8" pid="8" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -114,7 +113,7 @@
    <POPUP w="130" x="559" flags="00000008" y="510" h="151" pid="7" iid="2">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="8" x="579" flags="80000002" y="530" h="8" pid="8" iid="2">
+   <POPUP w="8" x="579" flags="00000002" y="530" h="8" pid="8" iid="2">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>

@@ -2653,11 +2653,16 @@ extern __bank0 __bit __timeout;
 # 24 "main.c" 2
 
 
-uint8_t modo;
+uint8_t modo, POT1,POT2;
 
 void setup(void);
+void SERVO_1(uint8_t val);
+void SERVO_2(uint8_t val);
 unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
             unsigned short out_min, unsigned short out_max);
+
+
+
 uint8_t read_EEPROM(uint8_t address);
 void write_EEPROM(uint8_t address, uint8_t data);
 
@@ -2670,54 +2675,78 @@ unsigned short CCP1,CCP2, pot3,pot;
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if(INTCONbits.RBIF){
-        if(modo==4)
-            modo=0;
-
         if (!PORTBbits.RB0)
             ++modo;
+        if(modo>=2)
+            modo=0;
+
+        if(modo==0){
+            PORTEbits.RE0 = 1;
+            PORTEbits.RE1 = 0;
+            PORTEbits.RE2 = 0;
+
+            if(!PORTBbits.RB1){
+                write_EEPROM(0x01,POT1);
+                write_EEPROM(0x02,POT2);
+            }
+            if(!PORTBbits.RB2){
+                write_EEPROM(0x03,POT1);
+                write_EEPROM(0x04,POT2);
+            }
+
+        }else if(modo==1){
+            PORTEbits.RE0 = 0;
+            PORTEbits.RE1 = 1;
+            PORTEbits.RE2 = 0;
+
+            if(!PORTBbits.RB1){
+                POT1 = read_EEPROM(0x01);
+                POT2 = read_EEPROM(0x02);
+            }
+            if(!PORTBbits.RB2){
+                POT1 = read_EEPROM(0x03);
+                POT2 = read_EEPROM(0x04);
+            }
+        }
         INTCONbits.RBIF = 0;
+
     }
-
-    else if(modo==0){
-        PORTD=0x00;
-        PORTEbits.RE0 = 1;
-        PORTEbits.RE1 = 0;
-        PORTEbits.RE2 = 0;
-        if(INTCONbits.RBIF){
-            if(!PORTBbits.RB1)
-            ++PORTD;
-        INTCONbits.RBIF = 0;
+    else if(PIR1bits.ADIF){
+        if(modo==0){
+            if(ADCON0bits.CHS == 0){
+                POT1 = ADRESH;
+                SERVO_1(ADRESH);
+            }else if(ADCON0bits.CHS == 1){
+                POT2 = ADRESH;
+                SERVO_2(ADRESH);
+            }
+        }else if(modo==1){
+            if(ADCON0bits.CHS == 0){
+                SERVO_1(POT1);
+            }else if(ADCON0bits.CHS == 1){
+                SERVO_2(POT2);
+            }
         }
-    }else if(modo==1){
-        PORTEbits.RE0 = 0;
-        PORTEbits.RE1 = 1;
-        PORTEbits.RE2 = 0;
-        if(INTCONbits.RBIF){
-            if(!PORTBbits.RB1)
-            --PORTD;
-        INTCONbits.RBIF = 0;
-        }
-    }else if(modo==3){
-
-        PORTEbits.RE0 = 0;
-        PORTEbits.RE1 = 0;
-        PORTEbits.RE2 = 1;
-        if(PIR1bits.ADIF){
-            if(ADCON0bits.CHS == 0)
-                PORTD = ADRESH;
         PIR1bits.ADIF = 0;
-        }
     }
-# 103 "main.c"
+
     return;
 }
 
 void main(void) {
     setup();
     while(1){
-# 117 "main.c"
-        if(ADCON0bits.GO == 0)
+        if(ADCON0bits.GO == 0){
+            if(ADCON0bits.CHS == 0b0000)
+                ADCON0bits.CHS = 0b0001;
+            else if(ADCON0bits.CHS == 0b0001)
+                ADCON0bits.CHS = 0b0000;
+            _delay((unsigned long)((40)*(1000000/4000000.0)));
             ADCON0bits.GO = 1;
+        }
+
+
+
     }
     return;
 }
@@ -2781,9 +2810,10 @@ void setup(void){
 
     TRISBbits.TRISB0 = 1;
     TRISBbits.TRISB1 = 1;
+    TRISBbits.TRISB2 = 1;
     OPTION_REGbits.nRBPU = 0;
-    WPUBbits.WPUB = 0x03;
-    IOCBbits.IOCB = 0x03;
+    WPUBbits.WPUB = 0x07;
+    IOCBbits.IOCB = 0x07;
 
 
     INTCONbits.RBIE = 1;
@@ -2795,6 +2825,19 @@ void setup(void){
     return;
 }
 
+
+void SERVO_1(uint8_t val){
+    CCP1 = map(val, 0, 255, 62, 125);
+    CCPR1L = (uint8_t)(CCP1>>2);
+    CCP1CONbits.DC1B = CCP1 & 0b11;
+}
+
+void SERVO_2(uint8_t val){
+    CCP2 = map(val, 0, 255, 62, 125);
+    CCPR2L = (uint8_t)(CCP2>>2);
+    CCP2CONbits.DC2B0 = CCP2 & 0b01;
+    CCP2CONbits.DC2B1 = CCP2 & 0b10;
+}
 
 unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
             unsigned short y0, unsigned short y1){
@@ -2818,7 +2861,7 @@ void write_EEPROM(uint8_t address, uint8_t data){
     EECON2=0xaa;
 
     EECON1bits.WR=1;
-    _delay((unsigned long)((10)*(1000000/4000.0)));
+
     EECON1bits.WREN=0;
     INTCONbits.RBIF=0;
     INTCONbits.GIE=1;
