@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+$C:\Users\HP\AppData\Local\Temp\xcAsj10.o
 idloc IDLOC 5 2000 2000 4 2 1
 reset_vec CODE 0 0 0 3 2 1
 end_init CODE 0 10 10 3 2 1
@@ -21,8 +21,8 @@ cinit CODE 0 13 13 11 2 1
 idloc IDLOC 5 2000 2000 4 2 1
 text1 CODE 0 C62 C62 74 2 1
 text2 CODE 0 EDE EDE 122 2 1
-text3 CODE 0 7EA 7EA 15 2 1
-text4 CODE 0 B60 B60 D 2 1
+text3 CODE 0 B4D B4D 20 2 1
+text4 CODE 0 7EA 7EA D 2 1
 text5 CODE 0 C10 C10 52 2 1
 text6 CODE 0 BD0 BD0 40 2 1
 text7 CODE 0 D72 D72 B2 2 1
@@ -52,13 +52,13 @@ BANK1 BE-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST 7FF-B5F 2
+CONST 7F7-B4C 2
 CONST 1000-1FFF 2
 ENTRY 3-3 2
-ENTRY 7FF-B5F 2
+ENTRY 7F7-B4C 2
 ENTRY 1000-1FFF 2
 CODE 3-3 2
-CODE 7FF-B5F 2
+CODE 7F7-B4C 2
 CODE 1000-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
@@ -66,10 +66,10 @@ SFR2 100-10F 1
 SFR3 180-18F 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE 7FF-B5F 2
+STRCODE 7F7-B4C 2
 STRCODE 1000-1FFF 2
 STRING 3-3 2
-STRING 7FF-B5F 2
+STRING 7F7-B4C 2
 STRING 1000-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -85,24 +85,24 @@ STRING 1000-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\PIC_1.X.production.o
-13 cinit CODE >517:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-13 cinit CODE >520:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-13 cinit CODE >549:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-14 cinit CODE >550:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-15 cinit CODE >551:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-16 cinit CODE >552:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-17 cinit CODE >553:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-18 cinit CODE >554:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-19 cinit CODE >555:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-1A cinit CODE >556:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-1B cinit CODE >557:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-1C cinit CODE >558:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-1D cinit CODE >559:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-1E cinit CODE >560:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-1F cinit CODE >561:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-20 cinit CODE >567:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-20 cinit CODE >569:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
-21 cinit CODE >570:C:\Users\HP\AppData\Local\Temp\xcAs9rg.s
+13 cinit CODE >517:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+13 cinit CODE >520:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+13 cinit CODE >549:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+14 cinit CODE >550:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+15 cinit CODE >551:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+16 cinit CODE >552:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+17 cinit CODE >553:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+18 cinit CODE >554:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+19 cinit CODE >555:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+1A cinit CODE >556:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+1B cinit CODE >557:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+1C cinit CODE >558:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+1D cinit CODE >559:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+1E cinit CODE >560:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+1F cinit CODE >561:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+20 cinit CODE >567:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+20 cinit CODE >569:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
+21 cinit CODE >570:C:\Users\HP\AppData\Local\Temp\xcAsj10.s
 4 intentry CODE >46:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 385 text13 CODE >10:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\sprcadd.c
 385 text13 CODE >21:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\sprcadd.c
@@ -693,25 +693,26 @@ C37 text5 CODE >207:C:\Users\HP\Documents\Programacion de Microcontroladores\PRO
 C3E text5 CODE >208:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 C4F text5 CODE >209:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 C61 text5 CODE >210:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B60 text4 CODE >217:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B61 text4 CODE >218:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B65 text4 CODE >219:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B68 text4 CODE >220:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B69 text4 CODE >221:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-B6C text4 CODE >222:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7EA text3 CODE >223:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7EB text3 CODE >224:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7EF text3 CODE >225:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7F1 text3 CODE >226:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7F4 text3 CODE >227:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7F5 text3 CODE >229:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7F6 text3 CODE >230:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7F8 text3 CODE >231:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7FA text3 CODE >233:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7FB text3 CODE >235:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7FC text3 CODE >236:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7FD text3 CODE >237:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
-7FE text3 CODE >238:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7EA text4 CODE >217:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7EB text4 CODE >218:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7EF text4 CODE >219:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7F2 text4 CODE >220:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7F3 text4 CODE >221:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+7F6 text4 CODE >222:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B4D text3 CODE >223:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B4E text3 CODE >224:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B52 text3 CODE >225:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B54 text3 CODE >226:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B57 text3 CODE >227:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B58 text3 CODE >229:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B59 text3 CODE >230:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B5B text3 CODE >231:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B5D text3 CODE >233:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B5E text3 CODE >234:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B67 text3 CODE >235:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B6A text3 CODE >236:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B6B text3 CODE >237:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
+B6C text3 CODE >238:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 EDE text2 CODE >46:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 EDE text2 CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
 EE2 text2 CODE >48:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\PIC_1.X\main.c
@@ -843,7 +844,7 @@ __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-__end_of_write_EEPROM FFE 0 CODE 0 text3 dist/default/production\PIC_1.X.production.o
+__end_of_write_EEPROM 16DA 0 CODE 0 text3 dist/default/production\PIC_1.X.production.o
 ?_map A5 0 BANK1 1 cstackBANK1 dist/default/production\PIC_1.X.production.o
 write_EEPROM@data 70 0 COMMON 1 cstackCOMMON dist/default/production\PIC_1.X.production.o
 map@x0 A5 0 BANK1 1 cstackBANK1 dist/default/production\PIC_1.X.production.o
@@ -855,12 +856,12 @@ _CCP1 B9 0 BANK1 1 bssBANK1 dist/default/production\PIC_1.X.production.o
 _CCP2 B7 0 BANK1 1 bssBANK1 dist/default/production\PIC_1.X.production.o
 _POT1 BC 0 BANK1 1 bssBANK1 dist/default/production\PIC_1.X.production.o
 _POT2 BB 0 BANK1 1 bssBANK1 dist/default/production\PIC_1.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsj10.o
 _main 1728 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
 _modo BD 0 BANK1 1 bssBANK1 dist/default/production\PIC_1.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 map@x 6E 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
-start 20 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+start 20 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAsj10.o
 ___flmul@aexp 4C 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 ___flmul@bexp 4D 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 ___flmul@prod 4E 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
@@ -868,13 +869,13 @@ ___flmul@sign 47 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.productio
 ___flmul@temp 52 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-_read_EEPROM 16C0 0 CODE 0 text4 dist/default/production\PIC_1.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+_read_EEPROM FD4 0 CODE 0 text4 dist/default/production\PIC_1.X.production.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsj10.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsj10.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsj10.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsj10.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsj10.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsj10.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -896,8 +897,8 @@ __end_of___fldiv FD4 0 CODE 0 text12 dist/default/production\PIC_1.X.production.
 __end_of___flmul 70A 0 CODE 0 text10 dist/default/production\PIC_1.X.production.o
 __end_of___fltol 1AE4 0 CODE 0 text9 dist/default/production\PIC_1.X.production.o
 __Umul8_16@multiplicand 70 0 COMMON 1 cstackCOMMON dist/default/production\PIC_1.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
-___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsj10.o
+___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsj10.o
 ___fladd@a 58 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 ___fladd@b 54 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 ___fldiv@a 20 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
@@ -910,7 +911,7 @@ _TRISBbits 86 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 __pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\PIC_1.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsj10.o
 __end_of_SERVO_1 1820 0 CODE 0 text6 dist/default/production\PIC_1.X.production.o
 __end_of_SERVO_2 18C4 0 CODE 0 text5 dist/default/production\PIC_1.X.production.o
 __Hbank0 0 0 ABS 0 bank0 -
@@ -963,14 +964,14 @@ __S3 0 0 ABS 0 - -
 _isr 1DBC 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
 _map 1AE4 0 CODE 0 text7 dist/default/production\PIC_1.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\PIC_1.X.production.o
-__end_of_read_EEPROM 16DA 0 CODE 0 text4 dist/default/production\PIC_1.X.production.o
+__end_of_read_EEPROM FEE 0 CODE 0 text4 dist/default/production\PIC_1.X.production.o
 ___xxtofl 1C48 0 CODE 0 text8 dist/default/production\PIC_1.X.production.o
 __end_of_isr 2000 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
 __end_of_map 1C48 0 CODE 0 text7 dist/default/production\PIC_1.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 SERVO_1@val 6F 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 SERVO_2@val 6F 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAsj10.o
 __end_of___xxtofl 1DBC 0 CODE 0 text8 dist/default/production\PIC_1.X.production.o
 __LbssBANK1 0 0 ABS 0 bssBANK1 -
 _PIE1bits 8C 0 ABS 0 - dist/default/production\PIC_1.X.production.o
@@ -1008,7 +1009,7 @@ ___fltol@exp1 6D 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.productio
 read_EEPROM@address 70 0 COMMON 1 cstackCOMMON dist/default/production\PIC_1.X.production.o
 end_of_initialization 40 0 CODE 0 cinit dist/default/production\PIC_1.X.production.o
 __Hintentry 20 0 CODE 0 intentry -
-write_EEPROM@address 71 0 COMMON 1 cstackCOMMON dist/default/production\PIC_1.X.production.o
+write_EEPROM@address 73 0 COMMON 1 cstackCOMMON dist/default/production\PIC_1.X.production.o
 __Lstrings 0 0 ABS 0 strings -
 ?___fladd 54 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
 ?___fldiv 20 0 BANK0 1 cstackBANK0 dist/default/production\PIC_1.X.production.o
@@ -1020,8 +1021,8 @@ _SERVO_1 17A0 0 CODE 0 text6 dist/default/production\PIC_1.X.production.o
 _SERVO_2 1820 0 CODE 0 text5 dist/default/production\PIC_1.X.production.o
 __ptext1 18C4 0 CODE 0 text1 dist/default/production\PIC_1.X.production.o
 __ptext2 1DBC 0 CODE 0 text2 dist/default/production\PIC_1.X.production.o
-__ptext3 FD4 0 CODE 0 text3 dist/default/production\PIC_1.X.production.o
-__ptext4 16C0 0 CODE 0 text4 dist/default/production\PIC_1.X.production.o
+__ptext3 169A 0 CODE 0 text3 dist/default/production\PIC_1.X.production.o
+__ptext4 FD4 0 CODE 0 text4 dist/default/production\PIC_1.X.production.o
 __ptext5 1820 0 CODE 0 text5 dist/default/production\PIC_1.X.production.o
 __ptext6 17A0 0 CODE 0 text6 dist/default/production\PIC_1.X.production.o
 __ptext7 1AE4 0 CODE 0 text7 dist/default/production\PIC_1.X.production.o
@@ -1041,7 +1042,7 @@ __end_of__initialization 40 0 CODE 0 cinit dist/default/production\PIC_1.X.produ
 __Lfunctab 0 0 ENTRY 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\PIC_1.X.production.o
-_write_EEPROM FD4 0 CODE 0 text3 dist/default/production\PIC_1.X.production.o
+_write_EEPROM 169A 0 CODE 0 text3 dist/default/production\PIC_1.X.production.o
 __Hend_init 26 0 CODE 0 end_init -
 __end_of_main 17A0 0 CODE 0 maintext dist/default/production\PIC_1.X.production.o
 _CCP2CONbits 1D 0 ABS 0 - dist/default/production\PIC_1.X.production.o
@@ -1097,7 +1098,7 @@ _CCP1CONbits 17 0 ABS 0 - dist/default/production\PIC_1.X.production.o
 %SEGMENTS
 text1 0 C62 18C4 74 2
 text2 0 EDE 1DBC 122 2
-text4 0 B60 16C0 D 2
+text3 0 B4D 169A 20 2
 text5 0 C10 1820 52 2
 text6 0 BD0 17A0 40 2
 text7 0 D72 1AE4 B2 2
@@ -1108,7 +1109,7 @@ maintext 0 B94 1728 3C 2
 cstackCOMMON 1 70 70 E 1
 cstackBANK0 1 20 20 50 1
 cstackBANK1 1 A0 A0 1E 1
-intentry 0 4 8 7FB 2
+intentry 0 4 8 7F3 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section

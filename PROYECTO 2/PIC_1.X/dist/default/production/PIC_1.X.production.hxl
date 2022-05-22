@@ -9,13 +9,13 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 5h		(dist/default/production\PIC_1.X.production.hex)
-  8h - FFDh		(dist/default/production\PIC_1.X.production.hex)
-  16C0h - 1FFFh		(dist/default/production\PIC_1.X.production.hex)
+  8h - FEDh		(dist/default/production\PIC_1.X.production.hex)
+  169Ah - 1FFFh		(dist/default/production\PIC_1.X.production.hex)
   4000h - 4007h		(dist/default/production\PIC_1.X.production.hex)
   400Eh - 4011h		(dist/default/production\PIC_1.X.production.hex)
  Unused ranges:
   6h - 7h
-  FFEh - 16BFh
+  FEEh - 1699h
   2000h - 3FFFh
   4008h - 400Dh
 
@@ -280,9 +280,11 @@
 00000FB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000FC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000FD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000FE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000FF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
+00000FE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
 ----------------------------------------------------------
+00001690 | -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1
+000016A0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000016B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000016C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000016D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000016E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

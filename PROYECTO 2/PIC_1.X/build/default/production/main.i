@@ -2861,7 +2861,7 @@ void write_EEPROM(uint8_t address, uint8_t data){
     EECON2=0xaa;
 
     EECON1bits.WR=1;
-
+    _delay((unsigned long)((10)*(1000000/4000.0)));
     EECON1bits.WREN=0;
     INTCONbits.RBIF=0;
     INTCONbits.GIE=1;

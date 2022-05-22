@@ -5,9 +5,9 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.35\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\PIC_1.X.production.sym \
   --cmf=dist/default/production\PIC_1.X.production.cmf -z -Q16F887 \
-  -oC:\Users\HP\AppData\Local\Temp\xcAs9rg.4 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\HP\AppData\Local\Temp\xcAsj10.4 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/PIC_1.X.production.map \
-  --md=C:\Users\HP\AppData\Local\Temp\xcAs9rg.dat -E1 -ver=XC8 Compiler \
+  --md=C:\Users\HP\AppData\Local\Temp\xcAsj10.dat -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
   -ACONST=00h-0FFhx32 -AENTRY=00h-0FFhx32 -ACOMMON=070h-07Fh \
   -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh -ABANK2=0110h-016Fh \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\HP\AppData\Local\Temp\xcAs9rg.o \
+  -pfunctab=ENTRY -k C:\Users\HP\AppData\Local\Temp\xcAsj10.o \
   dist/default/production\PIC_1.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\HP\AppData\Local\Temp\xcAs9rg.o
+C:\Users\HP\AppData\Local\Temp\xcAsj10.o
                 end_init                             10       10        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -47,8 +47,8 @@ dist/default/production\PIC_1.X.production.o
                 text7                               D72      D72       B2     1AE4       0
                 text6                               BD0      BD0       40     17A0       0
                 text5                               C10      C10       52     1820       0
-                text4                               B60      B60        D     16C0       0
-                text3                               7EA      7EA       15        8       0
+                text4                               7EA      7EA        D        8       0
+                text3                               B4D      B4D       20     169A       0
                 text2                               EDE      EDE      122     1DBC       0
                 text1                               C62      C62       74     18C4       0
                 maintext                            B94      B94       3C     1728       0
@@ -72,8 +72,8 @@ TOTAL           Name                               Link     Load   Length     Sp
                 text7                               D72      D72       B2         0
                 text6                               BD0      BD0       40         0
                 text5                               C10      C10       52         0
-                text4                               B60      B60        D         0
-                text3                               7EA      7EA       15         0
+                text4                               7EA      7EA        D         0
+                text3                               B4D      B4D       20         0
                 text2                               EDE      EDE      122         0
                 text1                               C62      C62       74         0
                 maintext                            B94      B94       3C         0
@@ -128,11 +128,11 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  0007FB  0007FF         8       0  CODE        2
+                intentry                       000004  0007F3  0007F7         8       0  CODE        2
                 cstackBANK0                    000020  000050  000070        20       1  BANK0       1
                 cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
                 cstackBANK1                    0000A0  00001E  0000BE        A0       1  BANK1       1
-                text4                          000B60  00000D  000B6D      16C0       0  CODE        2
+                text3                          000B4D  000020  000B6D      169A       0  CODE        2
                 text11                         000B6D  000027  000B94      16DA       0  CODE        2
                 maintext                       000B94  00003C  000BD0      1728       0  CODE        2
                 text6                          000BD0  000040  000C10      17A0       0  CODE        2
@@ -151,14 +151,14 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         07FF-0B5F              1
+                         07F7-0B4C              9
                          1000-1FFF            800
         CONST            0003-0003              1           2
-                         07FF-0B5F            100
+                         07F7-0B4C            100
                          1000-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         07FF-0B5F            100
+                         07F7-0B4C            100
                          1000-1FFF            100
         RAM              00BE-00EF             32           1
                          0110-016F             60
@@ -168,10 +168,10 @@ UNUSED ADDRESS RANGES
         SFR2             0100-010F             10           1
         SFR3             0180-018F             10           1
         STRCODE          0003-0003              1           2
-                         07FF-0B5F            361
+                         07F7-0B4C            356
                          1000-1FFF           1000
         STRING           0003-0003              1           2
-                         07FF-0B5F            100
+                         07F7-0B4C            100
                          1000-1FFF            100
 
                                   Symbol Table
@@ -358,9 +358,9 @@ __end_of__initialization cinit        0020
 __end_of_isr             text2        1000
 __end_of_main            maintext     0BD0
 __end_of_map             text7        0E24
-__end_of_read_EEPROM     text4        0B6D
+__end_of_read_EEPROM     text4        07F7
 __end_of_setup           text1        0CD6
-__end_of_write_EEPROM    text3        07FF
+__end_of_write_EEPROM    text3        0B6D
 __initialization         cinit        0013
 __pbssBANK1              bssBANK1     00B3
 __pcstackBANK0           cstackBANK0  0020
@@ -374,8 +374,8 @@ __ptext11                text11       0B6D
 __ptext12                text12       060D
 __ptext13                text13       0385
 __ptext2                 text2        0EDE
-__ptext3                 text3        07EA
-__ptext4                 text4        0B60
+__ptext3                 text3        0B4D
+__ptext4                 text4        07EA
 __ptext5                 text5        0C10
 __ptext6                 text6        0BD0
 __ptext7                 text7        0D72
@@ -385,9 +385,9 @@ _isr                     text2        0EDE
 _main                    maintext     0B94
 _map                     text7        0D72
 _modo                    bssBANK1     00BD
-_read_EEPROM             text4        0B60
+_read_EEPROM             text4        07EA
 _setup                   text1        0C62
-_write_EEPROM            text3        07EA
+_write_EEPROM            text3        0B4D
 btemp                    (abs)        007E
 end_of_initialization    cinit        0020
 interrupt_function       intentry     0004
@@ -407,7 +407,7 @@ reset_vec                reset_vec    0000
 saved_w                  (abs)        007E
 start                    init         0010
 start_initialization     cinit        0013
-write_EEPROM@address     cstackCOMMON 0071
+write_EEPROM@address     cstackCOMMON 0073
 write_EEPROM@data        cstackCOMMON 0070
 wtemp0                   (abs)        007E
 
@@ -452,10 +452,10 @@ main.c
 		_SERVO_1       		CODE           	0BD0	0000	64
 		_isr           		CODE           	0EDE	0000	290
 		_setup         		CODE           	0C62	0000	116
-		_read_EEPROM   		CODE           	0B60	0000	13
-		_write_EEPROM  		CODE           	07EA	0000	21
+		_read_EEPROM   		CODE           	07EA	0000	13
+		_write_EEPROM  		CODE           	0B4D	0000	32
 
-main.c estimated size: 824
+main.c estimated size: 835
 
 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c90\common\sprcadd.c
 		___fladd       		CODE           	0385	0000	648

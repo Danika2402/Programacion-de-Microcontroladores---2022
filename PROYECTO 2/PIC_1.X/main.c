@@ -231,7 +231,7 @@ void write_EEPROM(uint8_t address, uint8_t data){
     EECON2=0xaa;
     
     EECON1bits.WR=1;        //iniciar escritura
-    
+    __delay_ms(10);
     EECON1bits.WREN=0;      //desabilitar estritura
     INTCONbits.RBIF=0;      //habilitar interrupciones
     INTCONbits.GIE=1;

@@ -331,7 +331,7 @@
 [v write_EEPROM@address address `uc  1 a 1 wreg ]
 [v write_EEPROM@address address `uc  1 a 1 wreg ]
 [v write_EEPROM@data data `uc  1 p 1 0 ]
-[v write_EEPROM@address address `uc  1 a 1 1 ]
+[v write_EEPROM@address address `uc  1 a 1 3 ]
 "238
 } 0
 "217
