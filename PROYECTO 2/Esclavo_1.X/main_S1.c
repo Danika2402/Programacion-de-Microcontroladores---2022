@@ -23,7 +23,7 @@
 #include <xc.h>
 #include <stdint.h>
 
-uint8_t modo, POT1,POT2;
+uint8_t modo, POT1,POT2,old_POT1;
 
 void setup(void);
 void SERVO_1(uint8_t val);
@@ -68,7 +68,7 @@ void __interrupt() isr (void){
             PORTA = cont;           // Mostramos dato enviado en PORTA
             cont--;                 // Actualizamos valor del contador
         }*/
-        SERVO_1(POT1);
+        //SERVO_1(POT1);
         PIR1bits.SSPIF = 0;         // Limpiamos bandera de interrupci n�
     }
 }
@@ -76,6 +76,11 @@ void __interrupt() isr (void){
 void main(void) {
     setup();
     while(1){
+        if(old_POT1 != POT1){
+            SERVO_1(POT1);
+            old_POT1 = POT1;
+        }
+        
         
     }
     return;
@@ -90,8 +95,7 @@ void setup(){
     OSCCONbits.SCS = 1;
  
     PORTC = 0x00;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;       // SCL and SDA as input
+    TRISC = 0b00011000;       // SCL and SDA as input
     
     //Configuracion PWM
     TRISCbits.TRISC2 = 1;       //Deshabilitar salida CCP1

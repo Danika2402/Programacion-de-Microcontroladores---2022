@@ -2776,8 +2776,9 @@ void setup(){
     PORTA = 0x00;
 
     PORTC = 0x00;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
+    TRISC = 0b00011000;
+
+
     PORTD = 0x00;
     TRISD = 0x00;
     TRISE = 0x00;

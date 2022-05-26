@@ -2653,7 +2653,7 @@ extern __bank0 __bit __timeout;
 # 24 "main_S1.c" 2
 
 
-uint8_t modo, POT1,POT2;
+uint8_t modo, POT1,POT2,old_POT1;
 
 void setup(void);
 void SERVO_1(uint8_t val);
@@ -2688,8 +2688,7 @@ void __attribute__((picinterrupt(("")))) isr (void){
             POT1=(SSPBUF);
             SSPCONbits.CKP = 1;
         }
-# 71 "main_S1.c"
-        SERVO_1(POT1);
+# 72 "main_S1.c"
         PIR1bits.SSPIF = 0;
     }
 }
@@ -2697,6 +2696,11 @@ void __attribute__((picinterrupt(("")))) isr (void){
 void main(void) {
     setup();
     while(1){
+        if(old_POT1 != POT1){
+            SERVO_1(POT1);
+            old_POT1 = POT1;
+        }
+
 
     }
     return;
@@ -2711,8 +2715,7 @@ void setup(){
     OSCCONbits.SCS = 1;
 
     PORTC = 0x00;
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
+    TRISC = 0b00011000;
 
 
     TRISCbits.TRISC2 = 1;

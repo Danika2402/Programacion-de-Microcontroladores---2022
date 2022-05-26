@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
+$C:\Users\HP\AppData\Local\Temp\xcAscts.o
 idloc IDLOC 5 2000 2000 4 2 1
 reset_vec CODE 0 0 0 3 2 1
 end_init CODE 0 C C 3 2 1
@@ -77,38 +77,38 @@ STRING 252-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Maestro.X.production.o
-F cinit CODE >508:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-F cinit CODE >511:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-F cinit CODE >537:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-10 cinit CODE >538:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-11 cinit CODE >539:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-12 cinit CODE >540:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-13 cinit CODE >541:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-14 cinit CODE >542:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-15 cinit CODE >548:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-15 cinit CODE >550:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
-16 cinit CODE >551:C:\Users\HP\AppData\Local\Temp\xcAsd7o.s
+F cinit CODE >508:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+F cinit CODE >511:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+F cinit CODE >537:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+10 cinit CODE >538:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+11 cinit CODE >539:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+12 cinit CODE >540:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+13 cinit CODE >541:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+14 cinit CODE >542:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+15 cinit CODE >548:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+15 cinit CODE >550:C:\Users\HP\AppData\Local\Temp\xcAscts.s
+16 cinit CODE >551:C:\Users\HP\AppData\Local\Temp\xcAscts.s
 4 intentry CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-220 text8 CODE >192:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-221 text8 CODE >193:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-225 text8 CODE >194:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-228 text8 CODE >195:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-229 text8 CODE >196:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-22C text8 CODE >197:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-200 text7 CODE >198:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-201 text7 CODE >199:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-205 text7 CODE >200:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-207 text7 CODE >201:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-20A text7 CODE >202:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-20B text7 CODE >204:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-20C text7 CODE >205:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-20E text7 CODE >206:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-210 text7 CODE >208:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-211 text7 CODE >209:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-21A text7 CODE >210:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-21D text7 CODE >211:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-21E text7 CODE >212:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-21F text7 CODE >213:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+220 text8 CODE >193:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+221 text8 CODE >194:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+225 text8 CODE >195:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+228 text8 CODE >196:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+229 text8 CODE >197:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+22C text8 CODE >198:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+200 text7 CODE >199:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+201 text7 CODE >200:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+205 text7 CODE >201:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+207 text7 CODE >202:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+20A text7 CODE >203:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+20B text7 CODE >205:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+20C text7 CODE >206:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+20E text7 CODE >207:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+210 text7 CODE >209:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+211 text7 CODE >210:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+21A text7 CODE >211:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+21D text7 CODE >212:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+21E text7 CODE >213:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+21F text7 CODE >214:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 19 text6 CODE >47:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 19 text6 CODE >48:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 1D text6 CODE >49:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
@@ -172,53 +172,52 @@ FD text6 CODE >95:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYE
 1B9 text5 CODE >146:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 1BC text5 CODE >148:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 1BD text5 CODE >149:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1C0 text5 CODE >150:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1C1 text5 CODE >151:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1C4 text5 CODE >152:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1C7 text5 CODE >153:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1C8 text5 CODE >154:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1CB text5 CODE >157:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1CD text5 CODE >159:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1D0 text5 CODE >160:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1D1 text5 CODE >162:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1D5 text5 CODE >163:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1D8 text5 CODE >164:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1DB text5 CODE >165:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1E2 text5 CODE >168:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1E5 text5 CODE >169:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1E6 text5 CODE >170:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1E7 text5 CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1E8 text5 CODE >172:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1EA text5 CODE >173:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1EC text5 CODE >176:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1EE text5 CODE >177:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1EF text5 CODE >178:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1F5 text5 CODE >179:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1F6 text5 CODE >180:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1F7 text5 CODE >183:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1F8 text5 CODE >184:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1F9 text5 CODE >185:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1FA text5 CODE >186:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1FD text5 CODE >187:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1FE text5 CODE >188:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-1FF text5 CODE >190:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-24A text4 CODE >215:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1C1 text5 CODE >152:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1C4 text5 CODE >153:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1C7 text5 CODE >154:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1C8 text5 CODE >155:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1CB text5 CODE >158:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1CD text5 CODE >160:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1D0 text5 CODE >161:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1D1 text5 CODE >163:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1D5 text5 CODE >164:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1D8 text5 CODE >165:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1DB text5 CODE >166:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1E2 text5 CODE >169:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1E5 text5 CODE >170:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1E6 text5 CODE >171:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1E7 text5 CODE >172:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1E8 text5 CODE >173:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1EA text5 CODE >174:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1EC text5 CODE >177:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1EE text5 CODE >178:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1EF text5 CODE >179:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1F5 text5 CODE >180:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1F6 text5 CODE >181:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1F7 text5 CODE >184:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1F8 text5 CODE >185:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1F9 text5 CODE >186:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1FA text5 CODE >187:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1FD text5 CODE >188:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1FE text5 CODE >189:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+1FF text5 CODE >191:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 24A text4 CODE >216:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-250 text4 CODE >217:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-251 text4 CODE >218:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-241 text3 CODE >219:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+24A text4 CODE >217:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+250 text4 CODE >218:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+251 text4 CODE >219:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 241 text3 CODE >220:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-244 text3 CODE >221:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-249 text3 CODE >222:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-238 text2 CODE >227:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+241 text3 CODE >221:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+244 text3 CODE >222:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+249 text3 CODE >223:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 238 text2 CODE >228:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-23B text2 CODE >229:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-240 text2 CODE >230:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-22D text1 CODE >241:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-230 text1 CODE >242:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-232 text1 CODE >243:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
-237 text1 CODE >244:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+238 text2 CODE >229:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+23B text2 CODE >230:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+240 text2 CODE >231:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+22D text1 CODE >242:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+230 text1 CODE >243:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+232 text1 CODE >244:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 237 text1 CODE >245:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
+237 text1 CODE >246:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 138 maintext CODE >110:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 138 maintext CODE >111:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
 13D maintext CODE >113:C:\Users\HP\Documents\Programacion de Microcontroladores\PROYECTO 2\Maestro.X\main_M.c
@@ -268,22 +267,22 @@ _POT1 7B 0 COMMON 1 bssCOMMON dist/default/production\Maestro.X.production.o
 _POT2 7A 0 COMMON 1 bssCOMMON dist/default/production\Maestro.X.production.o
 _POT3 79 0 COMMON 1 bssCOMMON dist/default/production\Maestro.X.production.o
 _POT4 78 0 COMMON 1 bssCOMMON dist/default/production\Maestro.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
+___sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAscts.o
 _data 77 0 COMMON 1 bssCOMMON dist/default/production\Maestro.X.production.o
 _main 270 0 CODE 0 maintext dist/default/production\Maestro.X.production.o
 _modo 7C 0 COMMON 1 bssCOMMON dist/default/production\Maestro.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Maestro.X.production.o
-start 18 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
+start 18 0 CODE 0 init C:\Users\HP\AppData\Local\Temp\xcAscts.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\Maestro.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 _read_EEPROM 440 0 CODE 0 text8 dist/default/production\Maestro.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAscts.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAscts.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAscts.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAscts.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAscts.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\HP\AppData\Local\Temp\xcAscts.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\Maestro.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\Maestro.X.production.o
@@ -300,19 +299,18 @@ _EECON2 18D 0 ABS 0 - dist/default/production\Maestro.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
 __end_of_stop_I2C 482 0 CODE 0 text2 dist/default/production\Maestro.X.production.o
 __end_of_start_I2C 494 0 CODE 0 text3 dist/default/production\Maestro.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
-___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
+___stackhi 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAscts.o
+___stacklo 0 0 ABS 0 - C:\Users\HP\AppData\Local\Temp\xcAscts.o
 write_I2C@data 20 0 BANK0 1 cstackBANK0 dist/default/production\Maestro.X.production.o
 _WPUBbits 95 0 ABS 0 - dist/default/production\Maestro.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\Maestro.X.production.o
 _start_I2C 482 0 CODE 0 text3 dist/default/production\Maestro.X.production.o
 _TRISBbits 86 0 ABS 0 - dist/default/production\Maestro.X.production.o
-_TRISCbits 87 0 ABS 0 - dist/default/production\Maestro.X.production.o
 _ACKSTAT 48E 0 ABS 0 - dist/default/production\Maestro.X.production.o
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\Maestro.X.production.o
 _SSPADD 93 0 ABS 0 - dist/default/production\Maestro.X.production.o
 _SSPBUF 13 0 ABS 0 - dist/default/production\Maestro.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
+___int_sp 0 0 STACK 2 stack C:\Users\HP\AppData\Local\Temp\xcAscts.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -359,7 +357,7 @@ saved_w 7E 0 ABS 0 - dist/default/production\Maestro.X.production.o
 __end_of_read_EEPROM 45A 0 CODE 0 text8 dist/default/production\Maestro.X.production.o
 __end_of_isr 270 0 CODE 0 text6 dist/default/production\Maestro.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAsd7o.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\HP\AppData\Local\Temp\xcAscts.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\Maestro.X.production.o
 __pmaintext 270 0 CODE 0 maintext dist/default/production\Maestro.X.production.o
 __Lcommon 0 0 ABS 0 common -
@@ -411,6 +409,7 @@ _PORTC 7 0 ABS 0 - dist/default/production\Maestro.X.production.o
 _PORTD 8 0 ABS 0 - dist/default/production\Maestro.X.production.o
 _PORTE 9 0 ABS 0 - dist/default/production\Maestro.X.production.o
 _TRISA 85 0 ABS 0 - dist/default/production\Maestro.X.production.o
+_TRISC 87 0 ABS 0 - dist/default/production\Maestro.X.production.o
 _TRISD 88 0 ABS 0 - dist/default/production\Maestro.X.production.o
 _TRISE 89 0 ABS 0 - dist/default/production\Maestro.X.production.o
 __end_of_setup 400 0 CODE 0 text5 dist/default/production\Maestro.X.production.o
