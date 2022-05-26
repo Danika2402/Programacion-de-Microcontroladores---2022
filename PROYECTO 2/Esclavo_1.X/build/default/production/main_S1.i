@@ -2653,7 +2653,7 @@ extern __bank0 __bit __timeout;
 # 24 "main_S1.c" 2
 
 
-uint8_t dato,check, POT1,POT2,old_POT1,old_dato;
+uint8_t dato,check, POT1,POT2,old_dato;
 
 
 
@@ -2701,10 +2701,11 @@ void main(void) {
 
         if(old_dato != dato){
             check = dato & 0x01;
-
             if(check == 0b0){
+                POT1=dato>>1;
                 SERVO_1(POT1);
             }else if(check == 0b1){
+                POT2=dato>>1;
                 SERVO_2(POT2);
             }
             old_dato = dato;
@@ -2771,6 +2772,7 @@ void SERVO_1(uint8_t val){
     CCP1 = map(val, 0, 127, 0, 125);
     CCPR1L = (uint8_t)(CCP1>>2);
     CCP1CONbits.DC1B = CCP1 & 0b11;
+
 }
 
 void SERVO_2(uint8_t val){
@@ -2778,6 +2780,7 @@ void SERVO_2(uint8_t val){
     CCPR2L = (uint8_t)(CCP2>>2);
     CCP2CONbits.DC2B0 = CCP2 & 0b01;
     CCP2CONbits.DC2B1 = CCP2 & 0b10;
+
 }
 
 

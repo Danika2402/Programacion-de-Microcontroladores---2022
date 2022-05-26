@@ -23,7 +23,7 @@
 #include <xc.h>
 #include <stdint.h>
 
-uint8_t dato,check, POT1,POT2,old_POT1,old_dato;
+uint8_t dato,check, POT1,POT2,old_dato;
 #define READ 0b0
 #define WRITE 0b1
 
@@ -81,10 +81,11 @@ void main(void) {
         
         if(old_dato != dato){
             check = dato & 0x01;
-            
             if(check == READ){
+                POT1=dato>>1;
                 SERVO_1(POT1);
             }else if(check == WRITE){
+                POT2=dato>>1;
                 SERVO_2(POT2);
             }
             old_dato = dato;
@@ -151,6 +152,7 @@ void SERVO_1(uint8_t val){
     CCP1 = map(val, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); //mapeamos valor de potenciometro
     CCPR1L = (uint8_t)(CCP1>>2);    
     CCP1CONbits.DC1B = CCP1 & 0b11; 
+    //__delay_ms(10);
 }
 
 void SERVO_2(uint8_t val){
@@ -158,6 +160,7 @@ void SERVO_2(uint8_t val){
     CCPR2L = (uint8_t)(CCP2>>2);    
     CCP2CONbits.DC2B0 = CCP2 & 0b01;
     CCP2CONbits.DC2B1 = CCP2 & 0b10;
+    //__delay_ms(10);
 }
 
 // y = y0 + [(y1 - y0)/(x1-x0)]*(x-x0)

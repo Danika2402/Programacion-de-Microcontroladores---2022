@@ -34,12 +34,12 @@ void setup(void);
 
 void wait_I2C(void);
 void start_I2C(void);
-void restart_I2C(void);
+//void restart_I2C(void);
 void stop_I2C(void);
-void send_ACK(void);
-void send_NACK(void);
+//void send_ACK(void);
+//void send_NACK(void);
 __bit write_I2C(uint8_t data);
-uint8_t read_I2C(void);
+//uint8_t read_I2C(void);
 
 uint8_t read_EEPROM(uint8_t address);
 void write_EEPROM(uint8_t address, uint8_t data);
@@ -137,6 +137,19 @@ void main(void) {
         stop_I2C();                 // Actualizamos valor a enviar
         __delay_ms(10);
         
+        data = (uint8_t)((ADDRESS_2<<1)+READ);
+        start_I2C();                // Iniciamos comunicaci n�
+        write_I2C(data);          // Enviamos direcci n de esclavo a recibir datos�
+        write_I2C((uint8_t)((POT3<<1)+READ));            // Enviamos dato al esclavo
+        stop_I2C();                 // Actualizamos valor a enviar
+        __delay_ms(10);
+        
+        data = (uint8_t)((ADDRESS_2<<1)+READ);
+        start_I2C();                // Iniciamos comunicaci n�
+        write_I2C(data);          // Enviamos direcci n de esclavo a recibir datos�
+        write_I2C((uint8_t)((POT4<<1)+WRITE));            // Enviamos dato al esclavo
+        stop_I2C();                 // Actualizamos valor a enviar
+        __delay_ms(10);
         
     }
     return;
@@ -224,36 +237,38 @@ void write_EEPROM(uint8_t address, uint8_t data){
 void wait_I2C(void){
     while(!PIR1bits.SSPIF);     // Esperamos a que se ejecute instruccion de I2C
     PIR1bits.SSPIF = 0;         // Limpimos bandera
+    __delay_ms(10);
 }
 void start_I2C(void){
     SSPCON2bits.SEN = 1;        // Inicializar comunicaci n�
     wait_I2C();
 }
-void restart_I2C(void){
+
+/*void restart_I2C(void){
     SSPCON2bits.RSEN = 1;       // Reiniciar de comunicaci n�
     wait_I2C();
-}
+}*/
 void stop_I2C(void){
     SSPCON2bits.PEN = 1;        // Finalizar comunicaci n�
     wait_I2C();
 }
-void send_ACK(void){
+/*void send_ACK(void){
     SSPCON2bits.ACKDT = 0;      // Confirmar que se recibi  la data�
     SSPCON2bits.ACKEN = 1;      // Envio de ack al esclavo
     wait_I2C();
-}
-void send_NACK(void){
+}*/
+/*void send_NACK(void){
     SSPCON2bits.ACKDT = 1;      // Confirmar recepci n al finalizar comunicaci n��
     SSPCON2bits.ACKEN = 1;      // Envio de nack al esclavo
     wait_I2C();
-}
+}*/
 __bit write_I2C(uint8_t data){
     SSPBUF = data;              // Cargar dato a enviar en el buffer
     wait_I2C();
     return ACKSTAT;             // Obtener ACK del esclavo
 }
-uint8_t read_I2C(void){
+/*uint8_t read_I2C(void){
     SSPCON2bits.RCEN = 1;       // Pedir dato al esclavo  
     wait_I2C();
     return SSPBUF;              // Regresar dato recibido
-}
+}*/

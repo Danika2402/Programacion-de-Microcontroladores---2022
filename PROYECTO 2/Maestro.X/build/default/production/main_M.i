@@ -2664,12 +2664,12 @@ void setup(void);
 
 void wait_I2C(void);
 void start_I2C(void);
-void restart_I2C(void);
+
 void stop_I2C(void);
-void send_ACK(void);
-void send_NACK(void);
+
+
 __bit write_I2C(uint8_t data);
-uint8_t read_I2C(void);
+
 
 uint8_t read_EEPROM(uint8_t address);
 void write_EEPROM(uint8_t address, uint8_t data);
@@ -2767,6 +2767,19 @@ void main(void) {
         stop_I2C();
         _delay((unsigned long)((10)*(1000000/4000.0)));
 
+        data = (uint8_t)((0x09<<1)+0b0);
+        start_I2C();
+        write_I2C(data);
+        write_I2C((uint8_t)((POT3<<1)+0b0));
+        stop_I2C();
+        _delay((unsigned long)((10)*(1000000/4000.0)));
+
+        data = (uint8_t)((0x09<<1)+0b0);
+        start_I2C();
+        write_I2C(data);
+        write_I2C((uint8_t)((POT4<<1)+0b1));
+        stop_I2C();
+        _delay((unsigned long)((10)*(1000000/4000.0)));
 
     }
     return;
@@ -2854,36 +2867,24 @@ void write_EEPROM(uint8_t address, uint8_t data){
 void wait_I2C(void){
     while(!PIR1bits.SSPIF);
     PIR1bits.SSPIF = 0;
+    _delay((unsigned long)((10)*(1000000/4000.0)));
 }
 void start_I2C(void){
     SSPCON2bits.SEN = 1;
     wait_I2C();
 }
-void restart_I2C(void){
-    SSPCON2bits.RSEN = 1;
-    wait_I2C();
-}
+
+
+
+
+
 void stop_I2C(void){
     SSPCON2bits.PEN = 1;
     wait_I2C();
 }
-void send_ACK(void){
-    SSPCON2bits.ACKDT = 0;
-    SSPCON2bits.ACKEN = 1;
-    wait_I2C();
-}
-void send_NACK(void){
-    SSPCON2bits.ACKDT = 1;
-    SSPCON2bits.ACKEN = 1;
-    wait_I2C();
-}
+# 265 "main_M.c"
 __bit write_I2C(uint8_t data){
     SSPBUF = data;
     wait_I2C();
     return ACKSTAT;
-}
-uint8_t read_I2C(void){
-    SSPCON2bits.RCEN = 1;
-    wait_I2C();
-    return SSPBUF;
 }
