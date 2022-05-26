@@ -2723,13 +2723,13 @@ void __attribute__((picinterrupt(("")))) isr (void){
     else if(PIR1bits.ADIF){
         if(modo==0){
             if(ADCON0bits.CHS == 0){
-                POT1 = ADRESH;
+                POT1 = ADRESH >>1;
             }else if(ADCON0bits.CHS == 1){
-                POT2 = ADRESH;
+                POT2 = ADRESH >>1;
             }else if(ADCON0bits.CHS == 2){
-                POT3 = ADRESH;
+                POT3 = ADRESH >>1;
             }else if(ADCON0bits.CHS == 3){
-                POT4 = ADRESH;
+                POT4 = ADRESH >>1;
             }
         }
         PIR1bits.ADIF = 0;
@@ -2756,9 +2756,17 @@ void main(void) {
         data = (uint8_t)((0x08<<1)+0b0);
         start_I2C();
         write_I2C(data);
-        write_I2C(POT1);
+        write_I2C((uint8_t)((POT1<<1)+0b0));
         stop_I2C();
         _delay((unsigned long)((10)*(1000000/4000.0)));
+
+        data = (uint8_t)((0x08<<1)+0b0);
+        start_I2C();
+        write_I2C(data);
+        write_I2C((uint8_t)((POT2<<1)+0b1));
+        stop_I2C();
+        _delay((unsigned long)((10)*(1000000/4000.0)));
+
 
     }
     return;

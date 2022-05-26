@@ -2653,7 +2653,9 @@ extern __bank0 __bit __timeout;
 # 24 "main_S1.c" 2
 
 
-uint8_t modo, POT1,POT2,old_POT1;
+uint8_t dato,check, POT1,POT2,old_POT1,old_dato;
+
+
 
 void setup(void);
 void SERVO_1(uint8_t val);
@@ -2685,10 +2687,10 @@ void __attribute__((picinterrupt(("")))) isr (void){
         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW){
             SSPSTATbits.BF = 0;
             while(!SSPSTATbits.BF);
-            POT1=(SSPBUF);
+            dato=(SSPBUF);
             SSPCONbits.CKP = 1;
         }
-# 72 "main_S1.c"
+# 74 "main_S1.c"
         PIR1bits.SSPIF = 0;
     }
 }
@@ -2696,11 +2698,17 @@ void __attribute__((picinterrupt(("")))) isr (void){
 void main(void) {
     setup();
     while(1){
-        if(old_POT1 != POT1){
-            SERVO_1(POT1);
-            old_POT1 = POT1;
-        }
 
+        if(old_dato != dato){
+            check = dato & 0x01;
+
+            if(check == 0b0){
+                SERVO_1(POT1);
+            }else if(check == 0b1){
+                SERVO_2(POT2);
+            }
+            old_dato = dato;
+        }
 
     }
     return;
@@ -2760,13 +2768,13 @@ void setup(){
 }
 
 void SERVO_1(uint8_t val){
-    CCP1 = map(val, 0, 255, 0, 125);
+    CCP1 = map(val, 0, 127, 0, 125);
     CCPR1L = (uint8_t)(CCP1>>2);
     CCP1CONbits.DC1B = CCP1 & 0b11;
 }
 
 void SERVO_2(uint8_t val){
-    CCP2 = map(val, 0, 255, 0, 125);
+    CCP2 = map(val, 0, 127, 0, 125);
     CCPR2L = (uint8_t)(CCP2>>2);
     CCP2CONbits.DC2B0 = CCP2 & 0b01;
     CCP2CONbits.DC2B1 = CCP2 & 0b10;

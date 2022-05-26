@@ -23,7 +23,9 @@
 #include <xc.h>
 #include <stdint.h>
 
-uint8_t modo, POT1,POT2,old_POT1;
+uint8_t dato,check, POT1,POT2,old_POT1,old_dato;
+#define READ 0b0
+#define WRITE 0b1
 
 void setup(void);
 void SERVO_1(uint8_t val);
@@ -32,7 +34,7 @@ unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
             unsigned short out_min, unsigned short out_max);
 
 #define IN_MIN 0                // Valor minimo de entrada del potenciometro
-#define IN_MAX 255              // Valor maximo de entrada del potenciometro
+#define IN_MAX 127              // Valor maximo de entrada del potenciometro
 #define OUT_MIN 0              // Valor minimo de ancho de pulso de señal PWM
 #define OUT_MAX 125             // Valor maximo de ancho de pulso de señal PWM
 
@@ -55,7 +57,7 @@ void __interrupt() isr (void){
         if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW){
             SSPSTATbits.BF = 0;     // Limpiamos bandera para saber cuando se reciben los datos
             while(!SSPSTATbits.BF); // Esperamos a recibir los datos
-            POT1=(SSPBUF);         // Mostramos valor recibido del mestro en PORTD
+            dato=(SSPBUF);         // Mostramos valor recibido del mestro en PORTD
             SSPCONbits.CKP = 1;     // Habilitamos el reloj
         }
         
@@ -76,11 +78,17 @@ void __interrupt() isr (void){
 void main(void) {
     setup();
     while(1){
-        if(old_POT1 != POT1){
-            SERVO_1(POT1);
-            old_POT1 = POT1;
-        }
         
+        if(old_dato != dato){
+            check = dato & 0x01;
+            
+            if(check == READ){
+                SERVO_1(POT1);
+            }else if(check == WRITE){
+                SERVO_2(POT2);
+            }
+            old_dato = dato;
+        }
         
     }
     return;

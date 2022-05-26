@@ -15,19 +15,19 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "110
 [v _main main `(v  1 e 1 0 ]
-"137
+"145
 [v _setup setup `(v  1 e 1 0 ]
-"193
+"201
 [v _read_EEPROM read_EEPROM `(uc  1 e 1 0 ]
-"199
+"207
 [v _write_EEPROM write_EEPROM `(v  1 e 1 0 ]
-"216
+"224
 [v _wait_I2C wait_I2C `(v  1 e 1 0 ]
-"220
-[v _start_I2C start_I2C `(v  1 e 1 0 ]
 "228
+[v _start_I2C start_I2C `(v  1 e 1 0 ]
+"236
 [v _stop_I2C stop_I2C `(v  1 e 1 0 ]
-"242
+"250
 [v _write_I2C write_I2C `(b  1 e 0 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -311,55 +311,55 @@
 "110
 [v _main main `(v  1 e 1 0 ]
 {
-"135
+"143
 } 0
-"242
+"250
 [v _write_I2C write_I2C `(b  1 e 0 0 ]
 {
 [v write_I2C@data data `uc  1 a 1 wreg ]
 [v write_I2C@data data `uc  1 a 1 wreg ]
 [v write_I2C@data data `uc  1 a 1 0 ]
-"246
+"254
+} 0
+"236
+[v _stop_I2C stop_I2C `(v  1 e 1 0 ]
+{
+"239
 } 0
 "228
-[v _stop_I2C stop_I2C `(v  1 e 1 0 ]
+[v _start_I2C start_I2C `(v  1 e 1 0 ]
 {
 "231
 } 0
-"220
-[v _start_I2C start_I2C `(v  1 e 1 0 ]
-{
-"223
-} 0
-"216
+"224
 [v _wait_I2C wait_I2C `(v  1 e 1 0 ]
 {
-"219
+"227
 } 0
-"137
+"145
 [v _setup setup `(v  1 e 1 0 ]
 {
-"191
+"199
 } 0
 "47
 [v _isr isr `II(v  1 e 1 0 ]
 {
 "108
 } 0
-"199
+"207
 [v _write_EEPROM write_EEPROM `(v  1 e 1 0 ]
 {
 [v write_EEPROM@address address `uc  1 a 1 wreg ]
 [v write_EEPROM@address address `uc  1 a 1 wreg ]
 [v write_EEPROM@data data `uc  1 p 1 0 ]
 [v write_EEPROM@address address `uc  1 a 1 3 ]
-"214
+"222
 } 0
-"193
+"201
 [v _read_EEPROM read_EEPROM `(uc  1 e 1 0 ]
 {
 [v read_EEPROM@address address `uc  1 a 1 wreg ]
 [v read_EEPROM@address address `uc  1 a 1 wreg ]
 [v read_EEPROM@address address `uc  1 a 1 0 ]
-"198
+"206
 } 0

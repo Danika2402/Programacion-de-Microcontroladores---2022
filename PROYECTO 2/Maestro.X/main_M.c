@@ -93,13 +93,13 @@ void __interrupt() isr (void){
     else if(PIR1bits.ADIF){
         if(modo==0){
             if(ADCON0bits.CHS == 0){   
-                POT1 = ADRESH;
+                POT1 = ADRESH >>1;
             }else if(ADCON0bits.CHS == 1){
-                POT2 = ADRESH;
+                POT2 = ADRESH >>1;
             }else if(ADCON0bits.CHS == 2){
-                POT3 = ADRESH;
+                POT3 = ADRESH >>1;
             }else if(ADCON0bits.CHS == 3){
-                POT4 = ADRESH;
+                POT4 = ADRESH >>1;
             }
         }
         PIR1bits.ADIF = 0;
@@ -126,9 +126,17 @@ void main(void) {
         data = (uint8_t)((ADDRESS_1<<1)+READ);
         start_I2C();                // Iniciamos comunicaci n�
         write_I2C(data);          // Enviamos direcci n de esclavo a recibir datos�
-        write_I2C(POT1);            // Enviamos dato al esclavo
+        write_I2C((uint8_t)((POT1<<1)+READ));            // Enviamos dato al esclavo
         stop_I2C();                 // Actualizamos valor a enviar
         __delay_ms(10);
+        
+        data = (uint8_t)((ADDRESS_1<<1)+READ);
+        start_I2C();                // Iniciamos comunicaci n�
+        write_I2C(data);          // Enviamos direcci n de esclavo a recibir datos�
+        write_I2C((uint8_t)((POT2<<1)+WRITE));            // Enviamos dato al esclavo
+        stop_I2C();                 // Actualizamos valor a enviar
+        __delay_ms(10);
+        
         
     }
     return;
