@@ -2678,13 +2678,13 @@ void __attribute__((picinterrupt(("")))) isr (void){
     if(INTCONbits.RBIF){
         if (!PORTBbits.RB0)
             ++modo;
-        if(modo>=2)
+        if(modo>=3)
             modo=0;
 
         if(modo==0){
-            PORTEbits.RE0 = 1;
-            PORTEbits.RE1 = 0;
-            PORTEbits.RE2 = 0;
+            PORTDbits.RD7 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD5 = 0;
 
             if(!PORTBbits.RB1){
                 write_EEPROM(0x01,POT1);
@@ -2700,9 +2700,9 @@ void __attribute__((picinterrupt(("")))) isr (void){
             }
 
         }else if(modo==1){
-            PORTEbits.RE0 = 0;
-            PORTEbits.RE1 = 1;
-            PORTEbits.RE2 = 0;
+            PORTDbits.RD7 = 0;
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD5 = 0;
 
             if(!PORTBbits.RB1){
                 POT1 = read_EEPROM(0x01);
@@ -2716,6 +2716,11 @@ void __attribute__((picinterrupt(("")))) isr (void){
                 POT3 = read_EEPROM(0x07);
                 POT4 = read_EEPROM(0x08);
             }
+        }else if(modo==2){
+            PORTDbits.RD7 = 0;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD5 = 1;
+
         }
         INTCONbits.RBIF = 0;
 
@@ -2734,6 +2739,7 @@ void __attribute__((picinterrupt(("")))) isr (void){
         }
         PIR1bits.ADIF = 0;
     }
+# 133 "main_M.c"
     return;
 }
 
@@ -2802,8 +2808,6 @@ void setup(){
 
     PORTD = 0x00;
     TRISD = 0x00;
-    TRISE = 0x00;
-    PORTE = 0x00;
 
 
     ADCON0bits.ADCS = 0b00;
@@ -2882,7 +2886,7 @@ void stop_I2C(void){
     SSPCON2bits.PEN = 1;
     wait_I2C();
 }
-# 265 "main_M.c"
+# 289 "main_M.c"
 __bit write_I2C(uint8_t data){
     SSPBUF = data;
     wait_I2C();

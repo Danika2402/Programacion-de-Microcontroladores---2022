@@ -48,13 +48,13 @@ void __interrupt() isr (void){
     if(INTCONbits.RBIF){
         if (!PORTBbits.RB0)               //si presiona el boton, guardamos en
             ++modo;
-        if(modo>=2)
+        if(modo>=3)
             modo=0;
         
         if(modo==0){
-            PORTEbits.RE0 = 1;
-            PORTEbits.RE1 = 0;
-            PORTEbits.RE2 = 0;
+            PORTDbits.RD7 = 1;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD5 = 0;
             
             if(!PORTBbits.RB1){
                 write_EEPROM(0x01,POT1);
@@ -70,9 +70,9 @@ void __interrupt() isr (void){
             }    
         
         }else if(modo==1){
-            PORTEbits.RE0 = 0;
-            PORTEbits.RE1 = 1;
-            PORTEbits.RE2 = 0;
+            PORTDbits.RD7 = 0;
+            PORTDbits.RD6 = 1;
+            PORTDbits.RD5 = 0;
             
             if(!PORTBbits.RB1){
                 POT1 =  read_EEPROM(0x01);
@@ -86,6 +86,11 @@ void __interrupt() isr (void){
                 POT3 =  read_EEPROM(0x07);
                 POT4 =  read_EEPROM(0x08);
             }    
+        }else if(modo==2){
+            PORTDbits.RD7 = 0;
+            PORTDbits.RD6 = 0;
+            PORTDbits.RD5 = 1;
+            
         }
         INTCONbits.RBIF = 0;
         
@@ -103,7 +108,28 @@ void __interrupt() isr (void){
             }
         }
         PIR1bits.ADIF = 0;
-    }
+    }/*else if(PIR1bits.RCIF){          // Hay datos recibidos?
+                            
+        if(modo == 2){
+            if (RCREG== 49){ //Si es senal del pot1
+               while (RCREG == 49){}
+               POT1 = RCREG>>1; 
+            }
+            else if (RCREG == 50){//Si es senal del pot2
+               while (RCREG == 50){}
+               POT2 = RCREG>>1;
+            }
+            else if (RCREG == 51){//Si es senal del pot3
+               while (RCREG == 51){}
+               POT3 = RCREG>>1;
+            }
+            else if (RCREG == 52){//Si es senal del pot4
+               while (RCREG == 52){}
+               POT4 = RCREG>>1;
+            }
+        }
+            
+    }*/ 
     return;
 }
 
@@ -172,8 +198,6 @@ void setup(){
     //TRISCbits.TRISC4 = 1;       // SCL and SDA as input
     PORTD = 0x00;
     TRISD = 0x00;
-    TRISE = 0x00;
-    PORTE = 0x00;
     
     //Configuraciones de ADC
     ADCON0bits.ADCS = 0b00;     // Fosc/2

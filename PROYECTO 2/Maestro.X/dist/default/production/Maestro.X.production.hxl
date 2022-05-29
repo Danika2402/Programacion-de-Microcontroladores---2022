@@ -9,12 +9,12 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 5h		(dist/default/production\Maestro.X.production.hex)
-  8h - 5C7h		(dist/default/production\Maestro.X.production.hex)
+  8h - 5D7h		(dist/default/production\Maestro.X.production.hex)
   4000h - 4007h		(dist/default/production\Maestro.X.production.hex)
   400Eh - 4011h		(dist/default/production\Maestro.X.production.hex)
  Unused ranges:
   6h - 7h
-  5C8h - 3FFFh
+  5D8h - 3FFFh
   4008h - 400Dh
 
 ### Hex Memory Map ###
@@ -116,7 +116,8 @@
 00000590 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000005A0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000005B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000005C0 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
+000005C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000005D0 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00004000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- H1 H1
 00004010 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --
